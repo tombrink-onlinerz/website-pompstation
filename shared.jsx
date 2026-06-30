@@ -321,9 +321,10 @@ function SfeerGallery({ bg = "bg-cream-warm", lead }) {
 }
 
 /* ---------- Brochure Download Section ---------- */
-// Vervang deze URLs met je n8n webhook URLs:
-const N8N_WEBHOOK_WEDDING   = "https://JOUW-N8N-URL/webhook/brochure-wedding";
-const N8N_WEBHOOK_CORPORATE = "https://JOUW-N8N-URL/webhook/brochure-corporate";
+const N8N_WEBHOOK_WEDDING   = "";
+const N8N_WEBHOOK_CORPORATE = "";
+const BREVO_API_KEY = 'xsmtpsib-1a4f8ef9550467068185652d7f6fc1616ebd7c95c30feb5c9b6bf43f5ceb340c-jt5lm704TXh80hAm';
+const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
 
 function BrochureDownload({ type }) {
   // type: "wedding" | "corporate"
@@ -359,17 +360,23 @@ function BrochureDownload({ type }) {
     if (Object.keys(errs).length > 0) return;
     setSending(true); setServerError(null);
     try {
-      const res = await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const html = `<h2>Brochure aanvraag — ${isWedding ? 'Wedding' : 'Corporate'}</h2>
+        <p><strong>Naam:</strong> ${form.name}</p>
+        <p><strong>E-mail:</strong> ${form.email}</p>
+        <p><strong>Telefoon:</strong> ${form.phone}</p>
+        <p><strong>Groepsgrootte:</strong> ${form.people}</p>`;
+      const res = await fetch(BREVO_URL, {
+        method: 'POST',
+        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          naam: form.name, telefoon: form.phone,
-          email: form.email, groepsgrootte: form.people,
-          type: isWedding ? "wedding" : "corporate",
-          source: window.location.pathname
+          sender: { name: 'Website Pompstation', email: 'events@pompstation.nu' },
+          to: [{ email: 'events@pompstation.nu', name: 'Pompstation Events' }],
+          replyTo: { email: form.email, name: form.name },
+          subject: `[Brochure] ${isWedding ? 'Wedding' : 'Corporate'} — ${form.name}`,
+          htmlContent: html,
         }),
       });
-      if (res.ok || res.status === 200) { window.location.href = 'bedankt-brochure.html?type=' + encodeURIComponent(type) + '&email=' + encodeURIComponent(form.email); }
+      if (res.ok || res.status === 201) { window.location.href = 'bedankt-brochure.html?type=' + encodeURIComponent(type) + '&email=' + encodeURIComponent(form.email); }
       else { setServerError(t("Er ging iets mis. Probeer opnieuw.","Something went wrong. Please try again.")); }
     } catch { setServerError(t("Geen verbinding. Probeer opnieuw.","No connection. Please try again.")); }
     finally { setSending(false); }

@@ -1,5 +1,6 @@
 const t = window._t || ((nl) => nl);
-const FORMSPREE_CONTACT = "https://formspree.io/f/xpznbwjd";
+const BREVO_API_KEY = 'xsmtpsib-1a4f8ef9550467068185652d7f6fc1616ebd7c95c30feb5c9b6bf43f5ceb340c-jt5lm704TXh80hAm';
+const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
 
 /* ============================================================
    CONTACT PAGE
@@ -48,13 +49,24 @@ function ContactPage() {
     if (Object.keys(errs).length > 0) return;
     setSending(true); setServerError(null);
     try {
-      const res = await fetch(FORMSPREE_CONTACT, {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, subject: form.subject, message: form.message }),
+      const html = `<h2>Nieuw contactbericht via website</h2>
+        <p><strong>Naam:</strong> ${form.name}</p>
+        <p><strong>E-mail:</strong> ${form.email}</p>
+        <p><strong>Onderwerp:</strong> ${form.subject}</p>
+        <p><strong>Bericht:</strong><br>${form.message.replace(/\n/g,'<br>')}</p>`;
+      const res = await fetch(BREVO_URL, {
+        method: 'POST',
+        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sender: { name: 'Website Pompstation', email: 'events@pompstation.nu' },
+          to: [{ email: 'events@pompstation.nu', name: 'Pompstation' }],
+          replyTo: { email: form.email, name: form.name },
+          subject: `[Website] ${form.subject} — ${form.name}`,
+          htmlContent: html,
+        }),
       });
-      if (res.ok) { const n = encodeURIComponent((form.name || '').split(' ')[0]); window.location.href = 'bedankt-contact.html?naam=' + n; }
-      else { const d = await res.json(); setServerError(d.error || t("Er ging iets mis. Probeer opnieuw.","Something went wrong. Please try again.")); }
+      if (res.ok || res.status === 201) { const n = encodeURIComponent((form.name || '').split(' ')[0]); window.location.href = 'bedankt-contact.html?naam=' + n; }
+      else { setServerError(t('Er ging iets mis. Probeer opnieuw.','Something went wrong. Please try again.')); }
     } catch { setServerError(t("Geen verbinding. Probeer opnieuw.","No connection. Please try again.")); }
     finally { setSending(false); }
   };

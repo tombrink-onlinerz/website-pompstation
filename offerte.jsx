@@ -1,5 +1,6 @@
 const t = window._t || ((nl) => nl);
-const FORMSPREE_OFFERTE = "https://formspree.io/f/xgvwkqry";
+const BREVO_API_KEY = 'xsmtpsib-1a4f8ef9550467068185652d7f6fc1616ebd7c95c30feb5c9b6bf43f5ceb340c-jt5lm704TXh80hAm';
+const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
 
 /* ============================================================
    OFFERTE — standalone offerte aanvraag pagina
@@ -37,18 +38,28 @@ function OffertePage() {
     if (Object.keys(errs).length > 0) return;
     setSending(true); setServerError(null);
     try {
-      const res = await fetch(FORMSPREE_OFFERTE, {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      const html = `<h2>Nieuwe offerteaanvraag via website</h2>
+        <p><strong>Type:</strong> ${form.type}</p>
+        <p><strong>Personen:</strong> ${form.people}</p>
+        <p><strong>Datum:</strong> ${form.date}</p>
+        <p><strong>Naam:</strong> ${form.name}</p>
+        <p><strong>E-mail:</strong> ${form.email}</p>
+        <p><strong>Telefoon:</strong> ${form.phone}</p>
+        <p><strong>Bedrijf:</strong> ${form.company || '—'}</p>
+        <p><strong>Bericht:</strong><br>${(form.message || '—').replace(/\n/g,'<br>')}</p>`;
+      const res = await fetch(BREVO_URL, {
+        method: 'POST',
+        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: form.type, people: form.people, date: form.date,
-          name: form.name, email: form.email, phone: form.phone,
-          company: form.company, message: form.message,
-          _subject: "Offerte aanvraag Pompstation — " + form.type
+          sender: { name: 'Website Pompstation', email: 'events@pompstation.nu' },
+          to: [{ email: 'events@pompstation.nu', name: 'Pompstation Events' }],
+          replyTo: { email: form.email, name: form.name },
+          subject: `[Offerte] ${form.type} — ${form.name} (${form.people} pers.)`,
+          htmlContent: html,
         }),
       });
-      if (res.ok) { const n = encodeURIComponent((form.name || '').split(' ')[0]); window.location.href = 'bedankt-offerte.html?naam=' + n; }
-      else { const d = await res.json(); setServerError(d.error || t("Er ging iets mis. Probeer opnieuw.","Something went wrong. Please try again.")); }
+      if (res.ok || res.status === 201) { const n = encodeURIComponent((form.name || '').split(' ')[0]); window.location.href = 'bedankt-offerte.html?naam=' + n; }
+      else { let msg = ''; try { const d = await res.json(); msg = d.message || d.error || JSON.stringify(d); } catch(e) { msg = res.statusText; } setServerError('Brevo fout (' + res.status + '): ' + msg); }
     } catch { setServerError(t("Geen verbinding. Probeer opnieuw.","No connection. Please try again.")); }
     finally { setSending(false); }
   };
