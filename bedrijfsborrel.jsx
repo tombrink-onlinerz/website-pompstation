@@ -1,0 +1,88 @@
+function DetailRow({ k, v }) {
+const t = window._t || ((nl) => nl);
+  return (
+    <li className="flex flex-col gap-0.5 border-b border-anthracite/10 pb-4">
+      <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-anthracite/50">{k}</span>
+      <span className="text-anthracite text-base">{v}</span>
+    </li>
+  );
+}
+
+function App() {
+  return (
+    <div className="font-sans text-anthracite">
+      <SiteNav current="groepen" />
+
+      <PageHero
+        kicker="Groepen & afhuren · Bedrijfsborrel"
+        title="De"
+        titleAccent={t("borrel","drinks")}
+        lead="Informeel samenzijn met collega's, klanten of partners. Van een uurtje netwerken tot een uitgebreide borrel met walking dinner."
+        image="images/cocktail.jpg"
+        position="center 30%"
+        ctas={[{label:t("Brochure downloaden","Download brochure"),href:"brochure-corporate.html"},{label:t("Offerte aanvragen","Request a quote"),href:"offerte.html"}]}
+        />
+
+      <section className="bg-cream py-20 md:py-28 border-b border-anthracite/10">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-12">
+          <div className="md:col-span-4">
+            <div className="eyebrow text-bordeaux mb-4">Details</div>
+            <ul className="space-y-5">
+              {[
+                ["Capaciteit","20–360 gasten"],
+                ["Ruimte","Vide, restaurant of terras"],
+                ["Drank","Unlimited arrangementen beschikbaar"],
+                ["Hapjes","Walking dinner optioneel"],
+                ["Bar","Eigen bar & signature cocktails"],
+                ["Eindtijd","Tot 01:00 (vr–za tot 03:00)"],
+              ].map(([k, v]) => <DetailRow key={k} k={k} v={v} />)}
+            </ul>
+            <a href="offerte.html" className="btn-primary mt-8 inline-flex items-center gap-3 px-7 py-4 text-sm font-medium tracking-wide">
+              Offerte aanvragen →
+            </a>
+          </div>
+          <div className="md:col-span-8">
+            <p className="text-anthracite/80 text-lg leading-relaxed">
+              De bar van Pompstation is de perfecte plek voor een bedrijfsborrel. Met huisgemaakte cocktails, een brede wijnkaart en de unieke sfeer van de historische hal voelt een borrel hier altijd bijzonder.
+            </p>
+            <p className="mt-5 text-anthracite/80 text-lg leading-relaxed">
+              Kies voor de intieme vide, de grote restaurantzaal of het terras in de zomermaanden. Wij bieden drankarrangementen op maat en kunnen een walking dinner toevoegen voor een volledige avond.
+            </p>
+            <div className="mt-10 grid grid-cols-2 gap-4">
+              <div className="overflow-hidden" style={{height:'280px'}}>
+                <Photo src="images/cocktail.jpg" alt="Cocktails aan de bar" className="w-full h-full" position="center 30%" />
+              </div>
+              <div className="overflow-hidden" style={{height:'280px'}}>
+                <Photo src="images/interior-vide.jpg" alt="Borrel in de vide" className="w-full h-full" position="center 60%" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bordeaux text-cream py-16 md:py-20">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div>
+            <h2 className="h-display text-cream text-4xl md:text-6xl">Borrel organiseren?</h2>
+            <p className="mt-3 text-cream/75 text-lg">Vraag een offerte aan — we reageren binnen 1 werkdag.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a href="offerte.html" className="inline-flex items-center justify-center gap-2 bg-cream text-bordeaux px-7 py-4 font-medium text-sm tracking-wide hover:bg-cream/90 transition-colors">
+              Offerte aanvragen →
+            </a>
+            <a href="tel:+31202279885" className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-7 py-4 font-medium text-sm tracking-wide hover:border-cream/60 transition-colors">
+              +31 20 227 9885
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <BrochureDownload type="corporate" />
+
+      <SiteFooter />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(React.createElement(App));
