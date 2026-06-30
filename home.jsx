@@ -204,6 +204,7 @@ const PATHS = [
     ],
     image: "images/event-fullhall.jpg",
     imagePosition: "center 70%",
+    ctaLabel: t("Bekijk alle opties","View all options"),
     ctaHref: "groepen.html",
     external: false,
     variant: "dark",
