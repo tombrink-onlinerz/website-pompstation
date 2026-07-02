@@ -60,7 +60,7 @@ function LangToggle({ solid }) {
 /* ---------- Nav ---------- */
 const NAV_LINKS = [
   { l: t("Menu", "Menu"), h: "menu.html", key: "menu" },
-  { l: t("Live muziek", "Live music"), h: "agenda.html", key: "agenda" },
+  /* Live muziek tijdelijk uit menu — zomerstop t/m 12 aug */
   { l: t("Ruimtes", "Spaces"), h: "ruimtes.html", key: "ruimtes", dropdown: [
     { l: t("Het Restaurant","The Restaurant"), h: "ruimte-restaurant.html" },
     { l: t("De Vide","The Mezzanine"),       h: "ruimte-vide.html" },
@@ -226,7 +226,7 @@ function SiteFooter() {
               <span className="text-cream/60 text-sm font-mono">
                 Wo–do · 17:00–00:00<br />
                 Vr–za · 17:00–01:00<br />
-                {t("Live muziek · do–za", "Live music · Thu–Sat")}
+                {t("Live muziek · zomerstop t/m 12 aug", "Live music · summer break until Aug 12")}
               </span>
             </address>
           </div>
@@ -238,7 +238,7 @@ function SiteFooter() {
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <a href="menu.html" className="hover:text-cream transition-colors">Menu</a>
             <a href="verhaal.html" className="hover:text-cream transition-colors">{t("Verhaal", "Our story")}</a>
-            <a href="agenda.html" className="hover:text-cream transition-colors">{t("Live muziek", "Live music")}</a>
+
             <a href="groepen.html" className="hover:text-cream transition-colors">{t("Afhuren & groepen", "Private hire")}</a>
             <a href="contact.html" className="hover:text-cream transition-colors">Contact</a>
             <a href="vacatures.html" className="hover:text-cream transition-colors">{t("Vacatures", "Vacancies")}</a>

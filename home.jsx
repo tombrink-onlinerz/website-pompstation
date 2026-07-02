@@ -67,7 +67,6 @@ function Nav() {
           {[
             { l: t("Menu","Menu"), h: "menu.html" },
             { l: t("Verhaal","Our story"), h: "verhaal.html" },
-            { l: t("Live muziek","Live music"), h: "agenda.html" },
             { l: t("Afhuren & groepen","Private hire"), h: "groepen.html" },
             { l: t("Contact","Contact"), h: "contact.html" },
           ].map((it, i) =>
@@ -97,7 +96,6 @@ function Nav() {
           {[
             { l: t("Menu","Menu"), h: "menu.html" },
             { l: t("Verhaal","Our story"), h: "verhaal.html" },
-            { l: t("Live muziek","Live music"), h: "agenda.html" },
             { l: t("Afhuren & groepen","Private hire"), h: "groepen.html" },
             { l: t("Contact","Contact"), h: "contact.html" },
           ].map((it, i) =>
@@ -676,7 +674,7 @@ function Footer() {
               <span className="text-cream/60 text-sm font-mono">
                 Wo–do · 17:00–00:00<br />
                 Vr–za · 17:00–01:00<br />
-                {t("Live muziek · do–za","Live music · Thu–Sat")}
+                {t("Live muziek · zomerstop t/m 12 aug","Live music · summer break until Aug 12")}
               </span>
             </address>
           </div>
@@ -688,7 +686,7 @@ function Footer() {
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <a href="menu.html" className="hover:text-cream transition-colors">Menu</a>
             <a href="verhaal.html" className="hover:text-cream transition-colors">Verhaal</a>
-            <a href="agenda.html" className="hover:text-cream transition-colors">Live muziek</a>
+
             <a href="groepen.html" className="hover:text-cream transition-colors">Afhuren & groepen</a>
             <a href="contact.html" className="hover:text-cream transition-colors">Contact</a>
             <a href="vacatures.html" className="hover:text-cream transition-colors">{t("Vacatures","Vacancies")}</a>

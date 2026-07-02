@@ -29,6 +29,24 @@ function AgendaPage() {
         image="images/live-muziek-intiem.jpg"
         position="center 40%" />
 
+      {/* Zomerstop banner */}
+      <div className="bg-brass/15 border-b border-brass/30">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-10 py-4 flex items-center gap-4">
+          <span className="font-mono text-xs tracking-[0.15em] uppercase text-brass shrink-0">
+            {t("Zomerstop","Summer break")}
+          </span>
+          <p className="text-anthracite/80 text-sm">
+            {t(
+              "De live muziek pauzeert tijdelijk — we zijn terug op 12 augustus. Reserveer alvast een tafel voor het nieuwe seizoen.",
+              "Live music is on a summer break — we return on 12 August. Reserve a table for the new season."
+            )}
+          </p>
+          <a href="reserveren.html" className="ml-auto shrink-0 text-sm font-medium text-bordeaux hover:underline whitespace-nowrap">
+            {t("Reserveer →","Reserve →")}
+          </a>
+        </div>
+      </div>
+
       {/* Weekly agenda */}
       <section className="bg-cream py-16 md:py-24 border-b border-anthracite/10">
         <div className="max-w-[1100px] mx-auto px-5 md:px-10">

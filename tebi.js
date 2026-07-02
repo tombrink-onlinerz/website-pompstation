@@ -14,15 +14,5 @@ var TEBI_TOKEN = '545611_8f53d68e7bed6544fbb01fcc5b61eeaf2c5f0c7b7b1ccb64936b0d0
 
 /* Wordt aangeroepen door alle "Reserveer"-knoppen op de site */
 window.openReservation = function () {
-  /* Primair: officiële hash-trigger van Tebi */
-  if (window.location.hash === '#tebi-reservations') {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    setTimeout(function () { window.location.hash = 'tebi-reservations'; }, 20);
-  } else {
-    window.location.hash = 'tebi-reservations';
-  }
-  /* Secundair: JS API indien beschikbaar */
-  if (window.Tebi && typeof window.Tebi.openWidget === 'function') {
-    window.Tebi.openWidget();
-  }
+  window.location.href = 'reserveren.html';
 };
