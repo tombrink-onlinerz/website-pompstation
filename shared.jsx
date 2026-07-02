@@ -126,7 +126,7 @@ function SiteNav({ current, transparentTop = true }) {
 
         <div className="flex items-center gap-3">
           <LangToggle solid={solid} />
-          <a href="#" onClick={PS.openReservation} className="btn-primary px-4 md:px-5 py-2.5 text-sm font-medium tracking-wide whitespace-nowrap">
+          <a href="reserveren.html" className="btn-primary px-4 md:px-5 py-2.5 text-sm font-medium tracking-wide whitespace-nowrap">
             {t("Reserveer een tafel", "Reserve a table")}
           </a>
           <button
