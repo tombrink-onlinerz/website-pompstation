@@ -18,8 +18,9 @@ function App() {
         title="Het"
         titleAccent="groepsdiner"
         lead="Aan een lange tafel, uitgeserveerd in gangen. Altijd keuze uit vlees, vis of vega seizoensmenu — voor elk gezelschap van 10 personen of meer."
-        image="images/interior-vide.jpg"
-        position="center 60%"
+        image="images/groepsdiner-overhead.jpg"
+        position="center 40%"
+        height="h-[50vh] min-h-[360px]"
         ctas={[{label:t("Brochure downloaden","Download brochure"),href:"brochure-corporate.html"},{label:t("Offerte aanvragen","Request a quote"),href:"offerte.html"}]}
         />
 
@@ -30,7 +31,7 @@ function App() {
             <ul className="space-y-5">
               {[
                 ["Capaciteit","10–180 gasten"],
-                ["Menu","3 gangen €47 · 4 gangen €57 · 5 gangen €65"],
+                ["Menu","3 · 4 · 5 gangen"],
                 ["Keuze","Vlees, vis of vega per gang"],
                 ["Wijnarrangement","Add-on · vooraf te boeken"],
                 ["Live muziek","Donderdag t/m zaterdag"],
@@ -42,6 +43,21 @@ function App() {
             </a>
           </div>
           <div className="md:col-span-8">
+            {/* Gangen cards */}
+            <div className="grid grid-cols-3 gap-4 mb-10">
+              {[
+                { gangen: 3, prijs: "€47", label: t("Keuze vlees, vis of vega","Choice of meat, fish or veg") },
+                { gangen: 4, prijs: "€57", label: t("Met tussengerecht","With intermediate course"), featured: true },
+                { gangen: 5, prijs: "€65", label: t("Volledig proeverijmenu","Full tasting menu") },
+              ].map(({ gangen, prijs, label, featured }) => (
+                <div key={gangen} className={`p-5 border ${ featured ? 'bg-bordeaux border-bordeaux text-cream' : 'bg-cream border-anthracite/15 text-anthracite'}`}>
+                  {featured && <div className="eyebrow text-cream/60 text-[10px] mb-3">{t("Meest gekozen","Most popular")}</div>}
+                  <div className={`h-serif text-2xl ${featured ? 'text-cream' : 'text-anthracite'}`}>{gangen} {t("gangen","courses")}</div>
+                  <div className={`mt-2 text-4xl font-display font-extrabold tracking-tight ${featured ? 'text-cream' : 'text-anthracite'}`}>{prijs} <span className="text-base font-sans font-normal opacity-70">p.p.</span></div>
+                  <div className={`mt-2 text-sm leading-snug ${featured ? 'text-cream/70' : 'text-anthracite/60'}`}>{label}</div>
+                </div>
+              ))}
+            </div>
             <p className="text-anthracite/80 text-lg leading-relaxed">
               Het groepsdiner bij Pompstation is een apart menu, speciaal samengesteld voor gezelschappen vanaf 10 personen. Per gang kiest u uit een vlees-, vis- of vega seizoensmenu — samengesteld door de keuken op basis van het beste van het moment.
             </p>

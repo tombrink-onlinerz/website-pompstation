@@ -118,14 +118,14 @@ function ContactPage() {
               <div key={i} className={`flex items-center justify-between py-3 border-b border-anthracite/10 ${h.closed ? "opacity-50" : ""}`}>
                 <div className="flex items-center gap-3">
                   <span className="text-anthracite font-medium w-24">{h.d}</span>
-                  {h.music && <span className="eyebrow text-bordeaux border border-bordeaux/30 px-1.5 py-0.5">live muziek</span>}
+
                 </div>
                 <span className="font-mono text-sm text-anthracite/75">{h.h}</span>
               </div>
               )}
             </div>
             <p className="mt-5 text-sm text-anthracite/55 font-mono leading-relaxed">
-              Wij accepteren geen contant geld meer. Jaarlijkse zomerstop eind juli / begin augustus.
+              Wij accepteren geen contant geld meer.
             </p>
           </div>
 
