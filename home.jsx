@@ -147,7 +147,7 @@ function Hero() {
                 {t("Wat wordt het?","What shall it be?")}
                 <span className="transition-transform group-hover:translate-y-1">↓</span>
               </a>
-              <a href="#menu" className="btn-outline text-cream px-7 py-4 text-sm md:text-base font-medium tracking-wide hover:bg-cream/10 inline-flex items-center gap-2">
+              <a href="menu.html" className="btn-outline text-cream px-7 py-4 text-sm md:text-base font-medium tracking-wide hover:bg-cream/10 inline-flex items-center gap-2">
                 {t("Bekijk het menu","View the menu")}
               </a>
             </div>

@@ -1,5 +1,5 @@
 const t = window._t || ((nl) => nl);
-const BREVO_API_KEY = 'xsmtpsib-1a4f8ef9550467068185652d7f6fc1616ebd7c95c30feb5c9b6bf43f5ceb340c-jt5lm704TXh80hAm';
+const BREVO_API_KEY = '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';
 const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
 
 /* ============================================================
