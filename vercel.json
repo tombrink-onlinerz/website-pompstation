@@ -6,8 +6,7 @@
     { "source": "/home-2", "destination": "/", "permanent": true },
     { "source": "/ons-verhaal", "destination": "/verhaal", "permanent": true },
     { "source": "/trouwen", "destination": "/trouwlocatie", "permanent": true },
-    { "source": "/groepen", "destination": "/groepen", "permanent": true },
-    { "source": "/www.pompstation.nu/groepen", "destination": "/groepen", "permanent": true },
+{ "source": "/www.pompstation.nu/groepen", "destination": "/groepen", "permanent": true },
     { "source": "/en", "destination": "/?lang=en", "permanent": true },
     
     { "source": "/groepsaanvraag", "destination": "/offerte", "permanent": true }
