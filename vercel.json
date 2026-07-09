@@ -1,0 +1,25 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/home-2", "destination": "/", "permanent": true },
+    { "source": "/ons-verhaal", "destination": "/verhaal", "permanent": true },
+    { "source": "/trouwen", "destination": "/bruiloft", "permanent": true },
+    { "source": "/groepen", "destination": "/groepen", "permanent": true },
+    { "source": "/www.pompstation.nu/groepen", "destination": "/groepen", "permanent": true },
+    { "source": "/en", "destination": "/?lang=en", "permanent": true },
+    { "source": "/zakelijk", "destination": "/groepen", "permanent": true },
+    { "source": "/groepsaanvraag", "destination": "/offerte", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# AI crawlers welkom — verbeter vindbaarheid in ChatGPT, Perplexity, Claude etc.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Interne pagina's niet indexeren
+Disallow: /bedankt-brochure
+Disallow: /bedankt-contact
+Disallow: /bedankt-offerte
+Disallow: /bedankt-reservering
+Disallow: /index-print
+
+Sitemap: https://pompstation.nu/sitemap.xml
