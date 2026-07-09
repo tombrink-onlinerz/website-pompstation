@@ -37,3 +37,5 @@ https://pompstation.nu/offerte
 - Bruiloft: https://pompstation.nu/bruiloft
 - Contact: https://pompstation.nu/contact
 - Vacatures: https://pompstation.nu/vacatures
+- Trouwlocatie: https://pompstation.nu/trouwlocatie
+- Zakelijk: https://pompstation.nu/zakelijk

@@ -51,6 +51,22 @@
   </url>
 
   <url>
+    <loc>https://pompstation.nu/trouwlocatie</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://pompstation.nu/trouwlocatie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pompstation.nu/trouwlocatie?lang=en"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pompstation.nu/zakelijk</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://pompstation.nu/zakelijk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pompstation.nu/zakelijk?lang=en"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://pompstation.nu/bruiloft</loc>
     <xhtml:link rel="alternate" hreflang="nl" href="https://pompstation.nu/bruiloft"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pompstation.nu/bruiloft?lang=en"/>
