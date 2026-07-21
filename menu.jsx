@@ -20,42 +20,55 @@ const MENU_SECTIONS = [
   {
     title: t("Voorgerechten","Starters"),
     items: [
-      { n: "Ceviche", d: "Leche de tigre, watermeloen, witte perzik, duindoornbes-olie", p: "16" },
-      { n: "Burrata", d: "Tomatensalade, tomatenchutney, tzatziki, basilicumolie", p: "13" },
-      { n: "“Pompstation” runder­carpaccio", d: "Knoflook, rucola, Parmezaan-brick", p: "15", award: true },
-      { n: "Vitello tonnato", d: "Tonijnsaus, kappertjes, Amsterdamse ui, kalfsjus", p: "14" },
+      { n: t("Carpaccio van Barossa","Carpaccio from Barossa"), d: t("Rucola, bieslookmayonaise, Parmezaan, pijnboompitten","Arugula, chives mayonnaise, parmesan cheese and pine nuts"), p: "15" },
+      { n: t("Steak Tartare Klassiek (80gr)","Steak Tartare Classic (80gr)"), d: t(`'Barrossa' met kappertjes, sjalot, augurk, peterselie, crouton en eidooierdressing (op beenmerg +6)`,`Made from "Barrossa" with capers, shallot, pickles, parsley, bread crouton and egg yolk dressing (on bone marrow +6)`), p: "15" },
+      { n: t("Zeebaars Ceviche","Seabass Ceviche"), d: t("Leche de tigre, chili, koriander, rode ui","Leche de tigre, chili, coriander, red onion"), p: "16" },
+      { n: t("Gegrilde Gamba's van de Houtskoolbarbecue","Roasted Gamba's from the Charcoal Grill"), d: t("Boter, chili, knoflook en peterselie","Butter, chilli, garlic and parsley"), p: "16" },
+      { n: t("Burrata ♥","Burrata ♥"), d: t(`Geroosterde 'San Marzano' tomaat, broodkruim, basilicumolie`,`Roasted "San Marzano" tomato, bread crumble, basil oil`), p: "15", veg: true },
+      { n: t("Parmigiana ♥","Parmigiana ♥"), d: t("Aubergine, tomaat, basilicum, parmigiano, buffalo mozzarella","Aubergine, tomato, basil, parmigiano, buffalo mozzarella"), p: "14", veg: true },
     ],
   },
   {
-    title: t("Tussengerechten","Intermediate courses"),
+    title: t("Oesters","Oysters"),
     items: [
-      { n: "Ravioli kabeljauw", d: "Courgette, basilicum, munt, eigeel", p: "16" },
-      { n: "Brisket", d: "Focaccia, zwarte-knoflookmayonaise, gepekelde seizoensgroenten", p: "15" },
-      { n: "Cous cous", d: "Seizoensgroenten, tajine, Zuid-mediterrane kruiden", p: "22" },
+      { n: t("Ierse Oesters p.p.","Irish Oysters p/p"), d: t("Per stuk","Per piece"), p: "4,50" },
+      { n: t("Seizoensoesters p.p.","Seasonal Oysters p/p"), d: t("Per stuk","Per piece"), p: "3,50" },
     ],
   },
   {
-    title: t("Hoofdgerechten","Main courses"),
-    items: [
-      { n: "Côte de Boeuf", d: "800 gram · van Noord-Hollandse Holstein · voor twee", p: "78" },
-      { n: "Catch of the day", d: "Dagverse vis van lokale leveranciers", p: "dagprijs" },
-      { n: "Tournedos", d: "Dry-aged uit eigen kast, seizoensgarnituur, rode­wijnjus", p: "34" },
-      { n: "Geroosterde knolselderij", d: "Vegetarisch · misoglacé, hazelnoot, bladpeterselie", p: "26" },
+    title: t("Steaks — Houtskoolbarbecue","Steaks — Charcoal BBQ"),
+    subtitle: t("Geserveerd medium rare","Served medium rare"),
+    subsections: [
+      {
+        label: t("Black Angus Ierland","Black Angus Ireland"),
+        note: t("grasgevoerd","grass fed"),
+        items: [
+          { n: t("Tournedos (200gr)","Tournedos (200gr)"), p: "30" },
+          { n: t("Picanha (200gr)","Picanha (200gr)"), p: "22" },
+        ],
+      },
+      {
+        label: t("Dutch Dubbeldoel","Dutch Dubbeldoel"),
+        note: t("grasgevoerd","grass fed"),
+        items: [
+          { n: t("Côte de Boeuf (600gr)","Côte de Boeuf (600gr)"), p: "48" },
+          { n: t("Rib-eye (250gr)","Rib-eye (250gr)"), p: "28" },
+          { n: t("Skirt Steak (200gr)","Skirt Steak (200gr)"), p: "21" },
+        ],
+      },
     ],
+    sauceNote: t("Huisgemaakte sauzen erbij +1,50: pepersaus · béarnaise · jus de veau · chimichurri","Add homemade sauces +1.50: pepper sauce · béarnaise · jus de veau · chimichurri"),
   },
   {
-    title: t("Oesters & rauw","Oysters & raw"),
+    title: t("Bijgerechten","Side Dishes"),
     items: [
-      { n: "Wilde Wad-oesters", d: "Per stuk", p: "3,75" },
-      { n: "Wilde Wad-oesters", d: "Zes stuks", p: "21,50" },
-    ],
-  },
-  {
-    title: t("Nagerechten","Desserts"),
-    items: [
-      { n: "Yoghurtcrème", d: "Honeycomb, honingcrumble", p: "11" },
-      { n: "Brownie", d: "Rood fruit, notencrumble", p: "11" },
-      { n: "Kaasplateau", d: "Selectie Europese kazen, vijgenchutney", p: "15" },
+      { n: t("Brood & boter","Bread & Butter"), p: "4,50" },
+      { n: t("Friet","Fries"), p: "5" },
+      { n: t("Padrón pepers","Padrón peppers"), p: "5" },
+      { n: t("Geroosterde aardappelen","Roasted potatoes"), p: "6" },
+      { n: t("Seizoensgroenten","Seasonal vegetables"), p: "5" },
+      { n: t("Groene salade met Parmezaan en citrusdressing","Green salad with Parmesan and citrus dressing"), p: "6" },
+      { n: t("Rund beenmerg","Beef bone marrow"), p: "6,50" },
     ],
   },
 ];
@@ -107,9 +120,9 @@ function MenuRow({ it }) {
       <div className="flex-1">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="h-serif text-xl md:text-2xl text-anthracite">{it.n}</span>
-          {it.award && <span className="eyebrow text-bordeaux border border-bordeaux/40 px-1.5 py-0.5">bekroond</span>}
+          {it.veg && <span className="eyebrow text-forest border border-forest/40 px-1.5 py-0.5 text-[10px]">veg</span>}
         </div>
-        <div className="mt-1 text-sm text-anthracite/65 leading-relaxed">{it.d}</div>
+        {it.d && <div className="mt-1 text-sm text-anthracite/65 leading-relaxed">{it.d}</div>}
       </div>
       <div className="h-display text-2xl md:text-3xl text-bordeaux whitespace-nowrap">
         {/^[0-9]/.test(it.p) ? <>€{it.p}</> : <span className="text-lg md:text-xl italic h-serif normal-case">{it.p}</span>}
@@ -178,21 +191,45 @@ function MenuPage() {
       {/* Kaart */}
       <section className="bg-cream py-16 md:py-24">
         <div className="max-w-[1100px] mx-auto px-5 md:px-10">
+          {/* PDF Download */}
+          <div className="mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between p-5 bg-cream-warm border border-anthracite/10">
+            <div>
+              <div className="eyebrow text-bordeaux mb-1">{t("Menukaart 2026","Menu Card 2026")}</div>
+              <p className="text-sm text-anthracite/70">{t("Download de volledige menukaart als PDF","Download the full menu as PDF")}</p>
+            </div>
+            <a href="menu-2026.pdf" download className="inline-flex items-center gap-2 bg-bordeaux text-cream px-5 py-3 text-sm font-medium hover:bg-bordeaux-dark transition-colors whitespace-nowrap">
+              ↓ {t("Download menu PDF","Download menu PDF")}
+            </a>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
             {MENU_SECTIONS.map((s, i) =>
-            <div key={i} className={`fade-up ${i === MENU_SECTIONS.length - 1 && MENU_SECTIONS.length % 2 ? "" : ""}`}>
-              <h3 className="h-display text-3xl md:text-4xl text-anthracite mb-2">{s.title}</h3>
+            <div key={i} className={`fade-up ${s.subsections ? 'md:col-span-2' : ''}`}>
+              <h3 className="h-display text-3xl md:text-4xl text-anthracite mb-1">{s.title}</h3>
+              {s.subtitle && <p className="text-sm text-anthracite/60 mb-2">{s.subtitle}</p>}
               <div className="w-12 h-0.5 bg-bordeaux mb-4"></div>
-              <div>
-                {s.items.map((it, j) => <MenuRow key={j} it={it} />)}
-              </div>
+              {s.subsections ? (
+                <div className="grid sm:grid-cols-2 gap-x-16">
+                  {s.subsections.map((sub, k) => (
+                    <div key={k}>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="h-sans font-semibold text-anthracite text-sm uppercase tracking-wider">{sub.label}</span>
+                        <span className="eyebrow text-anthracite/40 text-[10px]">{sub.note}</span>
+                      </div>
+                      {sub.items.map((it, j) => <MenuRow key={j} it={it} />)}
+                    </div>
+                  ))}
+                  {s.sauceNote && <div className="sm:col-span-2 mt-4 text-sm text-anthracite/60 italic">{s.sauceNote}</div>}
+                </div>
+              ) : (
+                <div>{s.items.map((it, j) => <MenuRow key={j} it={it} />)}</div>
+              )}
             </div>
             )}
           </div>
 
           <div className="mt-12 p-5 bg-cream-warm border border-anthracite/10 text-sm text-anthracite/70 font-mono leading-relaxed">
-            Gerechten wisselen met het seizoen — vraag de bediening naar dagsuggesties en allergenen.
-            Wij accepteren geen contant geld meer.
+            {t("Allergieën of dieetwensen? Informeer uw ober. Wij accepteren geen contant geld.","Allergies or dietary restrictions? Please inform your waiter. We do not accept cash.")}
           </div>
         </div>
       </section>

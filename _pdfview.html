@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script></head>
+<body style="margin:0;background:#333">
+<canvas id="p1" style="display:block;width:100%"></canvas>
+<canvas id="p2" style="display:block;width:100%"></canvas>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+pdfjsLib.getDocument('uploads/menu2026.pdf').promise.then(async pdf=>{
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const vp=page.getViewport({scale:2});
+    const canvas=document.getElementById('p'+i);
+    canvas.width=vp.width;canvas.height=vp.height;
+    await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+  }
+});
+</script></body></html>
