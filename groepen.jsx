@@ -67,7 +67,7 @@ function App() {
         )}
         image="images/event-fullhall.jpg"
         position="center 40%"
-        height="h-[55vh] min-h-[380px]"
+        height="h-[75vh] min-h-[520px]"
         ctas={[
           { label: t("Offerte aanvragen", "Request a quote"), href: "offerte.html" },
           { label: t("Brochure downloaden", "Download brochure"), href: "brochure-corporate.html" },

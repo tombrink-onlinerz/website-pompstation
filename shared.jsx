@@ -67,7 +67,15 @@ const NAV_LINKS = [
     { l: t("Het Terras","The Terrace"),       h: "ruimte-terras.html" },
     { l: t("Volledig Exclusief","Fully Exclusive"), h: "ruimte-exclusief.html" },
   ]},
-  { l: t("Afhuren & groepen", "Private hire"), h: "groepen.html", key: "groepen" },
+  { l: t("Afhuren & groepen", "Private hire"), h: "groepen.html", key: "groepen", dropdown: [
+    { l: t("Groepsdiner","Group Dinner"),       h: "groepsdiner.html" },
+    { l: t("Groepslunch","Group Lunch"),         h: "groepslunch.html" },
+    { l: t("Bedrijfsborrel","Corporate Drinks"), h: "bedrijfsborrel.html" },
+    { l: t("Bedrijfsdiner","Corporate Dinner"),  h: "bedrijfsdiner.html" },
+    { l: t("Bedrijfsfeest","Company Party"),     h: "bedrijfsfeest.html" },
+    { l: t("Vergadering","Meeting"),             h: "vergadering.html" },
+    { l: t("Bruiloft","Wedding"),                h: "bruiloft.html" },
+  ]},
   { l: t("Verhaal", "Our story"), h: "verhaal.html", key: "verhaal" },
   { l: t("Contact", "Contact"), h: "contact.html", key: "contact" },
 ];
