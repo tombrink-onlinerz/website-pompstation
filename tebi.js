@@ -14,5 +14,7 @@ var TEBI_TOKEN = '545611_8f53d68e7bed6544fbb01fcc5b61eeaf2c5f0c7b7b1ccb64936b0d0
 
 /* Wordt aangeroepen door alle "Reserveer"-knoppen op de site */
 window.openReservation = function () {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'klik_op_reserveer' });
   window.location.href = 'reserveren.html';
 };

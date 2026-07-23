@@ -67,7 +67,7 @@ const NAV_LINKS = [
     { l: t("Het Terras","The Terrace"),       h: "ruimte-terras.html" },
     { l: t("Volledig Exclusief","Fully Exclusive"), h: "ruimte-exclusief.html" },
   ]},
-  { l: t("Afhuren & groepen", "Private hire"), h: "groepen.html", key: "groepen", dropdown: [
+  { l: t("Afhuren & groepen", "Groups & private events"), h: "groepen.html", key: "groepen", dropdown: [
     { l: t("Groepsdiner","Group Dinner"),       h: "groepsdiner.html" },
     { l: t("Groepslunch","Group Lunch"),         h: "groepslunch.html" },
     { l: t("Bedrijfsborrel","Corporate Drinks"), h: "bedrijfsborrel.html" },
@@ -247,7 +247,7 @@ function SiteFooter() {
             <a href="menu.html" className="hover:text-cream transition-colors">Menu</a>
             <a href="verhaal.html" className="hover:text-cream transition-colors">{t("Verhaal", "Our story")}</a>
 
-            <a href="groepen.html" className="hover:text-cream transition-colors">{t("Afhuren & groepen", "Private hire")}</a>
+            <a href="groepen.html" className="hover:text-cream transition-colors">{t("Afhuren & groepen", "Groups & private events")}</a>
             <a href="contact.html" className="hover:text-cream transition-colors">Contact</a>
             <a href="vacatures.html" className="hover:text-cream transition-colors">{t("Vacatures", "Vacancies")}</a>
             <a href="algemene-voorwaarden.html" className="hover:text-cream transition-colors">{t("Algemene voorwaarden", "Terms & conditions")}</a>

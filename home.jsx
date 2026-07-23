@@ -67,7 +67,7 @@ function Nav() {
           {[
             { l: t("Menu","Menu"), h: "menu.html" },
             { l: t("Verhaal","Our story"), h: "verhaal.html" },
-            { l: t("Afhuren & groepen","Private hire"), h: "groepen.html" },
+            { l: t("Afhuren & groepen","Groups & private events"), h: "groepen.html" },
             { l: t("Contact","Contact"), h: "contact.html" },
           ].map((it, i) =>
           <a key={i} href={it.h}
@@ -96,7 +96,7 @@ function Nav() {
           {[
             { l: t("Menu","Menu"), h: "menu.html" },
             { l: t("Verhaal","Our story"), h: "verhaal.html" },
-            { l: t("Afhuren & groepen","Private hire"), h: "groepen.html" },
+            { l: t("Afhuren & groepen","Groups & private events"), h: "groepen.html" },
             { l: t("Contact","Contact"), h: "contact.html" },
           ].map((it, i) =>
           <a key={i} href={it.h} className="py-3 border-b border-anthracite/10 text-lg h-serif text-anthracite">{it.l}</a>
@@ -397,8 +397,7 @@ function Seizoen() {
             <span className="h-serif italic normal-case font-normal text-cream/75">{t("terras is geopend.","terrace is open.")}</span>
           </h2>
           <p className="mt-7 text-cream/80 text-lg leading-relaxed max-w-lg">
-            Geniet van zomerse gerechten, koude drankjes en de sfeer van Amsterdam-Oost —
-            omringd door groen, onder een open hemel.
+            {t("Geniet van zomerse gerechten, koude drankjes en de sfeer van Amsterdam-Oost — omringd door groen, onder een open hemel.","Enjoy summery dishes, cold drinks and the atmosphere of Amsterdam East — surrounded by greenery, under an open sky.")}
           </p>
           <div className="mt-9">
             <a href="#" onClick={(e) => { e.preventDefault(); window.openReservation ? window.openReservation() : window.open('https://www.pompstation.nu/','_blank'); }}
@@ -474,7 +473,7 @@ function Terras() {
 
             <a href="#" onClick={(e) => { e.preventDefault(); window.openReservation ? window.openReservation() : window.open('https://www.pompstation.nu/','_blank'); }}
               className="mt-8 inline-flex items-center gap-2 bg-bordeaux text-cream px-6 py-3.5 text-sm font-medium tracking-wide hover:bg-bordeaux-dark transition-colors">
-              Reserveer een tafel <span>→</span>
+              {t("Reserveer een tafel","Reserve a table")} <span>→</span>
             </a>
           </div>
         </div>
@@ -526,7 +525,7 @@ function GroepenCapaciteit() {
       <div className="max-w-[1280px] mx-auto px-5 md:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div className="max-w-2xl">
-            <div className="eyebrow text-cream/70 mb-4">{t("Afhuren & groepen","Private hire & groups")}</div>
+            <div className="eyebrow text-cream/70 mb-4">{t("Afhuren & groepen","Groups & private events")}</div>
             <h2 className="h-display text-cream text-4xl sm:text-5xl md:text-7xl">
               {t("Uw avond,","Your evening,")}<br />
               <span className="h-serif italic normal-case font-normal text-cream/75">{t("onze locatie.","our venue.")}</span>
@@ -557,7 +556,7 @@ function GroepenCapaciteit() {
             {t("Bekijk alle afhuur-opties","View all hire options")}
           </a>
           <a href="offerte.html" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-cream/30 text-cream font-medium tracking-wide hover:border-cream/60 transition-colors text-sm">
-            Vraag een offerte aan
+            {t("Vraag een offerte aan","Request a quote")}
           </a>
         </div>
       </div>
@@ -636,9 +635,9 @@ function ClosingCTA() {
             <div className="relative z-10">
             <div className="eyebrow text-cream/70 mb-3">{t("Met een groep of event","With a group or event")}</div>
             <div className="h-display text-cream text-4xl md:text-5xl">{t("Vraag een offerte aan","Request a quote")}</div>
-            <div className="mt-4 text-cream/75">{t("Afhuur van 10 tot 360 personen.","Private hire for 10 to 360 guests.")}</div>
+            <div className="mt-4 text-cream/75">{t("Afhuur van 10 tot 360 personen.","Groups & private events for 10 to 360 guests.")}</div>
             <div className="mt-6 inline-flex items-center gap-2 text-cream font-medium">
-              {t("Bekijk afhuur & groepen","View private hire & groups")} <span className="transition-transform group-hover:translate-x-1">→</span>
+              {t("Bekijk afhuur & groepen","View groups & private events")} <span className="transition-transform group-hover:translate-x-1">→</span>
             </div>
             </div>
           </a>
@@ -672,8 +671,8 @@ function Footer() {
               1094 AE Amsterdam<br />
               <br />
               <span className="text-cream/60 text-sm font-mono">
-                Wo–do · 17:00–00:00<br />
-                Vr–za · 17:00–01:00<br />
+                {t("Wo–do · 17:00–00:00","Wed–Thu · 17:00–00:00")}<br />
+                {t("Vr–za · 17:00–01:00","Fri–Sat · 17:00–01:00")}<br />
                 {t("Live muziek · zomerstop t/m 12 aug","Live music · summer break until Aug 12")}
               </span>
             </address>
@@ -685,9 +684,9 @@ function Footer() {
           <div>{t("© 2026 Restaurant Pompstation — gevestigd in een monument uit 1912","© 2026 Restaurant Pompstation — housed in a 1912 monument")}</div>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <a href="menu.html" className="hover:text-cream transition-colors">Menu</a>
-            <a href="verhaal.html" className="hover:text-cream transition-colors">Verhaal</a>
+            <a href="verhaal.html" className="hover:text-cream transition-colors">{t("Verhaal","Our story")}</a>
 
-            <a href="groepen.html" className="hover:text-cream transition-colors">Afhuren & groepen</a>
+            <a href="groepen.html" className="hover:text-cream transition-colors">{t("Afhuren & groepen","Groups & private events")}</a>
             <a href="contact.html" className="hover:text-cream transition-colors">Contact</a>
             <a href="vacatures.html" className="hover:text-cream transition-colors">{t("Vacatures","Vacancies")}</a>
             <a href="algemene-voorwaarden.html" className="hover:text-cream transition-colors">{t("Algemene voorwaarden","Terms & conditions")}</a>

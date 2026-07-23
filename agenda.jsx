@@ -10,9 +10,9 @@ const GENRES = [
 ];
 
 const AGENDA = [
-  { day: "Do", date: "Donderdag", act: "Trio Nocturne", genre: "Jazz / soul", time: "20:00–23:00", note: "Wekelijkse jamsessie" },
-  { day: "Vr", date: "Vrijdag", act: "Wisselende programmering", genre: "Jazz / soul", time: "20:30–00:00", featured: true },
-  { day: "Za", date: "Zaterdag", act: "Wisselende programmering", genre: "Tango / bossa", time: "20:30–00:30", featured: true },
+  { day: t("Do","Thu"), date: t("Donderdag","Thursday"), act: "Trio Nocturne", genre: "Jazz / soul", time: "20:00–23:00", note: t("Wekelijkse jamsessie","Weekly jam session") },
+  { day: t("Vr","Fri"), date: t("Vrijdag","Friday"), act: t("Wisselende programmering","Varied programme"), genre: "Jazz / soul", time: "20:30–00:00", featured: true },
+  { day: t("Za","Sat"), date: t("Zaterdag","Saturday"), act: t("Wisselende programmering","Varied programme"), genre: "Tango / bossa", time: "20:30–00:30", featured: true },
 ];
 
 function AgendaPage() {
@@ -76,7 +76,7 @@ function AgendaPage() {
             )}
           </div>
           <div className="mt-8 text-sm text-anthracite/55 font-mono">
-            Programmering onder voorbehoud — volg ons voor de actuele line-up. Tijdens privé-events vervalt de reguliere muziekavond.
+            {t("Programmering onder voorbehoud — volg ons voor de actuele line-up. Tijdens privé-events vervalt de reguliere muziekavond.","Programme subject to change — follow us for the current line-up. During private events the regular music evening may be cancelled.")}
           </div>
         </div>
       </section>
@@ -86,12 +86,12 @@ function AgendaPage() {
         <div className="max-w-[1280px] mx-auto px-5 md:px-10">
           <div className="grid md:grid-cols-12 gap-8 mb-12 md:mb-16">
             <div className="md:col-span-5">
-              <div className="eyebrow text-brass mb-4">Wat je hoort</div>
-              <h2 className="h-display text-cream text-5xl md:text-7xl">Het geluid<br /><span className="h-serif italic normal-case font-normal text-cream/80">van het huis.</span></h2>
+              <div className="eyebrow text-brass mb-4">{t("Wat je hoort","What you'll hear")}</div>
+              <h2 className="h-display text-cream text-5xl md:text-7xl">{t("Het geluid","The sound")}<br /><span className="h-serif italic normal-case font-normal text-cream/80">{t("van het huis.","of the house.")}</span></h2>
             </div>
             <div className="md:col-span-7 md:pt-12">
               <p className="text-cream/75 text-lg leading-relaxed max-w-xl">
-                Eigen geluidsinstallatie, een echt podium en een akoestiek die een twaalf meter hoge industriële hal je cadeau doet. Meestal jazzy & soulful, soms tango of bossa nova.
+                {t("Eigen geluidsinstallatie, een echt podium en een akoestiek die een twaalf meter hoge industriële hal je cadeau doet. Meestal jazzy & soulful, soms tango of bossa nova.","Our own sound system, a real stage and the acoustics that a twelve-metre industrial hall gives you for free. Usually jazzy & soulful, sometimes tango or bossa nova.")}
               </p>
             </div>
           </div>
@@ -112,26 +112,26 @@ function AgendaPage() {
         <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid md:grid-cols-2 gap-5 md:gap-6">
           <Photo src="images/dj-vinyl.jpg" alt="DJ en vinyl bij Pompstation" className="w-full aspect-[4/3]" position="center" />
           <div className="bg-cream-warm border border-anthracite/10 p-8 md:p-12 flex flex-col justify-center">
-            <div className="eyebrow text-bordeaux mb-4">Privé & events</div>
-            <h2 className="h-display text-anthracite text-4xl md:text-6xl mb-4">Eigen line-up voor uw feest</h2>
+            <div className="eyebrow text-bordeaux mb-4">{t("Privé & events","Private events")}</div>
+            <h2 className="h-display text-anthracite text-4xl md:text-6xl mb-4">{t("Eigen line-up voor uw feest","Custom line-up for your event")}</h2>
             <p className="text-anthracite/75 text-lg leading-relaxed">
-              Bij afhuur regelen we de muziek met u mee — van een jazztrio bij het diner tot een DJ-set die de zaal tot diep in de nacht laat dansen. Inclusief podium, geluid en hulp bij de boeking.
+              {t("Bij afhuur regelen we de muziek met u mee — van een jazztrio bij het diner tot een DJ-set die de zaal tot diep in de nacht laat dansen. Inclusief podium, geluid en hulp bij de boeking.","When you hire the venue we help arrange the music — from a jazz trio at dinner to a DJ set that keeps the hall dancing into the night. Including stage, sound and booking assistance.")}
             </p>
-            <a href="groepen.html" className="mt-8 inline-flex items-center gap-2 text-bordeaux font-medium group">Bekijk afhuren & groepen <span className="transition-transform group-hover:translate-x-1">→</span></a>
+            <a href="groepen.html" className="mt-8 inline-flex items-center gap-2 text-bordeaux font-medium group">{t("Bekijk afhuren & groepen","View groups & private events")} <span className="transition-transform group-hover:translate-x-1">→</span></a>
           </div>
         </div>
       </section>
 
-      <div className="fade-up"><SfeerGallery lead="Volle zaal, een band op het podium en de akoestiek van twaalf meter hoog. Zo klinkt een avond bij Pompstation." /></div>
+      <div className="fade-up"><SfeerGallery lead={t("Volle zaal, een band op het podium en de akoestiek van twaalf meter hoog. Zo klinkt een avond bij Pompstation.","A full house, a band on stage and the acoustics of a twelve-metre hall. This is how an evening at Pompstation sounds.")} /></div>
 
       {/* CTA */}
       <section className="bg-cream py-16 md:py-24">
         <div className="max-w-[1000px] mx-auto px-5 md:px-10 text-center">
-          <h2 className="h-display text-anthracite text-5xl md:text-7xl">Dineren met live jazz</h2>
-          <p className="mt-5 text-anthracite/70 text-lg max-w-xl mx-auto">Reserveer een tafel op een muziekavond en maak er een complete avond van.</p>
+          <h2 className="h-display text-anthracite text-5xl md:text-7xl">{t("Dineren met live jazz","Dinner with live jazz")}</h2>
+          <p className="mt-5 text-anthracite/70 text-lg max-w-xl mx-auto">{t("Reserveer een tafel op een muziekavond en maak er een complete avond van.","Reserve a table on a music evening and make it a complete night out.")}</p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#" onClick={PS.openReservation} className="btn-primary px-7 py-4 text-sm md:text-base font-medium tracking-wide">Reserveer een tafel</a>
-            <a href="menu.html" className="btn-outline text-anthracite px-7 py-4 text-sm md:text-base font-medium tracking-wide hover:bg-bordeaux hover:text-cream transition-colors">Bekijk het menu</a>
+            <a href="#" onClick={PS.openReservation} className="btn-primary px-7 py-4 text-sm md:text-base font-medium tracking-wide">{t("Reserveer een tafel","Reserve a table")}</a>
+            <a href="menu.html" className="btn-outline text-anthracite px-7 py-4 text-sm md:text-base font-medium tracking-wide hover:bg-bordeaux hover:text-cream transition-colors">{t("Bekijk het menu","View the menu")}</a>
           </div>
         </div>
       </section>

@@ -32,7 +32,7 @@ const t = window._t || ((nl) => nl);
               <span className="h-serif italic normal-case font-normal text-bordeaux">van 1912.</span>
             </h2>
             <div className="mt-8 grid grid-cols-3 gap-4">
-              {[["12m","vrije hoogte"],["360","max gasten"],["4","ruimtes"]].map(([n,l]) => (
+              {[["12m",t("vrije hoogte","ceiling height")],["360",t("max gasten","max guests")],["4",t("ruimtes","spaces")]].map(([n,l]) => (
                 <div key={l}>
                   <div className="h-display text-bordeaux text-4xl">{n}</div>
                   <div className="mt-1 text-xs text-anthracite/60 font-mono uppercase tracking-wider">{l}</div>
@@ -42,10 +42,10 @@ const t = window._t || ((nl) => nl);
           </div>
           <div className="md:col-span-7 fade-up">
             <p className="text-anthracite/80 text-lg leading-relaxed">
-              Pompstation is een voormalig watergemaal in Amsterdam-Oost, omgebouwd tot een van de meest bijzondere restaurantlocaties van de stad. De industriële hal met zijn plafond van 12 meter hoog biedt ruimte voor zowel een romantisch diner als een groot evenement.
+              {t("Pompstation is een voormalig watergemaal in Amsterdam-Oost, omgebouwd tot een van de meest bijzondere restaurantlocaties van de stad. De industriële hal met zijn plafond van 12 meter hoog biedt ruimte voor zowel een romantisch diner als een groot evenement.","Pompstation is a former waterworks in Amsterdam East, converted into one of the city's most extraordinary restaurant venues. The industrial hall with its 12-metre-high ceiling accommodates everything from a romantic dinner to a large event.")}
             </p>
             <p className="mt-5 text-anthracite/80 text-lg leading-relaxed">
-              Afhankelijk van de gelegenheid kiest u voor de restaurantzaal, de vide, het terras of de gehele locatie exclusief. Elke ruimte heeft zijn eigen karakter — maar deelt dezelfde sfeer.
+              {t("Afhankelijk van de gelegenheid kiest u voor de restaurantzaal, de vide, het terras of de gehele locatie exclusief. Elke ruimte heeft zijn eigen karakter — maar deelt dezelfde sfeer.","Depending on the occasion you choose the restaurant hall, the mezzanine, the terrace or the entire venue exclusively. Each space has its own character — but shares the same atmosphere.")}
             </p>
           </div>
         </div>
@@ -60,10 +60,10 @@ const t = window._t || ((nl) => nl);
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 fade-up">
             {[
-              { naam:"Het restaurant", cap:"2–180", sub:"personen", img:"images/restaurant-zaal.jpg", pos:"center 20%", href:"ruimte-restaurant.html", body:"De grote zaal met open keuken, kaarslicht en live jazz. Voor diner, lunch of een besloten avond." },
-              { naam:t("De vide","The mezzanine"), cap:"20–100", sub:"personen", img:"images/bride-vide.jpg", pos:"center 30%", href:"ruimte-vide.html", body:"De verhoogde galerij met uitzicht op de zaal. Privé, maar toch deel van de sfeer." },
-              { naam:t("Het terras","The terrace"), cap:"20–200", sub:"personen", img:"images/terras-outdoor.jpg", pos:"center 50%", href:"ruimte-terras.html", body:"Omringd door groen, onder een open hemel. Reserveren voor tafels en groepen is mogelijk." },
-              { naam:t("Volledig exclusief","Fully exclusive"), cap:"tot 360", sub:"personen", img:"images/live-band-vide.jpg", pos:"center 40%", href:"ruimte-exclusief.html", body:"De hele locatie voor uw eigen avond — bruiloften, galadiners en productlanceringen." },
+              { naam:t("Het restaurant","The restaurant"), cap:"2–180", sub:t("personen","persons"), img:"images/restaurant-zaal.jpg", pos:"center 20%", href:"ruimte-restaurant.html", body:t("De grote zaal met open keuken, kaarslicht en live jazz. Voor diner, lunch of een besloten avond.","The grand hall with open kitchen, candlelight and live jazz. For dinner, lunch or a private evening.") },
+              { naam:t("De vide","The mezzanine"), cap:"20–100", sub:t("personen","persons"), img:"images/bride-vide.jpg", pos:"center 30%", href:"ruimte-vide.html", body:t("De verhoogde galerij met uitzicht op de zaal. Privé, maar toch deel van de sfeer.","The raised gallery overlooking the hall. Private, yet still part of the atmosphere.") },
+              { naam:t("Het terras","The terrace"), cap:"20–200", sub:t("personen","persons"), img:"images/terras-outdoor.jpg", pos:"center 50%", href:"ruimte-terras.html", body:t("Omringd door groen, onder een open hemel. Reserveren voor tafels en groepen is mogelijk.","Surrounded by greenery, under an open sky. Reservations for tables and groups available.") },
+              { naam:t("Volledig exclusief","Fully exclusive"), cap:"tot 360", sub:t("personen","persons"), img:"images/live-band-vide.jpg", pos:"center 40%", href:"ruimte-exclusief.html", body:t("De hele locatie voor uw eigen avond — bruiloften, galadiners en productlanceringen.","The entire venue for your own evening — weddings, gala dinners and product launches.") },
             ].map((r, i) => (
               <a key={i} href={r.href} className="group flex flex-col bg-cream border border-anthracite/10 hover:border-bordeaux transition-colors">
                 <div className="overflow-hidden" style={{height:'220px'}}>
@@ -75,7 +75,7 @@ const t = window._t || ((nl) => nl);
                   <h3 className="h-serif text-anthracite text-xl leading-snug">{r.naam}</h3>
                   <p className="mt-3 text-sm text-anthracite/65 leading-relaxed flex-1">{r.body}</p>
                   <div className="mt-5 inline-flex items-center gap-2 text-bordeaux text-sm font-medium group-hover:gap-3 transition-all">
-                    Bekijk ruimte <span>→</span>
+                    {t("Bekijk ruimte","View space")} <span>→</span>
                   </div>
                 </div>
               </a>

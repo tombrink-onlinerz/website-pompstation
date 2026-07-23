@@ -11,9 +11,9 @@ const MENU_FORMULES = [
 ];
 
 const GROEPEN_FORMULES = [
-  { gangen: t("3 gangen","3 courses"), price: "€47", note: "Keuze uit vlees, vis of vega seizoensmenu", image: "images/steak-fire.jpg" },
-  { gangen: t("4 gangen","4 courses"), price: "€57", note: "Met tussengerecht · keuze per gang", popular: true, image: "images/restaurant-service.jpg" },
-  { gangen: t("5 gangen","5 courses"), price: "€65", note: "Volledig proeverijmenu · keuze per gang", image: "images/food-fish.jpg" },
+  { gangen: t("3 gangen","3 courses"), price: "€47", note: t("Keuze uit vlees, vis of vega seizoensmenu","Choice of meat, fish or vegetarian seasonal menu"), image: "images/steak-fire.jpg" },
+  { gangen: t("4 gangen","4 courses"), price: "€57", note: t("Met tussengerecht · keuze per gang","With intermediate course · choice per course"), popular: true, image: "images/restaurant-service.jpg" },
+  { gangen: t("5 gangen","5 courses"), price: "€65", note: t("Volledig proeverijmenu · keuze per gang","Full tasting menu · choice per course"), image: "images/food-fish.jpg" },
 ];
 
 const MENU_SECTIONS = [
@@ -74,24 +74,24 @@ const MENU_SECTIONS = [
 ];
 
 const WINE = [
-  { n: "Wijnarrangement — 3 glazen", d: "Per gang een passend glas, geselecteerd door de bediening", p: "27" },
-  { n: "Wijnarrangement — 4 glazen", d: "Inclusief tussengerecht", p: "34" },
-  { n: "Glas van de week", d: "Wisselende selectie aan de bar", p: "vanaf 6,5" },
+  { n: t("Wijnarrangement — 3 glazen","Wine pairing — 3 glasses"), d: t("Per gang een passend glas, geselecteerd door de bediening","A matching glass for each course, selected by our staff"), p: "27" },
+  { n: t("Wijnarrangement — 4 glazen","Wine pairing — 4 glasses"), d: t("Inclusief tussengerecht","Including intermediate course"), p: "34" },
+  { n: t("Glas van de week","Glass of the week"), d: t("Wisselende selectie aan de bar","Rotating selection at the bar"), p: t("vanaf 6,5","from 6.5") },
 ];
 
 const COCKTAILS = [
-  { n: "Het Gemaal", d: "Gin, Italiaanse vermouth, bitter, sinaasappelschil", p: "13" },
-  { n: "Hooghuis", d: "Mezcal, limoen, agave, grapefruit", p: "13,5" },
-  { n: "Zeeburg Sour", d: "Bourbon, citroen, eiwit, Angostura", p: "13" },
-  { n: "Vide Spritz", d: "Prosecco, vlierbloesem, munt, tonic", p: "12" },
-  { n: "Indische Buurt", d: "Donkere rum, gember, limoen, kaneel", p: "13" },
-  { n: "Huisaperitief", d: "Huisgemaakte limoncello, prosecco, munt", p: "10" },
+  { n: "Het Gemaal", d: t("Gin, Italiaanse vermouth, bitter, sinaasappelschil","Gin, Italian vermouth, bitters, orange peel"), p: "13" },
+  { n: "Hooghuis", d: t("Mezcal, limoen, agave, grapefruit","Mezcal, lime, agave, grapefruit"), p: "13,5" },
+  { n: "Zeeburg Sour", d: t("Bourbon, citroen, eiwit, Angostura","Bourbon, lemon, egg white, Angostura"), p: "13" },
+  { n: "Vide Spritz", d: t("Prosecco, vlierbloesem, munt, tonic","Prosecco, elderflower, mint, tonic"), p: "12" },
+  { n: "Indische Buurt", d: t("Donkere rum, gember, limoen, kaneel","Dark rum, ginger, lime, cinnamon"), p: "13" },
+  { n: t("Huisaperitief","House aperitif"), d: t("Huisgemaakte limoncello, prosecco, munt","Homemade limoncello, prosecco, mint"), p: "10" },
 ];
 
 const MOCKTAILS = [
-  { n: "Pomp 0%", d: "Gember, limoen, bruisend water, rozemarijn", p: "8" },
-  { n: "Tuin & Tonic", d: "Komkommer, vlierbloesem, tonic", p: "8" },
-  { n: "Koffie & afsluiter", d: "Espresso, of een glas grappa / limoncello", p: "vanaf 4" },
+  { n: "Pomp 0%", d: t("Gember, limoen, bruisend water, rozemarijn","Ginger, lime, sparkling water, rosemary"), p: "8" },
+  { n: t("Tuin & Tonic","Garden & Tonic"), d: t("Komkommer, vlierbloesem, tonic","Cucumber, elderflower, tonic"), p: "8" },
+  { n: t("Koffie & afsluiter","Coffee & digestif"), d: t("Espresso, of een glas grappa / limoncello","Espresso, or a glass of grappa / limoncello"), p: t("vanaf 4","from 4") },
 ];
 
 function FormuleCard({ f }) {
@@ -142,7 +142,7 @@ function MenuPage() {
         kicker={t("À la carte · vlees, vis & vegetarisch","À la carte · meat, fish & vegetarian")}
         title={t("Het","The")}
         titleAccent={t("menu","menu")}
-        lead="Kies à la carte of ga voor een 3-, 4- of 5-gangenformule. De kaart wisselt met het seizoen — lokaal, duurzaam en biologisch waar het kan."
+        lead={t("Kies à la carte of ga voor een 3-, 4- of 5-gangenformule. De kaart wisselt met het seizoen — lokaal, duurzaam en biologisch waar het kan.","Choose à la carte or opt for a 3-, 4- or 5-course set menu. The menu changes with the season — local, sustainable and organic where possible.")}
         image="images/chef-kitchen.jpg"
         position="center 35%" />
 
@@ -159,7 +159,7 @@ function MenuPage() {
             </button>
             <button type="button" onClick={() => setGroepsMode(true)}
               className={`px-5 py-3 text-sm font-medium transition-all ${groepsMode ? 'bg-bordeaux text-cream' : 'text-anthracite/60 hover:text-anthracite'}`}>
-              Groepsmenu <span className="text-xs font-normal opacity-70 ml-1">10+ pers.</span>
+              {t("Groepsmenu","Group menu")} <span className="text-xs font-normal opacity-70 ml-1">{t("10+ pers.","10+ guests")}</span>
             </button>
           </div>
           </div>
@@ -174,9 +174,9 @@ function MenuPage() {
                 </h2>
               </div>
               <div className="md:max-w-sm space-y-4 text-anthracite/70 leading-relaxed">
-                <p>Kies het aantal gangen voor uw groep. Per gang altijd keuze uit <strong>vlees</strong>, <strong>vis</strong> of <strong>vega seizoensmenu</strong>. Wijnarrangementen zijn toe te voegen als add-on.</p>
-                <p>Allergieën of wensen? Laat het ons weten — wij passen het menu graag aan.</p>
-                <a href="groepen.html" className="inline-flex items-center gap-2 text-bordeaux font-medium hover:text-bordeaux-dark transition-colors group">Offerte aanvragen <span className="transition-transform group-hover:translate-x-1">→</span></a>
+                <p>{t("Kies het aantal gangen voor uw groep. Per gang altijd keuze uit ","Choose the number of courses for your group. Each course always offers a choice of ")}<strong>{t("vlees","meat")}</strong>, <strong>{t("vis","fish")}</strong> {t("of","or")} <strong>{t("vega seizoensmenu","vegetarian seasonal menu")}</strong>{t(". Wijnarrangementen zijn toe te voegen als add-on.",". Wine pairings can be added on.")}</p>
+                <p>{t("Allergieën of wensen? Laat het ons weten — wij passen het menu graag aan.","Allergies or special requests? Let us know — we're happy to adapt the menu.")}</p>
+                <a href="groepen.html" className="inline-flex items-center gap-2 text-bordeaux font-medium hover:text-bordeaux-dark transition-colors group">{t("Offerte aanvragen","Request a quote")} <span className="transition-transform group-hover:translate-x-1">→</span></a>
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
@@ -239,14 +239,14 @@ function MenuPage() {
         <div className="max-w-[1100px] mx-auto px-5 md:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-14">
             <div className="max-w-2xl">
-              <div className="eyebrow text-bordeaux mb-4">Aan de bar</div>
+              <div className="eyebrow text-bordeaux mb-4">{t("Aan de bar","At the bar")}</div>
               <h2 className="h-display text-anthracite text-5xl md:text-7xl">
-                De<br />
-                <span className="h-serif italic normal-case font-normal text-bordeaux">cocktailkaart.</span>
+                {t("De","The")}<br />
+                <span className="h-serif italic normal-case font-normal text-bordeaux">{t("cocktailkaart.","cocktail list.")}</span>
               </h2>
             </div>
             <p className="md:max-w-sm text-anthracite/70 leading-relaxed">
-              Huisgemaakte siropen, verse kruiden en een huisaperitief van limoncello met prosecco. Ook prima zonder diner — schuif gewoon aan bij de bar.
+              {t("Huisgemaakte siropen, verse kruiden en een huisaperitief van limoncello met prosecco. Ook prima zonder diner — schuif gewoon aan bij de bar.","Homemade syrups, fresh herbs and a house aperitif of limoncello with prosecco. Just as good without dinner — simply pull up a stool at the bar.")}
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
@@ -256,7 +256,7 @@ function MenuPage() {
               <div>{COCKTAILS.map((it, j) => <MenuRow key={j} it={it} />)}</div>
             </div>
             <div className="fade-up">
-              <h3 className="h-display text-3xl md:text-4xl text-anthracite mb-2">Alcoholvrij & afsluiters</h3>
+              <h3 className="h-display text-3xl md:text-4xl text-anthracite mb-2">{t("Alcoholvrij & afsluiters","Alcohol-free & digestifs")}</h3>
               <div className="w-12 h-0.5 bg-bordeaux mb-4"></div>
               <div>{MOCKTAILS.map((it, j) => <MenuRow key={j} it={it} />)}</div>
             </div>
@@ -269,10 +269,10 @@ function MenuPage() {
         <div className="max-w-[1100px] mx-auto px-5 md:px-10">
           <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
             <div className="md:col-span-4">
-              <div className="eyebrow text-cream/60 mb-4">Bij het menu</div>
-              <h2 className="h-serif text-4xl md:text-5xl">Wijn­arrangementen</h2>
+              <div className="eyebrow text-cream/60 mb-4">{t("Bij het menu","With your meal")}</div>
+              <h2 className="h-serif text-4xl md:text-5xl">{t("Wijn­arrangementen","Wine pairings")}</h2>
               <p className="mt-4 text-cream/75 leading-relaxed">
-                Een uitgebreide wijnkaart met passende glazen bij elk gerecht. Wijnarrangementen zijn vooraf te boeken als add-on bij een groepsreservering — ook verkrijgbaar per glas voor losse tafels.
+                {t("Een uitgebreide wijnkaart met passende glazen bij elk gerecht. Wijnarrangementen zijn vooraf te boeken als add-on bij een groepsreservering — ook verkrijgbaar per glas voor losse tafels.","An extensive wine list with matching glasses for every dish. Wine pairings can be booked in advance as an add-on with a group reservation — also available by the glass for individual tables.")}
               </p>
             </div>
             <div className="md:col-span-8">
@@ -292,23 +292,23 @@ function MenuPage() {
         </div>
       </section>
 
-      <div className="fade-up"><SfeerGallery bg="bg-cream" lead="Kaarslicht, een twaalf meter hoog plafond en de geur uit de open keuken. Zo eet u bij Pompstation." /></div>
+      <div className="fade-up"><SfeerGallery bg="bg-cream" lead={t("Kaarslicht, een twaalf meter hoog plafond en de geur uit de open keuken. Zo eet u bij Pompstation.","Candlelight, a twelve-metre ceiling and the aromas from the open kitchen. This is how you dine at Pompstation.")} /></div>
 
       {/* CTA */}
       <section className="bg-cream-warm py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-5 md:px-10">
           <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             <a href="#" onClick={PS.openReservation} className="group bg-cream border border-anthracite/15 p-8 md:p-10 hover:border-bordeaux transition-colors">
-              <div className="eyebrow text-bordeaux mb-3">Kom proeven</div>
+              <div className="eyebrow text-bordeaux mb-3">{t("Kom proeven","Come and taste")}</div>
               <div className="h-display text-anthracite text-4xl md:text-5xl">{t("Reserveer een tafel","Reserve a table")}</div>
-              <div className="mt-4 text-anthracite/70">Lunch, diner of borrel — met live jazz do–za.</div>
-              <div className="mt-6 inline-flex items-center gap-2 text-bordeaux font-medium">Naar reserveren <span className="transition-transform group-hover:translate-x-1">→</span></div>
+              <div className="mt-4 text-anthracite/70">{t("Lunch, diner of borrel — met live jazz do–za.","Lunch, dinner or drinks — with live jazz Thu–Sat.")}</div>
+              <div className="mt-6 inline-flex items-center gap-2 text-bordeaux font-medium">{t("Naar reserveren","Make a reservation")} <span className="transition-transform group-hover:translate-x-1">→</span></div>
             </a>
             <a href="groepen.html" className="group bg-bordeaux text-cream p-8 md:p-10 hover:bg-bordeaux-dark transition-colors">
-              <div className="eyebrow text-cream/70 mb-3">Met een groep</div>
-              <div className="h-display text-cream text-4xl md:text-5xl">Groepsmenu's vanaf €47</div>
-              <div className="mt-4 text-cream/75">Vaste menu's voor gezelschappen van 10 tot 360.</div>
-              <div className="mt-6 inline-flex items-center gap-2 text-cream font-medium">Afhuren & groepen <span className="transition-transform group-hover:translate-x-1">→</span></div>
+              <div className="eyebrow text-cream/70 mb-3">{t("Met een groep","With a group")}</div>
+              <div className="h-display text-cream text-4xl md:text-5xl">{t("Groepsmenu's vanaf €47","Group menus from €47")}</div>
+              <div className="mt-4 text-cream/75">{t("Vaste menu's voor gezelschappen van 10 tot 360.","Set menus for parties of 10 to 360.")}</div>
+              <div className="mt-6 inline-flex items-center gap-2 text-cream font-medium">{t("Afhuren & groepen","Groups & private events")} <span className="transition-transform group-hover:translate-x-1">→</span></div>
             </a>
           </div>
         </div>

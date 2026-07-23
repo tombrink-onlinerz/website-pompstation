@@ -20,11 +20,12 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-# Interne pagina's niet indexeren
+# Bedankpagina's niet indexeren
 Disallow: /bedankt-brochure
 Disallow: /bedankt-contact
 Disallow: /bedankt-offerte
 Disallow: /bedankt-reservering
 Disallow: /index-print
+Disallow: /_pdfview
 
 Sitemap: https://pompstation.nu/sitemap.xml

@@ -77,14 +77,14 @@ function OffertePage() {
             <div className="w-16 h-16 mx-auto border border-cream/50 flex items-center justify-center mb-8">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5"><path d="M5 12 L 10 17 L 19 7" /></svg>
             </div>
-            <div className="eyebrow text-cream/60 mb-4">Aanvraag ontvangen</div>
-            <h1 className="h-display text-5xl md:text-7xl mb-6">Dank u, {form.name.split(" ")[0]}.</h1>
+            <div className="eyebrow text-cream/60 mb-4">{t("Aanvraag ontvangen","Request received")}</div>
+            <h1 className="h-display text-5xl md:text-7xl mb-6">{t("Dank u","Thank you")}, {form.name.split(" ")[0]}.</h1>
             <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-              We reageren binnen 1 werkdag.<br />
-              Voor spoed: <a href="tel:+31641655027" className="underline hover:text-cream">+31 6 41 65 50 27</a>
+              {t("We reageren binnen 1 werkdag.","We respond within 1 business day.")}<br />
+              {t("Voor spoed:","For urgent matters:")} <a href="tel:+31641655027" className="underline hover:text-cream">+31 6 41 65 50 27</a>
             </p>
             <a href="groepen.html" className="mt-10 inline-flex items-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm hover:bg-cream/10 transition-colors">
-              ← Terug naar groepen & afhuren
+              {t("← Terug naar groepen & afhuren","← Back to groups & private events")}
             </a>
           </div>
         </div>
@@ -105,7 +105,7 @@ function OffertePage() {
             <div>
               <div className="eyebrow text-cream/60 mb-4">{t("Offerte aanvragen · groepen & events","Request a quote · groups & events")}</div>
               <h1 className="h-display text-cream text-5xl md:text-7xl lg:text-9xl">
-                Offerte<br />
+                {t("Offerte","Quote")}<br />
                 <span className="h-serif italic normal-case font-normal text-cream/80">{t("aanvragen.","request.")}</span>
               </h1>
             </div>
@@ -148,10 +148,10 @@ function OffertePage() {
               <div className="mt-10 pt-8 border-t border-cream/15 space-y-4">
                 <div className="eyebrow text-cream/50 mb-4">{t("Ruimtes & capaciteit","Spaces & capacity")}</div>
                 {[
-                  ["Restaurant", "10–180 personen"],
-                  [t("De vide","The mezzanine"), "20–100 personen"],
-                  [t("Het terras","The terrace"), "20–200 personen"],
-                  [t("Volledig exclusief","Fully exclusive"), "tot 360 personen"],
+                  ["Restaurant", t("10–180 personen","10–180 persons")],
+                  [t("De vide","The mezzanine"), t("20–100 personen","20–100 persons")],
+                  [t("Het terras","The terrace"), t("20–200 personen","20–200 persons")],
+                  [t("Volledig exclusief","Fully exclusive"), t("tot 360 personen","up to 360 persons")],
                 ].map(([k, v]) => (
                   <div key={k} className="flex justify-between text-sm border-b border-cream/10 pb-3">
                     <span className="text-cream/70">{k}</span>
@@ -231,7 +231,7 @@ function OffertePage() {
                 <input type="text" value={form.name}
                   onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))}
                   onBlur={() => setTouched(t => ({ ...t, name: true }))}
-                  placeholder="Voornaam Achternaam"
+                  placeholder={t("Voornaam Achternaam","First Last")}
                   className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
                 {touched.name && errors.name && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.name}</div>}
               </div>
@@ -240,7 +240,7 @@ function OffertePage() {
                 <input type="email" value={form.email}
                   onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
                   onBlur={() => setTouched(t => ({ ...t, email: true }))}
-                  placeholder="naam@bedrijf.nl"
+                  placeholder={t("naam@bedrijf.nl","name@company.com")}
                   className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
                 {touched.email && errors.email && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.email}</div>}
               </div>
@@ -248,10 +248,10 @@ function OffertePage() {
 
             {/* Bedrijfsnaam */}
             <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">Bedrijfsnaam <span className="opacity-50 normal-case tracking-normal font-normal">(optioneel)</span></label>
+              <label className="eyebrow text-anthracite/55 block mb-3">{t("Bedrijfsnaam","Company name")} <span className="opacity-50 normal-case tracking-normal font-normal">({t("optioneel","optional")})</span></label>
               <input type="text" value={form.company}
                 onChange={(e) => setForm(f => ({ ...f, company: e.target.value }))}
-                placeholder="Naam van uw bedrijf of organisatie"
+                placeholder={t("Naam van uw bedrijf of organisatie","Name of your company or organisation")}
                 className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
             </div>
 
@@ -268,10 +268,10 @@ function OffertePage() {
 
             {/* Message */}
             <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">Bericht <span className="opacity-50 normal-case tracking-normal">(optioneel)</span></label>
+              <label className="eyebrow text-anthracite/55 block mb-3">{t("Bericht","Message")} <span className="opacity-50 normal-case tracking-normal">({t("optioneel","optional")})</span></label>
               <textarea rows="4" value={form.message}
                 onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
-                placeholder="Bijzondere wensen, dieetwensen, vraag over entertainment…"
+                placeholder={t("Bijzondere wensen, dieetwensen, vraag over entertainment…","Special requests, dietary requirements, questions about entertainment…")}
                 className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors resize-none">
               </textarea>
             </div>
@@ -295,7 +295,7 @@ function OffertePage() {
               </button>
               {serverError && <p className="mt-3 text-bordeaux text-sm font-mono">{serverError}</p>}
               <p className="mt-4 text-sm text-anthracite/50 font-mono">
-                {t("We reageren binnen 1 werkdag.","We respond within 1 business day.")}  Voor spoed: <a href="tel:+31641655027" className="underline hover:text-anthracite">+31 6 41 65 50 27</a>
+                {t("We reageren binnen 1 werkdag.","We respond within 1 business day.")}  {t("Voor spoed:","For urgent matters:")} <a href="tel:+31641655027" className="underline hover:text-anthracite">+31 6 41 65 50 27</a>
               </p>
             </div>
           </form>

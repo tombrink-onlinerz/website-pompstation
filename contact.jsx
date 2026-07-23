@@ -17,10 +17,10 @@ const HOURS = [
 ];
 
 const ROUTES = [
-  { t: t("Met de tram","By tram"), d: "Tram 14 rijdt rechtstreeks vanaf Amsterdam Centraal en stopt voor de deur." },
-  { t: t("Lopen vanaf het station","Walking from the station"), d: "Vanaf station Muiderpoort is het ongeveer 9 minuten lopen." },
-  { t: t("Met de boot","By boat"), d: "Aanmeren kan bij de steiger aan de Nieuwe Vaart, ter hoogte van de Cruquiusweg." },
-  { t: t("Parkeren","Parking"), d: "In de straten rondom Pompstation. Na 21:00 uur en op zondag gratis." },
+  { t: t("Met de tram","By tram"), d: t("Tram 14 rijdt rechtstreeks vanaf Amsterdam Centraal en stopt voor de deur.","Tram 14 runs directly from Amsterdam Centraal and stops right at the door.") },
+  { t: t("Lopen vanaf het station","Walking from the station"), d: t("Vanaf station Muiderpoort is het ongeveer 9 minuten lopen.","From Muiderpoort station it is about 9 minutes on foot.") },
+  { t: t("Met de boot","By boat"), d: t("Aanmeren kan bij de steiger aan de Nieuwe Vaart, ter hoogte van de Cruquiusweg.","You can moor at the jetty on the Nieuwe Vaart, near the Cruquiusweg.") },
+  { t: t("Parkeren","Parking"), d: t("In de straten rondom Pompstation. Na 21:00 uur en op zondag gratis.","In the streets around Pompstation. Free after 21:00 and on Sundays.") },
 ];
 
 function ContactPage() {
@@ -78,7 +78,7 @@ function ContactPage() {
       <PageHero
         kicker="Zeeburgerdijk 52 · Amsterdam-Oost"
         title="Contact"
-        lead="Reserveren, de route of een vraag over afhuren — u vindt ons hier."
+        lead={t("Reserveren, de route of een vraag over afhuren — u vindt ons hier.","Reservations, directions or questions about private hire — you will find us here.")}
         image="images/interior-vide.jpg"
         position="center 30%"
         height="h-[52vh] min-h-[380px]" />
@@ -87,15 +87,15 @@ function ContactPage() {
       <section className="bg-bordeaux text-cream">
         <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-cream/15">
           <a href={PS.phoneHref} className="py-7 md:py-9 sm:pr-8 group">
-            <div className="eyebrow text-cream/55 mb-2">Bel ons</div>
+            <div className="eyebrow text-cream/55 mb-2">{t("Bel ons","Call us")}</div>
             <div className="h-serif text-2xl md:text-3xl group-hover:text-brass transition-colors">{PS.phone}</div>
           </a>
           <a href={`mailto:${PS.email}`} className="py-7 md:py-9 sm:px-8 group">
-            <div className="eyebrow text-cream/55 mb-2">Algemeen</div>
+            <div className="eyebrow text-cream/55 mb-2">{t("Algemeen","General")}</div>
             <div className="h-serif text-2xl md:text-3xl group-hover:text-brass transition-colors break-all">{PS.email}</div>
           </a>
           <a href={`mailto:${PS.eventsEmail}`} className="py-7 md:py-9 sm:pl-8 group">
-            <div className="eyebrow text-cream/55 mb-2">Events & afhuren</div>
+            <div className="eyebrow text-cream/55 mb-2">{t("Events & afhuren","Events & private hire")}</div>
             <div className="h-serif text-2xl md:text-3xl group-hover:text-brass transition-colors break-all">{PS.eventsEmail}</div>
           </a>
         </div>
@@ -106,7 +106,7 @@ function ContactPage() {
         <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-8 md:gap-12">
           {/* Address + hours */}
           <div className="md:col-span-5 fade-up">
-            <div className="eyebrow text-bordeaux mb-4">Adres & openingstijden</div>
+            <div className="eyebrow text-bordeaux mb-4">{t("Adres & openingstijden","Address & opening hours")}</div>
             <address className="not-italic mb-8">
               <div className="h-serif text-3xl md:text-4xl text-anthracite leading-tight">{PS.address1}</div>
               <div className="h-serif text-3xl md:text-4xl text-anthracite leading-tight">{PS.address2}</div>
@@ -125,7 +125,7 @@ function ContactPage() {
               )}
             </div>
             <p className="mt-5 text-sm text-anthracite/55 font-mono leading-relaxed">
-              Wij accepteren geen contant geld meer.
+              {t("Wij accepteren geen contant geld meer.","We no longer accept cash.")}
             </p>
           </div>
 
@@ -142,7 +142,7 @@ function ContactPage() {
                 href="https://www.google.com/maps/search/?api=1&query=Pompstation+Zeeburgerdijk+52+Amsterdam"
                 target="_blank" rel="noopener"
                 className="absolute bottom-4 right-4 btn-primary px-4 py-2.5 text-sm font-medium tracking-wide shadow-lg">
-                Plan je route →
+                {t("Plan je route","Get directions")} →
               </a>
             </div>
           </div>
@@ -153,7 +153,7 @@ function ContactPage() {
       <section className="bg-cream-warm py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-5 md:px-10">
           <div className="eyebrow text-bordeaux mb-4">{t("Zo kom je hier","How to get here")}</div>
-          <h2 className="h-display text-anthracite text-4xl md:text-6xl mb-10 md:mb-14">Bereikbaar­heid</h2>
+          <h2 className="h-display text-anthracite text-4xl md:text-6xl mb-10 md:mb-14">{t("Bereikbaar\u00adheid","Getting here")}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-anthracite/10">
             {ROUTES.map((r, i) =>
             <div key={i} className="bg-cream p-7 md:p-8">
@@ -166,7 +166,7 @@ function ContactPage() {
         </div>
       </section>
 
-      <div className="fade-up"><SfeerGallery bg="bg-cream" lead="Even sfeer proeven voordat u langskomt — de hal, de bar, het terras en de zaal." /></div>
+      <div className="fade-up"><SfeerGallery bg="bg-cream" lead={t("Even sfeer proeven voordat u langskomt — de hal, de bar, het terras en de zaal.","A taste of the atmosphere before you visit — the hall, the bar, the terrace and the room.")} /></div>
 
       {/* Contact form */}
       <section className="bg-bordeaux text-cream py-16 md:py-24">
@@ -174,11 +174,11 @@ function ContactPage() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-12">
             <div className="md:col-span-5">
               <div className="eyebrow text-brass mb-4">{t("Stuur een bericht","Send a message")}</div>
-              <h2 className="h-display text-cream text-4xl md:text-6xl">Een vraag?<br /><span className="h-serif italic normal-case font-normal text-cream/80">Laat het weten.</span></h2>
+              <h2 className="h-display text-cream text-4xl md:text-6xl">{t("Een vraag?","A question?")}<br /><span className="h-serif italic normal-case font-normal text-cream/80">{t("Laat het weten.","Let us know.")}</span></h2>
               <p className="mt-5 text-cream/70 leading-relaxed">
-                Voor een tafelreservering verwijzen we je naar onze reserveringsmodule. Voor alle andere vragen — afhuren, cadeaubonnen, samenwerkingen — gebruik dit formulier.
+                {t("Voor een tafelreservering verwijzen we je naar onze reserveringsmodule. Voor alle andere vragen — afhuren, cadeaubonnen, samenwerkingen — gebruik dit formulier.","For table reservations please use our reservation module. For all other questions — private hire, gift vouchers, partnerships — use this form.")}
               </p>
-              <a href="#" onClick={PS.openReservation} className="mt-6 inline-flex items-center gap-2 text-brass font-medium group">Direct een tafel reserveren <span className="transition-transform group-hover:translate-x-1">→</span></a>
+              <a href="#" onClick={PS.openReservation} className="mt-6 inline-flex items-center gap-2 text-brass font-medium group">{t("Direct een tafel reserveren","Reserve a table directly")} <span className="transition-transform group-hover:translate-x-1">→</span></a>
             </div>
 
             <div className="md:col-span-7">
@@ -187,20 +187,20 @@ function ContactPage() {
                 <div className="w-14 h-14 border border-cream/40 flex items-center justify-center mb-5">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5"><path d="M5 12 L 10 17 L 19 7" /></svg>
                 </div>
-                <div className="eyebrow text-cream/60 mb-3">Bericht verstuurd</div>
-                <h3 className="h-display text-4xl md:text-5xl">Bedankt, {form.name.split(" ")[0]}.</h3>
-                <p className="mt-4 text-cream/75 max-w-sm">We nemen zo snel mogelijk contact met je op. Spoed? Bel <a href={PS.phoneHref} className="underline">{PS.phone}</a>.</p>
+                <div className="eyebrow text-cream/60 mb-3">{t("Bericht verstuurd","Message sent")}</div>
+                <h3 className="h-display text-4xl md:text-5xl">{t("Bedankt","Thank you")}, {form.name.split(" ")[0]}.</h3>
+                <p className="mt-4 text-cream/75 max-w-sm">{t("We nemen zo snel mogelijk contact met je op. Spoed? Bel","We'll get back to you as soon as possible. Urgent? Call")} <a href={PS.phoneHref} className="underline">{PS.phone}</a>.</p>
               </div>
               :
               <form onSubmit={submit} className="space-y-5">
                 <div>
-                  <label className="eyebrow text-cream/55 block mb-3">Onderwerp</label>
+                  <label className="eyebrow text-cream/55 block mb-3">{t("Onderwerp","Subject")}</label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {[
-                      { v: t("reservering","reservation"), l: "Reservering" },
-                      { v: "afhuren", l: "Afhuren" },
-                      { v: "cadeaubon", l: "Cadeaubon" },
-                      { v: "anders", l: "Anders" },
+                      { v: t("reservering","reservation"), l: t("Reservering","Reservation") },
+                      { v: t("afhuren","private hire"), l: t("Afhuren","Private hire") },
+                      { v: t("cadeaubon","gift voucher"), l: t("Cadeaubon","Gift voucher") },
+                      { v: t("anders","other"), l: t("Anders","Other") },
                     ].map((o) =>
                     <button key={o.v} type="button"
                       onClick={() => setForm((f) => ({ ...f, subject: o.v }))}
@@ -212,16 +212,16 @@ function ContactPage() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="eyebrow text-cream/55 block mb-3">Naam</label>
+                    <label className="eyebrow text-cream/55 block mb-3">{t("Naam","Name")}</label>
                     <input type="text" value={form.name}
                       onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                       onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-                      placeholder="Voornaam Achternaam"
+                      placeholder={t("Voornaam Achternaam","First Last")}
                       className="w-full px-4 py-3.5 bg-transparent border border-cream/25 text-cream placeholder:text-cream/40 focus:border-brass focus:outline-none transition-colors" />
                     {touched.name && errors.name && <div className="mt-2 text-brass text-sm font-mono">{errors.name}</div>}
                   </div>
                   <div>
-                    <label className="eyebrow text-cream/55 block mb-3">E-mail</label>
+                    <label className="eyebrow text-cream/55 block mb-3">{t("E-mail","E-mail")}</label>
                     <input type="email" value={form.email}
                       onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                       onBlur={() => setTouched((t) => ({ ...t, email: true }))}
@@ -231,11 +231,11 @@ function ContactPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="eyebrow text-cream/55 block mb-3">Bericht</label>
+                  <label className="eyebrow text-cream/55 block mb-3">{t("Bericht","Message")}</label>
                   <textarea rows="4" value={form.message}
                     onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                     onBlur={() => setTouched((t) => ({ ...t, message: true }))}
-                    placeholder="Waarmee kunnen we je helpen?"
+                    placeholder={t("Waarmee kunnen we je helpen?","How can we help you?")}
                     className="w-full px-4 py-3.5 bg-transparent border border-cream/25 text-cream placeholder:text-cream/40 focus:border-brass focus:outline-none transition-colors resize-none"></textarea>
                   {touched.message && errors.message && <div className="mt-2 text-brass text-sm font-mono">{errors.message}</div>}
                 </div>

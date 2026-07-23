@@ -17,11 +17,11 @@ function BedanktBrochurePage() {
             </svg>
           </div>
           <div className="eyebrow text-cream/55 mb-4">
-            {isWedding ? 'Wedding brochure onderweg' : 'Corporate brochure onderweg'}
+            {isWedding ? t('Wedding brochure onderweg','Wedding brochure on its way') : t('Corporate brochure onderweg','Corporate brochure on its way')}
           </div>
-          <h1 className="h-display text-6xl md:text-8xl mb-6">Bedankt!</h1>
+          <h1 className="h-display text-6xl md:text-8xl mb-6">{t("Bedankt!","Thank you!")}</h1>
           <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-            Download de brochure direct via de knop hieronder.
+            {t("Download de brochure direct via de knop hieronder.","Download the brochure directly via the button below.")}
           </p>
           <div className="mt-8">
             <a
@@ -31,19 +31,19 @@ function BedanktBrochurePage() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
               </svg>
-              {isWedding ? 'Wedding Brochure 2026 downloaden' : 'Corporate Brochure 2026 downloaden'}
+              {isWedding ? t('Wedding Brochure 2026 downloaden','Download Wedding Brochure 2026') : t('Corporate Brochure 2026 downloaden','Download Corporate Brochure 2026')}
             </a>
           </div>
           <p className="mt-6 text-cream/45 text-sm font-mono">
-            Vragen? Bel ons op{' '}
+            {t("Vragen? Bel ons op","Questions? Call us on")}{' '}
             <a href={PS.phoneHref} className="underline hover:text-cream transition-colors">{PS.phone}</a>
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <a href="offerte.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              Offerte aanvragen →
+              {t("Offerte aanvragen","Request a quote")} →
             </a>
             <a href="index.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              Terug naar home
+              {t("Terug naar home","Back to home")}
             </a>
           </div>
         </div>
