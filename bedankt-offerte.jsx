@@ -1,42 +1,56 @@
-const t = window._t || ((nl) => nl);
-const params = new URLSearchParams(window.location.search);
-const NAAM = params.get('naam') || '';
-
-function BedanktOffertePage() {
-  useFadeIn();
-  return (
-    <div className="font-sans text-anthracite min-h-screen bg-bordeaux flex flex-col">
-      <SiteNav transparentTop={false} />
-      <div className="flex-1 flex items-center justify-center py-32 px-5">
-        <div className="text-center text-cream max-w-xl mx-auto fade-up is-visible">
-          <div className="w-16 h-16 mx-auto border border-cream/50 flex items-center justify-center mb-10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
-              <path d="M5 12 L 10 17 L 19 7" />
-            </svg>
-          </div>
-          <div className="eyebrow text-cream/55 mb-4">{t("Aanvraag ontvangen","Request received")}</div>
-          <h1 className="h-display text-6xl md:text-8xl mb-6">
-            {NAAM ? `${t("Dank u","Thank you")}, ${NAAM}.` : t("Dank u.","Thank you.")}
-          </h1>
-          <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-            {t("We reageren","We respond")} <strong className="text-cream">{t("binnen 1 werkdag","within 1 business day")}</strong> {t("met een offerte op maat — inclusief menu, drank en entertainment-suggesties.","with a tailored quote — including menu, drinks and entertainment suggestions.")}
-          </p>
-          <p className="mt-3 text-cream/50 text-sm font-mono">
-            {t("Spoed? Bel","Urgent? Call")} <a href={PS.phoneHref} className="underline hover:text-cream transition-colors">{PS.phone}</a>
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="groepen.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              {t("← Groepen & afhuren","← Groups & private events")}
-            </a>
-            <a href="index.html" className="inline-flex items-center justify-center gap-2 bg-cream text-bordeaux px-7 py-3.5 text-sm font-medium tracking-wide hover:bg-cream/90 transition-colors">
-              {t("Terug naar home","Back to home")}
-            </a>
+function PompstationBedanktOfferte(props) { return <PompstationBedanktOfferteClass {...props} />; }
+class PompstationBedanktOfferteClass extends React.Component {
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", minHeight: "100vh", background: "#5C1A1B", display: "flex", flexDirection: "column" }}>
+        <PSNav solid="true" />
+        <div style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", padding: "160px 20px" }}>
+          <div style={{ textAlign: "center", color: "#F5EFE6", maxWidth: "576px", margin: "0 auto" }}>
+            <div style={{ width: "64px", height: "64px", margin: "0 auto 40px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
+                <path d="M5 12 L 10 17 L 19 7" />
+              </svg>
+            </div>
+            {' '}
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "16px" }}>
+              Aanvraag ontvangen
+            </div>
+            {' '}
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "112px", lineHeight: "0.9", margin: "0 0 24px" }}>
+              Dank u.
+            </h1>
+            {' '}
+            <p style={{ color: "rgba(245,239,230,0.75)", fontSize: "18px", lineHeight: "1.65", maxWidth: "448px", margin: "0 auto" }}>
+              We reageren{' '}
+              <strong style={{ color: "#F5EFE6" }}>
+                binnen 1 werkdag
+              </strong>
+              {' '}met een offerte op maat — inclusief menu, drank en entertainment-suggesties.
+            </p>
+            {' '}
+            <p style={{ margin: "12px 0 0", color: "rgba(245,239,230,0.5)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
+              Spoed? Bel{' '}
+              <a href="tel:+31202279885" style={{ textDecoration: "underline" }}>
+                +31 20 227 9885
+              </a>
+            </p>
+            {' '}
+            <div style={{ marginTop: "40px", display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Hov as="a" href="groepen.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
+                ← Groepen & afhuren
+              </Hov>
+              <Hov as="a" href="index.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#F5EFE6", color: "#5C1A1B", padding: "14px 28px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                Terug naar home
+              </Hov>
+            </div>
           </div>
         </div>
+        <PSFooter />
       </div>
-      <SiteFooter />
-    </div>
-  );
+    );
+  }
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(BedanktOffertePage));
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationBedanktOfferte />);

@@ -1,311 +1,320 @@
-const t = window._t || ((nl) => nl);
-const BREVO_API_KEY = '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';
-const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
-
-/* ============================================================
-   OFFERTE — standalone offerte aanvraag pagina
-   ============================================================ */
-const { useState, useEffect } = React;
-
-function OffertePage() {
-  const [form, setForm] = useState({
-    type: "", people: 60, date: "", name: "", email: "", phone: "", company: "", message: "", privacy: false
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
-
-  const validate = (f) => {
-    const e = {};
-    if (!f.type) e.type = t("Selecteer een type","Please select a type");
-    if (!f.date) e.date = t("Kies een datum","Please choose a date");
-    if (!f.name || f.name.trim().length < 2) e.name = t("Vul uw naam in","Please enter your name");
-    if (!f.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = t("Geldig e-mailadres","Valid email address");
-    if (!f.phone || f.phone.replace(/\D/g, "").length < 8) e.phone = t("Geldig telefoonnummer","Valid phone number");
-    if (!f.privacy) e.privacy = t("Accepteer de privacyverklaring","Please accept the privacy policy");
-    return e;
-  };
-
-  useEffect(() => { setErrors(validate(form)); }, [form]);
-
-  const [sending, setSending] = useState(false);
-  const [serverError, setServerError] = useState(null);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errs = validate(form);
-    setTouched({ type: true, date: true, name: true, email: true, phone: true, privacy: true });
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-    setSending(true); setServerError(null);
-    try {
-      const html = `<h2>Nieuwe offerteaanvraag via website</h2>
-        <p><strong>Type:</strong> ${form.type}</p>
-        <p><strong>Personen:</strong> ${form.people}</p>
-        <p><strong>Datum:</strong> ${form.date}</p>
-        <p><strong>Naam:</strong> ${form.name}</p>
-        <p><strong>E-mail:</strong> ${form.email}</p>
-        <p><strong>Telefoon:</strong> ${form.phone}</p>
-        <p><strong>Bedrijf:</strong> ${form.company || '—'}</p>
-        <p><strong>Bericht:</strong><br>${(form.message || '—').replace(/\n/g,'<br>')}</p>`;
-      const res = await fetch(BREVO_URL, {
-        method: 'POST',
-        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sender: { name: 'Website Pompstation', email: 'events@pompstation.nu' },
-          to: [{ email: 'events@pompstation.nu', name: 'Pompstation Events' }],
-          replyTo: { email: form.email, name: form.name },
-          subject: `[Offerte] ${form.type} — ${form.name} (${form.people} pers.)`,
-          htmlContent: html,
-        }),
+function PompstationOfferte(props) { return <PompstationOfferteClass {...props} />; }
+class PompstationOfferteClass extends React.Component {
+  state = { submitted: false, type: '', people: 60 };
+    renderVals() {
+      const types = ['bedrijfsfeest','bedrijfsborrel','zakelijke-lunch','vriendengroep','verjaardag','bruiloft','anders'];
+      const typeStyles = {};
+      types.forEach(v => {
+        const active = this.state.type === v;
+        typeStyles[v] = {
+          padding: '14px 16px', fontSize: '14px', textAlign: 'left', cursor: 'pointer', transition: 'all 0.2s ease',
+          background: active ? '#5C1A1B' : 'transparent',
+          border: active ? '1px solid #5C1A1B' : '1px solid rgba(42,42,42,0.2)',
+          color: active ? '#F5EFE6' : 'rgba(42,42,42,0.8)',
+          fontFamily: "'DM Sans',sans-serif",
+        };
       });
-      if (res.ok || res.status === 201) { const n = encodeURIComponent((form.name || '').split(' ')[0]); window.location.href = 'bedankt-offerte.html?naam=' + n; }
-      else { let msg = ''; try { const d = await res.json(); msg = d.message || d.error || JSON.stringify(d); } catch(e) { msg = res.statusText; } setServerError('Brevo fout (' + res.status + '): ' + msg); }
-    } catch { setServerError(t("Geen verbinding. Probeer opnieuw.","No connection. Please try again.")); }
-    finally { setSending(false); }
-  };
-
-  const slidePct = (form.people - 10) / (360 - 10) * 100;
-
-  useFadeIn();
-
-  if (submitted) {
+      const pct = (this.state.people - 10) / (360 - 10) * 100;
+      return {
+        submitted: this.state.submitted,
+        open: !this.state.submitted,
+        people: this.state.people,
+        typeStyles,
+        rangeStyle: { width: '100%', background: `linear-gradient(to right, #5C1A1B 0%, #5C1A1B ${pct}%, rgba(42,42,42,0.15) ${pct}%, rgba(42,42,42,0.15) 100%)` },
+        pick: (e) => this.setState({ type: e.currentTarget.getAttribute('data-v') }),
+        setPeople: (e) => this.setState({ people: parseInt(e.target.value) }),
+        submit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
     return (
-      <div className="font-sans text-anthracite min-h-screen bg-bordeaux flex flex-col">
-        <SiteNav transparentTop={false} />
-        <div className="flex-1 flex items-center justify-center py-32 px-5">
-          <div className="text-center text-cream">
-            <div className="w-16 h-16 mx-auto border border-cream/50 flex items-center justify-center mb-8">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5"><path d="M5 12 L 10 17 L 19 7" /></svg>
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", color: "#2A2A2A", overflowX: "hidden" }}>
+        <PSNav current="groepen" solid="true" />
+        {' '}
+        {' '}
+        <section style={{ position: "relative", color: "#F5EFE6", padding: "144px 0 80px", borderBottom: "1px solid rgba(245,239,230,0.1)", overflow: "hidden" }}>
+          <img src="images/event-staand.jpg" alt="Evenement Pompstation" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
+          {' '}
+          <div style={{ position: "absolute", inset: "0", background: "rgba(0,0,0,0.72)" }} />
+          {' '}
+          <div style={{ position: "relative", zIndex: "10", maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", flexWrap: "wrap" }}>
+            <div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
+                Offerte aanvragen · groepen & events
+              </div>
+              {' '}
+              <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "120px", lineHeight: "0.9", margin: "0" }}>
+                Offerte
+                <br />
+                <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
+                  aanvragen.
+                </span>
+              </h1>
             </div>
-            <div className="eyebrow text-cream/60 mb-4">{t("Aanvraag ontvangen","Request received")}</div>
-            <h1 className="h-display text-5xl md:text-7xl mb-6">{t("Dank u","Thank you")}, {form.name.split(" ")[0]}.</h1>
-            <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-              {t("We reageren binnen 1 werkdag.","We respond within 1 business day.")}<br />
-              {t("Voor spoed:","For urgent matters:")} <a href="tel:+31641655027" className="underline hover:text-cream">+31 6 41 65 50 27</a>
+            <p style={{ maxWidth: "384px", color: "rgba(245,239,230,0.7)", fontSize: "18px", lineHeight: "1.65" }}>
+              Vul het formulier in en we reageren{' '}
+              <strong style={{ color: "#F5EFE6" }}>
+                binnen 1 werkdag
+              </strong>
+              {' '}met een offerte op maat — inclusief menu, drank, set-up en entertainment-suggesties.
             </p>
-            <a href="groepen.html" className="mt-10 inline-flex items-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm hover:bg-cream/10 transition-colors">
-              {t("← Terug naar groepen & afhuren","← Back to groups & private events")}
-            </a>
           </div>
-        </div>
-        <SiteFooter />
+        </section>
+        {' '}
+        {' '}
+        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "64px" }}>
+            <div style={{ gridColumn: "span 4" }}>
+              <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "40px" }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "24px" }}>
+                  Direct contact
+                </div>
+                {' '}
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                    <div style={{ width: "40px", height: "40px", flexShrink: "0", border: "1px solid rgba(245,239,230,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "14px", color: "rgba(245,239,230,0.55)", fontFamily: "'JetBrains Mono',monospace", marginBottom: "4px" }}>
+                        Bel direct
+                      </div>
+                      <a href="tel:+31641655027" style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                        +31 6 41 65 50 27
+                      </a>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                    <div style={{ width: "40px", height: "40px", flexShrink: "0", border: "1px solid rgba(245,239,230,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <rect x="2" y="4" width="20" height="16" />
+                        <path d="M2 6 L 12 13 L 22 6" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "14px", color: "rgba(245,239,230,0.55)", fontFamily: "'JetBrains Mono',monospace", marginBottom: "4px" }}>
+                        E-mail
+                      </div>
+                      <a href="mailto:events@pompstation.nu" style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                        events@pompstation.nu
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {' '}
+                <div style={{ marginTop: "40px", paddingTop: "32px", borderTop: "1px solid rgba(245,239,230,0.15)" }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginBottom: "16px" }}>
+                    Ruimtes & capaciteit
+                  </div>
+                  {' '}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid rgba(245,239,230,0.1)", paddingBottom: "12px", marginBottom: "12px" }}>
+                    <span style={{ color: "rgba(245,239,230,0.7)" }}>
+                      Restaurant
+                    </span>
+                    <span style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                      10–180 personen
+                    </span>
+                  </div>
+                  {' '}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid rgba(245,239,230,0.1)", paddingBottom: "12px", marginBottom: "12px" }}>
+                    <span style={{ color: "rgba(245,239,230,0.7)" }}>
+                      De vide
+                    </span>
+                    <span style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                      20–100 personen
+                    </span>
+                  </div>
+                  {' '}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid rgba(245,239,230,0.1)", paddingBottom: "12px", marginBottom: "12px" }}>
+                    <span style={{ color: "rgba(245,239,230,0.7)" }}>
+                      Het terras
+                    </span>
+                    <span style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                      20–200 personen
+                    </span>
+                  </div>
+                  {' '}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid rgba(245,239,230,0.1)", paddingBottom: "12px" }}>
+                    <span style={{ color: "rgba(245,239,230,0.7)" }}>
+                      Volledig exclusief
+                    </span>
+                    <span style={{ color: "#F5EFE6", fontWeight: "500" }}>
+                      tot 360 personen
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style={{ gridColumn: "span 8" }}>
+              {(V.submitted) ? (<React.Fragment>
+                <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "64px 48px", textAlign: "center" }}>
+                  <div style={{ width: "64px", height: "64px", margin: "0 auto 32px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
+                      <path d="M5 12 L 10 17 L 19 7" />
+                    </svg>
+                  </div>
+                  {' '}
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
+                    Aanvraag ontvangen
+                  </div>
+                  {' '}
+                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "56px", lineHeight: "0.9", margin: "0" }}>
+                    Dank u.
+                  </h2>
+                  {' '}
+                  <p style={{ margin: "20px auto 0", color: "rgba(245,239,230,0.75)", fontSize: "18px", lineHeight: "1.65", maxWidth: "384px" }}>
+                    We reageren binnen 1 werkdag. Voor spoed:{' '}
+                    <a href="tel:+31641655027" style={{ color: "#F5EFE6", textDecoration: "underline" }}>
+                      +31 6 41 65 50 27
+                    </a>
+                  </p>
+                </div>
+              </React.Fragment>) : null}
+              {' '}
+              {(V.open) ? (<React.Fragment>
+                <form onSubmit={V.submit} style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+                  <div>
+                    <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                      Type gelegenheid
+                    </label>
+                    {' '}
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "8px" }}>
+                      <button type="button" onClick={V.pick} data-v="bedrijfsfeest" style={V.typeStyles.bedrijfsfeest}>
+                        Bedrijfsfeest
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="bedrijfsborrel" style={V.typeStyles.bedrijfsborrel}>
+                        Bedrijfsborrel
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="zakelijke-lunch" style={V.typeStyles['zakelijke-lunch']}>
+                        Zakelijke lunch
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="vriendengroep" style={V.typeStyles.vriendengroep}>
+                        Vriendengroep
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="verjaardag" style={V.typeStyles.verjaardag}>
+                        Verjaardag
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="bruiloft" style={V.typeStyles.bruiloft}>
+                        Bruiloft
+                      </button>
+                      <button type="button" onClick={V.pick} data-v="anders" style={V.typeStyles.anders}>
+                        Anders
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "12px" }}>
+                      <label style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)" }}>
+                        Aantal personen
+                      </label>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "36px", color: "#5C1A1B" }}>
+                        {V.people}
+                      </div>
+                    </div>
+                    {' '}
+                    <input type="range" min="10" max="360" step="5" value={V.people} onInput={V.setPeople} className="ps-range" style={V.rangeStyle} />
+                    {' '}
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "8px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace", color: "rgba(42,42,42,0.4)" }}>
+                      <span>
+                        10
+                      </span>
+                      <span>
+                        100
+                      </span>
+                      <span>
+                        200
+                      </span>
+                      <span>
+                        360
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                      Gewenste datum
+                    </label>
+                    {' '}
+                    <input type="date" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                        Naam
+                      </label>
+                      <input type="text" placeholder="Voornaam Achternaam" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                        E-mail
+                      </label>
+                      <input type="email" placeholder="naam@bedrijf.nl" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                      Bedrijfsnaam{' '}
+                      <span style={{ opacity: "0.5", textTransform: "none", letterSpacing: "normal" }}>
+                        (optioneel)
+                      </span>
+                    </label>
+                    <input type="text" placeholder="Naam van uw bedrijf of organisatie" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                      Telefoon
+                    </label>
+                    <input type="tel" placeholder="+31 6 …" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)", marginBottom: "12px" }}>
+                      Bericht{' '}
+                      <span style={{ opacity: "0.5", textTransform: "none", letterSpacing: "normal" }}>
+                        (optioneel)
+                      </span>
+                    </label>
+                    <textarea rows="4" placeholder="Bijzondere wensen, dieetwensen, vraag over entertainment…" style={{ width: "100%", padding: "14px 16px", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.2)", color: "#2A2A2A", outline: "none", resize: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                  </div>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                    <input type="checkbox" style={{ marginTop: "4px", width: "16px", height: "16px", accentColor: "#5C1A1B", flexShrink: "0" }} />
+                    <label style={{ fontSize: "14px", color: "rgba(42,42,42,0.65)", lineHeight: "1.6" }}>
+                      Ik ga akkoord met de{' '}
+                      <a href="privacy.html" style={{ textDecoration: "underline" }}>
+                        privacyverklaring
+                      </a>
+                      {' '}van Pompstation.
+                    </label>
+                  </div>
+                  <div>
+                    <Hov as="button" type="submit" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "20px 40px", fontSize: "16px", fontWeight: "500", letterSpacing: "0.02em", border: "none", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "12px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+                      <span>
+                        Verstuur aanvraag
+                      </span>
+                      <span>
+                        →
+                      </span>
+                    </Hov>
+                    {' '}
+                    <p style={{ margin: "16px 0 0", fontSize: "14px", color: "rgba(42,42,42,0.5)", fontFamily: "'JetBrains Mono',monospace" }}>
+                      We reageren binnen 1 werkdag. Voor spoed:{' '}
+                      <a href="tel:+31641655027" style={{ textDecoration: "underline" }}>
+                        +31 6 41 65 50 27
+                      </a>
+                    </p>
+                  </div>
+                </form>
+              </React.Fragment>) : null}
+            </div>
+          </div>
+        </section>
+        {' '}
+        <PSFooter />
       </div>
     );
   }
-
-  return (
-    <div className="font-sans text-anthracite">
-      <SiteNav transparentTop={false} />
-
-      {/* Page header */}
-      <section className="relative text-cream pt-28 pb-16 md:pt-36 md:pb-20 border-b border-cream/10 overflow-hidden">
-        <Photo src="images/event-staand.jpg" alt="Evenement Pompstation" className="absolute inset-0 w-full h-full" position="center 30%" overlay={0.72} />
-        <div className="relative z-10 max-w-[1280px] mx-auto px-5 md:px-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="eyebrow text-cream/60 mb-4">{t("Offerte aanvragen · groepen & events","Request a quote · groups & events")}</div>
-              <h1 className="h-display text-cream text-5xl md:text-7xl lg:text-9xl">
-                {t("Offerte","Quote")}<br />
-                <span className="h-serif italic normal-case font-normal text-cream/80">{t("aanvragen.","request.")}</span>
-              </h1>
-            </div>
-            <p className="md:max-w-sm text-cream/70 text-lg leading-relaxed">
-              {t("Vul het formulier in en we reageren","Fill in the form and we will respond")} <strong className="text-cream">{t("binnen 1 werkdag","within 1 business day")}</strong> {t("met een offerte op maat — inclusief menu, drank, set-up en entertainment-suggesties.","with a tailored quote — including menu, drinks, set-up and entertainment suggestions.")}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Form section */}
-      <section className="bg-cream py-16 md:py-24">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-10 md:gap-16">
-
-          {/* Sidebar */}
-          <div className="md:col-span-4 fade-up">
-            <div className="bg-bordeaux text-cream p-7 md:p-10">
-              <div className="eyebrow text-cream/60 mb-6">{t("Direct contact","Direct contact")}</div>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 shrink-0 border border-cream/25 flex items-center justify-center">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-                  </div>
-                  <div>
-                    <div className="text-sm text-cream/55 font-mono mb-1">{t("Bel direct","Call us directly")}</div>
-                    <a href="tel:+31641655027" className="text-cream hover:text-cream/80 transition-colors font-medium">+31 6 41 65 50 27</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 shrink-0 border border-cream/25 flex items-center justify-center">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="4" width="20" height="16" /><path d="M2 6 L 12 13 L 22 6" /></svg>
-                  </div>
-                  <div>
-                    <div className="text-sm text-cream/55 font-mono mb-1">{t("E-mail","E-mail")}</div>
-                    <a href="mailto:events@pompstation.nu" className="text-cream hover:text-cream/80 transition-colors font-medium">events@pompstation.nu</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 pt-8 border-t border-cream/15 space-y-4">
-                <div className="eyebrow text-cream/50 mb-4">{t("Ruimtes & capaciteit","Spaces & capacity")}</div>
-                {[
-                  ["Restaurant", t("10–180 personen","10–180 persons")],
-                  [t("De vide","The mezzanine"), t("20–100 personen","20–100 persons")],
-                  [t("Het terras","The terrace"), t("20–200 personen","20–200 persons")],
-                  [t("Volledig exclusief","Fully exclusive"), t("tot 360 personen","up to 360 persons")],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between text-sm border-b border-cream/10 pb-3">
-                    <span className="text-cream/70">{k}</span>
-                    <span className="text-cream font-medium">{v}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-cream/15">
-                <div className="flex items-center gap-2 text-cream/60 text-sm font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cream/40 animate-pulse"></span>
-                  {t("Binnen 1 werkdag reactie","Response within 1 business day")}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="md:col-span-8 space-y-7 fade-up">
-
-            {/* Type */}
-            <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">{t("Type gelegenheid","Type of event")}</label>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {[
-                  { v: "bedrijfsfeest", l: t("Bedrijfsfeest","Corporate event") },
-                  { v: "bedrijfsborrel", l: t("Bedrijfsborrel","Corporate drinks") },
-                  { v: "zakelijke-lunch", l: t("Zakelijke lunch","Business lunch") },
-                  { v: "vriendengroep", l: t("Vriendengroep","Friend group") },
-                  { v: "verjaardag", l: t("Verjaardag","Birthday") },
-                  { v: "bruiloft", l: t("Bruiloft","Wedding") },
-                  { v: "anders", l: t("Anders","Other") },
-                ].map((opt) => (
-                  <button key={opt.v} type="button"
-                    onClick={() => { setForm(f => ({ ...f, type: opt.v })); setTouched(t => ({ ...t, type: true })); }}
-                    className={`px-4 py-3.5 text-sm border transition-all text-left ${
-                      form.type === opt.v
-                        ? "bg-bordeaux border-bordeaux text-cream"
-                        : "border-anthracite/20 text-anthracite/80 hover:border-bordeaux/60"
-                    }`}>
-                    {opt.l}
-                  </button>
-                ))}
-              </div>
-              {touched.type && errors.type && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.type}</div>}
-            </div>
-
-            {/* People slider */}
-            <div>
-              <div className="flex items-baseline justify-between mb-3">
-                <label className="eyebrow text-anthracite/55">{t("Aantal personen","Number of guests")}</label>
-                <div className="h-display text-4xl text-bordeaux">{form.people}</div>
-              </div>
-              <input type="range" min="10" max="360" step="5" value={form.people}
-                onChange={(e) => setForm(f => ({ ...f, people: parseInt(e.target.value) }))}
-                className="range-slider w-full"
-                style={{ '--fill': `${slidePct}%` }} />
-              <div className="flex justify-between mt-2 text-xs font-mono text-anthracite/40">
-                <span>10</span><span>100</span><span>200</span><span>360</span>
-              </div>
-            </div>
-
-            {/* Date */}
-            <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">{t("Gewenste datum","Preferred date")}</label>
-              <input type="date" value={form.date}
-                onChange={(e) => { setForm(f => ({ ...f, date: e.target.value })); setTouched(t => ({ ...t, date: true })); }}
-                onBlur={() => setTouched(t => ({ ...t, date: true }))}
-                className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite focus:border-bordeaux focus:outline-none transition-colors" />
-              {touched.date && errors.date && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.date}</div>}
-            </div>
-
-            {/* Name + email */}
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label className="eyebrow text-anthracite/55 block mb-3">{t("Naam","Name")}</label>
-                <input type="text" value={form.name}
-                  onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))}
-                  onBlur={() => setTouched(t => ({ ...t, name: true }))}
-                  placeholder={t("Voornaam Achternaam","First Last")}
-                  className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
-                {touched.name && errors.name && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.name}</div>}
-              </div>
-              <div>
-                <label className="eyebrow text-anthracite/55 block mb-3">{t("E-mail","E-mail")}</label>
-                <input type="email" value={form.email}
-                  onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
-                  onBlur={() => setTouched(t => ({ ...t, email: true }))}
-                  placeholder={t("naam@bedrijf.nl","name@company.com")}
-                  className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
-                {touched.email && errors.email && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.email}</div>}
-              </div>
-            </div>
-
-            {/* Bedrijfsnaam */}
-            <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">{t("Bedrijfsnaam","Company name")} <span className="opacity-50 normal-case tracking-normal font-normal">({t("optioneel","optional")})</span></label>
-              <input type="text" value={form.company}
-                onChange={(e) => setForm(f => ({ ...f, company: e.target.value }))}
-                placeholder={t("Naam van uw bedrijf of organisatie","Name of your company or organisation")}
-                className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">{t("Telefoon","Phone")}</label>
-              <input type="tel" value={form.phone}
-                onChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
-                onBlur={() => setTouched(t => ({ ...t, phone: true }))}
-                placeholder="+31 6 …"
-                className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors" />
-              {touched.phone && errors.phone && <div className="mt-2 text-bordeaux text-sm font-mono">{errors.phone}</div>}
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="eyebrow text-anthracite/55 block mb-3">{t("Bericht","Message")} <span className="opacity-50 normal-case tracking-normal">({t("optioneel","optional")})</span></label>
-              <textarea rows="4" value={form.message}
-                onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
-                placeholder={t("Bijzondere wensen, dieetwensen, vraag over entertainment…","Special requests, dietary requirements, questions about entertainment…")}
-                className="w-full px-4 py-3.5 bg-cream border border-anthracite/20 text-anthracite placeholder:text-anthracite/35 focus:border-bordeaux focus:outline-none transition-colors resize-none">
-              </textarea>
-            </div>
-
-            <div className="pt-2">
-              <div className="flex items-start gap-3 mb-5">
-                <input type="checkbox" id="offerte-privacy" checked={!!form.privacy}
-                  onChange={e => setForm(f => ({...f, privacy: e.target.checked}))}
-                  className="mt-1 w-4 h-4 cursor-pointer flex-shrink-0 accent-bordeaux" />
-                <label htmlFor="offerte-privacy" className="text-sm text-anthracite/65 leading-relaxed">
-                  {t("Ik ga akkoord met de ","I agree to the ")}
-                  <a href="privacy.html" className="text-bordeaux underline hover:text-bordeaux-dark transition-colors">{t("privacyverklaring","privacy policy")}</a>
-                  {t(" van Pompstation."," of Pompstation.")}
-                </label>
-              </div>
-              {touched.privacy && errors.privacy && <div className="mb-3 text-bordeaux text-sm font-mono">{errors.privacy}</div>}
-              <button type="submit"
-                className="w-full md:w-auto bg-bordeaux text-cream hover:bg-bordeaux-dark transition-colors px-10 py-5 text-base font-medium tracking-wide inline-flex items-center justify-center gap-3 group">
-                <span>{sending ? t("Versturen…","Sending…") : t("Verstuur aanvraag","Submit request")}</span>
-                {!sending && <span className="transition-transform group-hover:translate-x-1">→</span>}
-              </button>
-              {serverError && <p className="mt-3 text-bordeaux text-sm font-mono">{serverError}</p>}
-              <p className="mt-4 text-sm text-anthracite/50 font-mono">
-                {t("We reageren binnen 1 werkdag.","We respond within 1 business day.")}  {t("Voor spoed:","For urgent matters:")} <a href="tel:+31641655027" className="underline hover:text-anthracite">+31 6 41 65 50 27</a>
-              </p>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <SiteFooter />
-      <StickyMobileCTA />
-    </div>
-  );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(OffertePage));
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationOfferte />);

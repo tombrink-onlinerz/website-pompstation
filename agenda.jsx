@@ -1,144 +1,217 @@
-const t = window._t || ((nl) => nl);
-/* ============================================================
-   AGENDA / LIVE MUZIEK PAGE
-   ============================================================ */
-
-const GENRES = [
-  { t: t("Jazz & soul","Jazz & soul"), d: t("Het hart van de programmering — swingend, warm, intiem.","The heart of our programme — swinging, warm, intimate.") },
-  { t: t("Tango","Tango"), d: t("Bandoneon en strijkers onder het twaalf meter hoge plafond.","Bandoneon and strings beneath the twelve-metre ceiling.") },
-  { t: t("Bossa & nova","Bossa nova"), d: t("Braziliaanse zwoele klanken bij een laat glas wijn.","Brazilian sultry sounds with a late glass of wine.") },
-];
-
-const AGENDA = [
-  { day: t("Do","Thu"), date: t("Donderdag","Thursday"), act: "Trio Nocturne", genre: "Jazz / soul", time: "20:00–23:00", note: t("Wekelijkse jamsessie","Weekly jam session") },
-  { day: t("Vr","Fri"), date: t("Vrijdag","Friday"), act: t("Wisselende programmering","Varied programme"), genre: "Jazz / soul", time: "20:30–00:00", featured: true },
-  { day: t("Za","Sat"), date: t("Zaterdag","Saturday"), act: t("Wisselende programmering","Varied programme"), genre: "Tango / bossa", time: "20:30–00:30", featured: true },
-];
-
-function AgendaPage() {
-  useFadeIn();
-  return (
-    <div className="font-sans text-anthracite">
-      <SiteNav current="agenda" />
-
-      <PageHero
-        kicker={t("Live muziek · donderdag t/m zaterdag","Live music · Thursday to Saturday")}
-        title={t("Live","Live")}
-        titleAccent={t("muziek","music")}
-        lead={t("Door de perfecte akoestiek van de hoge hal klinkt jazz, soul, tango en bossa nova als achtergrond bij uw diner. Geen toegang, geen reservering nodig — schuif gewoon aan.","The perfect acoustics of the high hall turn jazz, soul, tango and bossa nova into the perfect backdrop to your dinner. No cover charge, no reservation needed — just pull up a chair.")}
-        image="images/live-muziek-intiem.jpg"
-        position="center 40%" />
-
-      {/* Zomerstop banner */}
-      <div className="bg-brass/15 border-b border-brass/30">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10 py-4 flex items-center gap-4">
-          <span className="font-mono text-xs tracking-[0.15em] uppercase text-brass shrink-0">
-            {t("Zomerstop","Summer break")}
-          </span>
-          <p className="text-anthracite/80 text-sm">
-            {t(
-              "De live muziek pauzeert tijdelijk — we zijn terug op 12 augustus. Reserveer alvast een tafel voor het nieuwe seizoen.",
-              "Live music is on a summer break — we return on 12 August. Reserve a table for the new season."
-            )}
-          </p>
-          <a href="reserveren.html" className="ml-auto shrink-0 text-sm font-medium text-bordeaux hover:underline whitespace-nowrap">
-            {t("Reserveer →","Reserve →")}
-          </a>
-        </div>
-      </div>
-
-      {/* Weekly agenda */}
-      <section className="bg-cream py-16 md:py-24 border-b border-anthracite/10">
-        <div className="max-w-[1100px] mx-auto px-5 md:px-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-14">
-            <div>
-              <div className="eyebrow text-bordeaux mb-4">{t("Deze week op het podium","This week on stage")}</div>
-              <h2 className="h-display text-anthracite text-5xl md:text-7xl">{t("Vaste","Regular")}<br /><span className="h-serif italic normal-case font-normal text-bordeaux">{t("avonden.","evenings.")}</span></h2>
-            </div>
-            <p className="md:max-w-sm text-anthracite/70 leading-relaxed">
-              {t("Een wisselende programmering met internationale artiesten. Reserveer een tafel om verzekerd te zijn van een plek bij het optreden.","A varied programme of international artists. Reserve a table to guarantee a seat at the performance.")}
+function PompstationAgenda(props) { return <PompstationAgendaClass {...props} />; }
+class PompstationAgendaClass extends React.Component {
+  renderVals() {
+      const dayStyle = (featured) => ({
+        width: '56px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, textTransform: 'uppercase', fontSize: '24px',
+        background: featured ? '#5C1A1B' : '#EFE7D9',
+        color: featured ? '#F5EFE6' : '#2A2A2A',
+        border: featured ? 'none' : '1px solid rgba(42,42,42,0.15)',
+      });
+      return {
+        agenda: [
+          { day: 'Do', act: 'Trio Nocturne', sub: 'Donderdag · Wekelijkse jamsessie', genre: 'Jazz / soul', time: '20:00–23:00', dayStyle: dayStyle(false) },
+          { day: 'Vr', act: 'Wisselende programmering', sub: 'Vrijdag', genre: 'Jazz / soul', time: '20:30–00:00', dayStyle: dayStyle(true) },
+          { day: 'Za', act: 'Wisselende programmering', sub: 'Zaterdag', genre: 'Tango / bossa', time: '20:30–00:30', dayStyle: dayStyle(true) },
+        ],
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", color: "#2A2A2A", overflowX: "hidden" }}>
+        <PSNav current="agenda" />
+        {' '}
+        <PSHero kicker="Live muziek · donderdag t/m zaterdag" title="Live" titleAccent="muziek" lead="Door de perfecte akoestiek van de hoge hal klinkt jazz, soul, tango en bossa nova als achtergrond bij uw diner. Geen toegang, geen reservering nodig — schuif gewoon aan." image="images/live-muziek-intiem.jpg" position="center 40%" heightVh="62" minHeight="440" />
+        {' '}
+        {' '}
+        <div style={{ background: "rgba(168,138,90,0.15)", borderBottom: "1px solid rgba(168,138,90,0.3)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "16px 40px", display: "flex", alignItems: "center", gap: "16px" }}>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#A88A5A", flexShrink: "0" }}>
+              Zomerstop
+            </span>
+            <p style={{ color: "rgba(42,42,42,0.8)", fontSize: "14px", margin: "0" }}>
+              De live muziek pauzeert tijdelijk — we zijn terug op 12 augustus. Reserveer alvast een tafel voor het nieuwe seizoen.
             </p>
-          </div>
-
-          <div className="space-y-0">
-            {AGENDA.map((a, i) =>
-            <div key={i} className={`fade-up grid grid-cols-12 gap-3 md:gap-6 items-center py-6 border-t border-anthracite/15 ${a.featured ? "" : ""}`}>
-              <div className="col-span-2 md:col-span-1">
-                <div className={`w-11 h-11 md:w-14 md:h-14 flex items-center justify-center h-display text-xl md:text-2xl ${a.featured ? "bg-bordeaux text-cream" : "bg-cream-warm text-anthracite border border-anthracite/15"}`}>{a.day}</div>
-              </div>
-              <div className="col-span-6 md:col-span-7">
-                <div className="h-serif text-xl md:text-3xl text-anthracite">{a.act}</div>
-                <div className="mt-1 text-sm text-anthracite/60">{a.date}{a.note && <> · {a.note}</>}</div>
-              </div>
-              <div className="col-span-4 md:col-span-2 text-sm md:text-base text-anthracite/75">{a.genre}</div>
-              <div className="col-span-12 md:col-span-2 md:text-right font-mono text-sm text-bordeaux">{a.time}</div>
-            </div>
-            )}
-          </div>
-          <div className="mt-8 text-sm text-anthracite/55 font-mono">
-            {t("Programmering onder voorbehoud — volg ons voor de actuele line-up. Tijdens privé-events vervalt de reguliere muziekavond.","Programme subject to change — follow us for the current line-up. During private events the regular music evening may be cancelled.")}
+            <a href="reserveren.html" style={{ marginLeft: "auto", flexShrink: "0", fontSize: "14px", fontWeight: "500", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+              Reserveer →
+            </a>
           </div>
         </div>
-      </section>
-
-      {/* Genres */}
-      <section className="bg-bordeaux text-cream py-16 md:py-24">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10">
-          <div className="grid md:grid-cols-12 gap-8 mb-12 md:mb-16">
-            <div className="md:col-span-5">
-              <div className="eyebrow text-brass mb-4">{t("Wat je hoort","What you'll hear")}</div>
-              <h2 className="h-display text-cream text-5xl md:text-7xl">{t("Het geluid","The sound")}<br /><span className="h-serif italic normal-case font-normal text-cream/80">{t("van het huis.","of the house.")}</span></h2>
-            </div>
-            <div className="md:col-span-7 md:pt-12">
-              <p className="text-cream/75 text-lg leading-relaxed max-w-xl">
-                {t("Eigen geluidsinstallatie, een echt podium en een akoestiek die een twaalf meter hoge industriële hal je cadeau doet. Meestal jazzy & soulful, soms tango of bossa nova.","Our own sound system, a real stage and the acoustics that a twelve-metre industrial hall gives you for free. Usually jazzy & soulful, sometimes tango or bossa nova.")}
+        {' '}
+        {' '}
+        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "56px", flexWrap: "wrap" }}>
+              <div>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
+                  Deze week op het podium
+                </div>
+                {' '}
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+                  Vaste
+                  <br />
+                  <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
+                    avonden.
+                  </span>
+                </h2>
+              </div>
+              <p style={{ maxWidth: "384px", color: "rgba(42,42,42,0.7)", lineHeight: "1.65" }}>
+                Een wisselende programmering met internationale artiesten. Reserveer een tafel om verzekerd te zijn van een plek bij het optreden.
               </p>
             </div>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-cream/10">
-            {GENRES.map((g, i) =>
-            <div key={i} className="bg-bordeaux p-7 md:p-8 hover:bg-bordeaux-dark/60 transition-colors">
-              <div className="h-display text-brass text-2xl md:text-3xl mb-3">0{i + 1}</div>
-              <h3 className="h-serif text-2xl text-cream">{g.t}</h3>
-              <p className="mt-2 text-sm text-cream/65 leading-relaxed">{g.d}</p>
+            {' '}
+            <div>
+              {(V.agenda || []).map((a, $index) => (
+                <React.Fragment key={$index}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", alignItems: "center", padding: "24px 0", borderTop: "1px solid rgba(42,42,42,0.15)" }}>
+                    <div style={{ gridColumn: "span 1" }}>
+                      <div style={a.dayStyle}>
+                        {a.day}
+                      </div>
+                    </div>
+                    <div style={{ gridColumn: "span 7" }}>
+                      <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#2A2A2A" }}>
+                        {a.act}
+                      </div>
+                      <div style={{ marginTop: "4px", fontSize: "14px", color: "rgba(42,42,42,0.6)" }}>
+                        {a.sub}
+                      </div>
+                    </div>
+                    <div style={{ gridColumn: "span 2", fontSize: "16px", color: "rgba(42,42,42,0.75)" }}>
+                      {a.genre}
+                    </div>
+                    <div style={{ gridColumn: "span 2", textAlign: "right", fontFamily: "'JetBrains Mono',monospace", fontSize: "14px", color: "#5C1A1B" }}>
+                      {a.time}
+                    </div>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
-            )}
+            {' '}
+            <div style={{ marginTop: "32px", fontSize: "14px", color: "rgba(42,42,42,0.55)", fontFamily: "'JetBrains Mono',monospace" }}>
+              Programmering onder voorbehoud — volg ons voor de actuele line-up. Tijdens privé-events vervalt de reguliere muziekavond.
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Editorial photo split */}
-      <section className="bg-cream py-16 md:py-24 border-b border-anthracite/10">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10 grid md:grid-cols-2 gap-5 md:gap-6">
-          <Photo src="images/dj-vinyl.jpg" alt="DJ en vinyl bij Pompstation" className="w-full aspect-[4/3]" position="center" />
-          <div className="bg-cream-warm border border-anthracite/10 p-8 md:p-12 flex flex-col justify-center">
-            <div className="eyebrow text-bordeaux mb-4">{t("Privé & events","Private events")}</div>
-            <h2 className="h-display text-anthracite text-4xl md:text-6xl mb-4">{t("Eigen line-up voor uw feest","Custom line-up for your event")}</h2>
-            <p className="text-anthracite/75 text-lg leading-relaxed">
-              {t("Bij afhuur regelen we de muziek met u mee — van een jazztrio bij het diner tot een DJ-set die de zaal tot diep in de nacht laat dansen. Inclusief podium, geluid en hulp bij de boeking.","When you hire the venue we help arrange the music — from a jazz trio at dinner to a DJ set that keeps the hall dancing into the night. Including stage, sound and booking assistance.")}
+        </section>
+        {' '}
+        {' '}
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "96px 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "32px", marginBottom: "64px" }}>
+              <div style={{ gridColumn: "span 5" }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
+                  Wat je hoort
+                </div>
+                {' '}
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+                  Het geluid
+                  <br />
+                  <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
+                    van het huis.
+                  </span>
+                </h2>
+              </div>
+              <div style={{ gridColumn: "span 7", paddingTop: "48px" }}>
+                <p style={{ color: "rgba(245,239,230,0.75)", fontSize: "18px", lineHeight: "1.65", maxWidth: "576px", margin: "0" }}>
+                  Eigen geluidsinstallatie, een echt podium en een akoestiek die een twaalf meter hoge industriële hal je cadeau doet. Meestal jazzy & soulful, soms tango of bossa nova.
+                </p>
+              </div>
+            </div>
+            {' '}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1px", background: "rgba(245,239,230,0.1)" }}>
+              <div style={{ background: "#5C1A1B", padding: "32px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                  01
+                </div>
+                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
+                  Jazz & soul
+                </h3>
+                <p style={{ margin: "8px 0 0", fontSize: "14px", color: "rgba(245,239,230,0.65)", lineHeight: "1.6" }}>
+                  Het hart van de programmering — swingend, warm, intiem.
+                </p>
+              </div>
+              <div style={{ background: "#5C1A1B", padding: "32px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                  02
+                </div>
+                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
+                  Tango
+                </h3>
+                <p style={{ margin: "8px 0 0", fontSize: "14px", color: "rgba(245,239,230,0.65)", lineHeight: "1.6" }}>
+                  Bandoneon en strijkers onder het twaalf meter hoge plafond.
+                </p>
+              </div>
+              <div style={{ background: "#5C1A1B", padding: "32px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                  03
+                </div>
+                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
+                  Bossa nova
+                </h3>
+                <p style={{ margin: "8px 0 0", fontSize: "14px", color: "rgba(245,239,230,0.65)", lineHeight: "1.6" }}>
+                  Braziliaanse zwoele klanken bij een laat glas wijn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {' '}
+        {' '}
+        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+            <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", background: "#2A2A2A" }}>
+              <img src="images/dj-vinyl.jpg" alt="DJ en vinyl bij Pompstation" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+            <div style={{ background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", padding: "48px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
+                Privé & events
+              </div>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "48px", lineHeight: "0.95", margin: "0 0 16px" }}>
+                Eigen line-up voor uw feest
+              </h2>
+              <p style={{ color: "rgba(42,42,42,0.75)", fontSize: "18px", lineHeight: "1.65", margin: "0" }}>
+                Bij afhuur regelen we de muziek met u mee — van een jazztrio bij het diner tot een DJ-set die de zaal tot diep in de nacht laat dansen. Inclusief podium, geluid en hulp bij de boeking.
+              </p>
+              <a href="groepen.html" style={{ marginTop: "32px", display: "inline-flex", alignItems: "center", gap: "8px", color: "#5C1A1B", fontWeight: "500" }}>
+                Bekijk afhuren & groepen
+                <span>
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+        {' '}
+        <PSSfeer bg="cream-warm" lead="Volle zaal, een band op het podium en de akoestiek van twaalf meter hoog. Zo klinkt een avond bij Pompstation." />
+        {' '}
+        {' '}
+        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+              Dineren met live jazz
+            </h2>
+            {' '}
+            <p style={{ margin: "20px auto 0", color: "rgba(42,42,42,0.7)", fontSize: "18px", maxWidth: "576px" }}>
+              Reserveer een tafel op een muziekavond en maak er een complete avond van.
             </p>
-            <a href="groepen.html" className="mt-8 inline-flex items-center gap-2 text-bordeaux font-medium group">{t("Bekijk afhuren & groepen","View groups & private events")} <span className="transition-transform group-hover:translate-x-1">→</span></a>
+            {' '}
+            <div style={{ marginTop: "32px", display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>
+              <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "16px 28px", fontSize: "16px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+                Reserveer een tafel
+              </Hov>
+              <Hov as="a" href="menu.html" style={{ border: "1px solid #2A2A2A", color: "#2A2A2A", padding: "16px 28px", fontSize: "16px", fontWeight: "500", letterSpacing: "0.02em", transition: "all 0.2s ease" }} styleHover={{ background: "#5C1A1B", color: "#F5EFE6", borderColor: "#5C1A1B" }}>
+                Bekijk het menu
+              </Hov>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <div className="fade-up"><SfeerGallery lead={t("Volle zaal, een band op het podium en de akoestiek van twaalf meter hoog. Zo klinkt een avond bij Pompstation.","A full house, a band on stage and the acoustics of a twelve-metre hall. This is how an evening at Pompstation sounds.")} /></div>
-
-      {/* CTA */}
-      <section className="bg-cream py-16 md:py-24">
-        <div className="max-w-[1000px] mx-auto px-5 md:px-10 text-center">
-          <h2 className="h-display text-anthracite text-5xl md:text-7xl">{t("Dineren met live jazz","Dinner with live jazz")}</h2>
-          <p className="mt-5 text-anthracite/70 text-lg max-w-xl mx-auto">{t("Reserveer een tafel op een muziekavond en maak er een complete avond van.","Reserve a table on a music evening and make it a complete night out.")}</p>
-          <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#" onClick={PS.openReservation} className="btn-primary px-7 py-4 text-sm md:text-base font-medium tracking-wide">{t("Reserveer een tafel","Reserve a table")}</a>
-            <a href="menu.html" className="btn-outline text-anthracite px-7 py-4 text-sm md:text-base font-medium tracking-wide hover:bg-bordeaux hover:text-cream transition-colors">{t("Bekijk het menu","View the menu")}</a>
-          </div>
-        </div>
-      </section>
-
-      <SiteFooter />
-      <StickyMobileCTA />
-    </div>);
+        </section>
+        {' '}
+        <PSFooter />
+      </div>
+    );
+  }
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<AgendaPage />);
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationAgenda />);

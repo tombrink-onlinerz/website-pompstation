@@ -1,56 +1,61 @@
-const t = window._t || ((nl) => nl);
-const params = new URLSearchParams(window.location.search);
-const TYPE  = params.get('type')  || 'corporate';
-const EMAIL = params.get('email') || '';
-const isWedding = TYPE === 'wedding';
-
-function BedanktBrochurePage() {
-  useFadeIn();
-  return (
-    <div className="font-sans text-anthracite min-h-screen bg-bordeaux flex flex-col">
-      <SiteNav transparentTop={false} />
-      <div className="flex-1 flex items-center justify-center py-32 px-5">
-        <div className="text-center text-cream max-w-xl mx-auto fade-up is-visible">
-          <div className="w-16 h-16 mx-auto border border-cream/50 flex items-center justify-center mb-10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
-              <path d="M3 8 L12 13 L21 8 M3 8 L3 18 L21 18 L21 8" />
-            </svg>
-          </div>
-          <div className="eyebrow text-cream/55 mb-4">
-            {isWedding ? t('Wedding brochure onderweg','Wedding brochure on its way') : t('Corporate brochure onderweg','Corporate brochure on its way')}
-          </div>
-          <h1 className="h-display text-6xl md:text-8xl mb-6">{t("Bedankt!","Thank you!")}</h1>
-          <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-            {t("Download de brochure direct via de knop hieronder.","Download the brochure directly via the button below.")}
-          </p>
-          <div className="mt-8">
-            <a
-              href={isWedding ? 'brochure-weddings.pdf' : 'brochure-corporate.pdf'}
-              download
-              className="inline-flex items-center justify-center gap-3 bg-cream text-bordeaux px-8 py-4 text-sm font-medium tracking-wide hover:bg-cream/90 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+function PompstationBedanktBrochure(props) { return <PompstationBedanktBrochureClass {...props} />; }
+class PompstationBedanktBrochureClass extends React.Component {
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", minHeight: "100vh", background: "#5C1A1B", display: "flex", flexDirection: "column" }}>
+        <PSNav solid="true" />
+        <div style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", padding: "160px 20px" }}>
+          <div style={{ textAlign: "center", color: "#F5EFE6", maxWidth: "576px", margin: "0 auto" }}>
+            <div style={{ width: "64px", height: "64px", margin: "0 auto 40px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
+                <path d="M3 8 L12 13 L21 8 M3 8 L3 18 L21 18 L21 8" />
               </svg>
-              {isWedding ? t('Wedding Brochure 2026 downloaden','Download Wedding Brochure 2026') : t('Corporate Brochure 2026 downloaden','Download Corporate Brochure 2026')}
-            </a>
-          </div>
-          <p className="mt-6 text-cream/45 text-sm font-mono">
-            {t("Vragen? Bel ons op","Questions? Call us on")}{' '}
-            <a href={PS.phoneHref} className="underline hover:text-cream transition-colors">{PS.phone}</a>
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="offerte.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              {t("Offerte aanvragen","Request a quote")} →
-            </a>
-            <a href="index.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              {t("Terug naar home","Back to home")}
-            </a>
+            </div>
+            {' '}
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "16px" }}>
+              Brochure Groepen & afhuren onderweg
+            </div>
+            {' '}
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "112px", lineHeight: "0.9", margin: "0 0 24px" }}>
+              Bedankt!
+            </h1>
+            {' '}
+            <p style={{ color: "rgba(245,239,230,0.75)", fontSize: "18px", lineHeight: "1.65", maxWidth: "448px", margin: "0 auto" }}>
+              Download de brochure direct via de knop hieronder.
+            </p>
+            {' '}
+            <div style={{ marginTop: "32px" }}>
+              <Hov as="a" href="#" style={{ display: "inline-flex", alignItems: "center", gap: "12px", background: "#F5EFE6", color: "#5C1A1B", padding: "16px 32px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                </svg>
+                Brochure Groepen & afhuren downloaden
+              </Hov>
+            </div>
+            {' '}
+            <p style={{ margin: "24px 0 0", color: "rgba(245,239,230,0.45)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
+              Vragen? Bel ons op{' '}
+              <a href="tel:+31202279885" style={{ textDecoration: "underline" }}>
+                +31 20 227 9885
+              </a>
+            </p>
+            {' '}
+            <div style={{ marginTop: "32px", display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Hov as="a" href="groepen.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
+                Offerte aanvragen →
+              </Hov>
+              <Hov as="a" href="index.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
+                Terug naar home
+              </Hov>
+            </div>
           </div>
         </div>
+        <PSFooter />
       </div>
-      <SiteFooter />
-    </div>
-  );
+    );
+  }
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(BedanktBrochurePage));
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationBedanktBrochure />);

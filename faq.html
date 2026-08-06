@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<!-- Server Side Tracking by Taggrs.io -->
+<script>
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s);
+        j.async=true;
+        j.src='https://sst.pompstation.nu/'+i+'.js';
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','g2lscggwaj');
+</script>
+<!-- End Server Side Tracking by Taggrs.io -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bordeaux: '#5C1A1B',
+          'bordeaux-dark': '#3F0F10',
+          cream: '#F5EFE6',
+          'cream-warm': '#EFE7D9',
+          anthracite: '#2A2A2A',
+          'anthracite-soft': '#3A3A3A',
+          forest: '#2C3E37',
+          'forest-dark': '#1E2B26',
+          brass: '#A88A5A',
+        },
+        fontFamily: {
+          display: ['"Big Shoulders Display"', 'Impact', 'sans-serif'],
+          serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+          sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background: #F5EFE6;
+    color: #2A2A2A;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .h-display { font-family: 'Big Shoulders Display', Impact, sans-serif; font-weight: 800; letter-spacing: -0.005em; line-height: 0.88; text-transform: uppercase; }
+  .h-serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; line-height: 1.05; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .ph-stripes { background-color: #2A2A2A; background-image: repeating-linear-gradient(135deg, rgba(245,239,230,0.06) 0px, rgba(245,239,230,0.06) 1px, transparent 1px, transparent 14px); }
+  .ph-stripes-cream { background-color: #EFE7D9; background-image: repeating-linear-gradient(135deg, rgba(42,42,42,0.07) 0px, rgba(42,42,42,0.07) 1px, transparent 1px, transparent 14px); }
+  .ph-stripes-bordeaux { background-color: #5C1A1B; background-image: repeating-linear-gradient(135deg, rgba(245,239,230,0.08) 0px, rgba(245,239,230,0.08) 1px, transparent 1px, transparent 14px); }
+  .arch-mask { -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%); }
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+  .range-slider { -webkit-appearance: none; appearance: none; height: 4px; background: linear-gradient(to right, #5C1A1B 0%, #5C1A1B var(--fill, 50%), rgba(42,42,42,0.15) var(--fill, 50%), rgba(42,42,42,0.15) 100%); border-radius: 4px; outline: none; }
+  .range-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #5C1A1B; border: 3px solid #F5EFE6; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .range-slider::-moz-range-thumb { width: 22px; height: 22px; background: #5C1A1B; border: 3px solid #F5EFE6; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .btn-primary { background: #5C1A1B; color: #F5EFE6; transition: background 0.2s ease, transform 0.2s ease; }
+  .btn-primary:hover { background: #3F0F10; }
+  .btn-outline { border: 1px solid currentColor; transition: all 0.2s ease; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+  .card-lift { transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; }
+  .card-lift:hover { transform: translateY(-6px); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 40s linear infinite; }
+  .hero-vignette { background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.35) 100%), linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.55) 100%); }
+  .snap-x-mandatory { scroll-snap-type: x mandatory; }
+  .snap-start { scroll-snap-align: start; }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+<title>Veelgestelde vragen | Restaurant Pompstation Amsterdam</title>
+<meta name="description" content="Antwoorden over live muziek, het terras, groepsdiners, parkeren, bereikbaarheid met tram 14, rolstoeltoegankelijkheid en reserveren bij Pompstation Amsterdam." />
+<link rel="canonical" href="https://pompstation.nu/veelgestelde-vragen" />
+<link rel="alternate" hreflang="nl" href="https://pompstation.nu/veelgestelde-vragen" />
+<link rel="alternate" hreflang="en" href="https://pompstation.nu/veelgestelde-vragen?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://pompstation.nu/veelgestelde-vragen" />
+<meta property="og:title" content="Veelgestelde vragen | Restaurant Pompstation Amsterdam" />
+<meta property="og:description" content="Antwoorden over live muziek, het terras, groepsdiners, parkeren, bereikbaarheid en reserveren bij Pompstation Amsterdam." />
+<meta property="og:url" content="https://pompstation.nu/veelgestelde-vragen" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Restaurant Pompstation Amsterdam" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Veelgestelde vragen | Restaurant Pompstation Amsterdam" />
+<meta name="twitter:description" content="Antwoorden over live muziek, het terras, groepsdiners, parkeren, bereikbaarheid en reserveren bij Pompstation Amsterdam." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is Pompstation geschikt voor à la carte dineren?", "acceptedAnswer": { "@type": "Answer", "text": "Bij Pompstation Amsterdam eet je elke woensdag-, donderdag-, vrijdag- en zaterdagavond van ons à la carte menu. Wij serveren premium steaks van de houtskoolgrill, verse seizoensvis en internationale gerechten, vers bereid door chef Allessandro en zijn team. Van ons prijswinnende carpaccio, ceviche, gegrilde gamba's en klassieke steak tartare tot seafood pasta, vongole en ravioli met botersaus en sage." } },
+    { "@type": "Question", "name": "Wat voor keuken serveert Pompstation Amsterdam?", "acceptedAnswer": { "@type": "Answer", "text": "Pompstation Amsterdam is een steakhouse en grill met internationale invloeden: premium steaks, gegrilde vis, oesters en smoked groenten, veel bereid op houtskoolvuur, aangevuld met vegetarische en veganistische gerechten." } },
+    { "@type": "Question", "name": "Zijn er vegetarische opties op het menu?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Hoewel Pompstation Amsterdam bekend staat als premium steakhouse en grill, is de kaart ruim uitgebreid met gegrilde groenten en visgerechten. Ook voor vegetarische en veganistische gerechten kun je goed bij ons terecht." } },
+    { "@type": "Question", "name": "Kan ik bij Pompstation ook alleen komen voor cocktails en live muziek?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Je kunt bij Pompstation Amsterdam ook zonder diner aanschuiven aan de bar voor cocktails, een glas wijn en de live muziek op donderdag-, vrijdag- en zaterdagavond. Reserveren is niet verplicht voor de bar, maar op drukke avonden wel aan te raden." } },
+    { "@type": "Question", "name": "Is er live muziek bij Pompstation?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Elke donderdag-, vrijdag- en zaterdagavond speelt er live muziek bij Pompstation Amsterdam, vaak instrumentaal en door artiesten van onder andere het Conservatorium van Amsterdam. Vaste stijlen zijn jazz, soul, singer-songwriter en bossanova. De muziek blijft altijd op de achtergrond, zodat je gewoon kunt praten. Wil je het nog zachter, vraag dan om een tafel achterin het restaurant." } },
+    { "@type": "Question", "name": "Heeft Pompstation een terras?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Pompstation Amsterdam heeft een groot en zonnig terras in de binnentuin. Je kunt een tafel op het terras vooraf reserveren, wat uniek is in Amsterdam. Ook een terrastafel voor een groep is vooraf te boeken via mail of telefoon." } },
+    { "@type": "Question", "name": "Is Pompstation geschikt voor een groep of bedrijfsdiner?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Bij Bar Restaurant Pompstation Amsterdam is het goed mogelijk om semi-exclusief of exclusief een groepsdiner, bedrijfsdiner, bedrijfsuitje of bedrijfsfeest te organiseren. Voor kleinere groepen van 20 tot 100 personen is onze vide af te huren, met eigen bar en met de gezelligheid van het restaurant en de live muziek op de achtergrond beneden. Er zijn verschillende opstellingen mogelijk, van sit-down diners tot walking dinners, borrels en feesten. In totaal ontvangen wij groepen tot 360 personen." } },
+    { "@type": "Question", "name": "Kan ik Pompstation afhuren?", "acceptedAnswer": { "@type": "Answer", "text": "Jazeker. Download onze brochure of vul het aanvraagformulier in voor een offerte op maat. Onze eventmanager neemt daarna contact op om de mogelijkheden door te nemen." } },
+    { "@type": "Question", "name": "Kan een groep per bus of per boot aankomen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Bij een groepsdiner, groepslunch, bedrijfsdiner of bedrijfsuitje regelen wij in overleg met onze salesmanager desgewenst een bus of groepsvervoer. Aankomst per boot is ook mogelijk: na een wandeling van ongeveer vijf minuten sta je voor onze deur. Er zijn arrangementen waarbij je een lunch of diner combineert met een boottocht." } },
+    { "@type": "Question", "name": "Hoe kom ik bij Pompstation Amsterdam?", "acceptedAnswer": { "@type": "Answer", "text": "Pompstation Amsterdam ligt aan de Zeeburgerdijk 52 in Amsterdam-Oost. Tram 14, 19 en 25 stoppen bij halte Zeeburgerdijk, vlak voor de deur. Vanaf Amsterdam Centraal ben je met de taxi binnen tien minuten bij ons. Vanaf Muiderpoortstation zijn we goed te lopen, en vanaf de ring A10 sta je binnen enkele minuten met de auto voor het pand." } },
+    { "@type": "Question", "name": "Waar kan ik parkeren bij Pompstation?", "acceptedAnswer": { "@type": "Answer", "text": "Parkeren in de buurt is goed mogelijk. Er zijn verschillende parkeergarages in de omgeving, en in de omliggende straten is doorgaans ook plek: de Zeeburgerdijk zelf, de Borneostraat en de Timorstraat zijn vaak goede opties. Actuele tarieven vind je via de EasyPark-app." } },
+    { "@type": "Question", "name": "Kan ik online reserveren bij Pompstation?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Je reserveert online via het reserveringssysteem op pompstation.nu, 24 uur per dag. Voor groepen vanaf tien personen, terrasgroepen en afhuur werken we met een aanvraagformulier of telefonisch contact via 020 227 9885." } },
+    { "@type": "Question", "name": "Is Pompstation rolstoeltoegankelijk?", "acceptedAnswer": { "@type": "Answer", "text": "Jazeker. Bij de entree is een speciale ramp beschikbaar en ons personeel helpt graag. Laat het bij je reservering weten, dan houden we er rekening mee bij de tafelindeling." } },
+    { "@type": "Question", "name": "Mag ik mijn hond meenemen naar Pompstation?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, dat vinden wij heel gezellig. We vragen alleen of je hond netjes en rustig is, zodat andere gasten er geen last van hebben." } },
+    { "@type": "Question", "name": "Wat zijn de openingstijden van Pompstation Amsterdam?", "acceptedAnswer": { "@type": "Answer", "text": "Pompstation Amsterdam is woensdag en donderdag open van 17:00 tot 00:00 en vrijdag en zaterdag van 17:00 tot 01:00. Voor groepen en events zijn afwijkende tijden mogelijk, ook op andere dagen en voor lunch." } }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- Server Side Tracking by Taggrs.io (noscript) -->
+<noscript>
+    <iframe src="https://sst.pompstation.nu/g2lscggwaj.html" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Server Side Tracking by Taggrs.io (noscript) -->
+<div id="root"></div><noscript><main>
+  <h1>Veelgestelde vragen</h1>
+  <p>Antwoorden over live muziek, het terras, groepsdiners, parkeren, bereikbaarheid en reserveren bij Pompstation Amsterdam.</p>
+  <p>Zeeburgerdijk 52 · 1094 AE Amsterdam · <a href="tel:+31202279885">020 227 9885</a> · <a href="mailto:info@pompstation.nu">info@pompstation.nu</a></p>
+  <nav><a href="/menu">Menu</a> · <a href="/reserveren">Reserveren</a> · <a href="/groepen">Groepen &amp; afhuren</a> · <a href="/contact">Contact</a></nav>
+</main></noscript>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="lang.js"></script>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="faq.jsx"></script>
+<script src="tebi.js"></script>
+</body>
+</html>

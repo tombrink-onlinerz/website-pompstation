@@ -1,25 +1,20 @@
-const t = window._t || ((nl) => nl);
-
-function App() {
-  return (
-    <div className="font-sans text-anthracite">
-      <SiteNav current="groepen" />
-
-      <PageHero
-        kicker={t("Wedding Brochure 2026–2027","Wedding Brochure 2026–2027")}
-        title={t("Ontvang onze","Receive our")}
-        titleAccent={t("brochure","brochure")}
-        lead={t("Alles over trouwen bij Pompstation — ceremonie, diner, feest en tarieven.","Everything about getting married at Pompstation — ceremony, dinner, party and rates.")}
-        image="images/bride-vide.jpg"
-        position="center 30%"
-        height="h-[50vh] min-h-[380px]" />
-
-      <BrochureDownload type="wedding" />
-
-      <SiteFooter />
-    </div>
-  );
+function PompstationBrochureWedding(props) { return <PompstationBrochureWeddingClass {...props} />; }
+class PompstationBrochureWeddingClass extends React.Component {
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", color: "#2A2A2A", overflowX: "hidden" }}>
+        <PSNav current="groepen" />
+        {' '}
+        <PSHero kicker="Wedding Brochure 2026–2027" title="Ontvang onze" titleAccent="brochure" lead="Alles over trouwen bij Pompstation — ceremonie, diner, feest en tarieven." image="images/bride-vide.jpg" position="center 30%" heightVh="50" minHeight="380" />
+        {' '}
+        <PSBrochure variant="wedding" />
+        {' '}
+        <PSFooter />
+      </div>
+    );
+  }
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(React.createElement(App));
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationBrochureWedding />);

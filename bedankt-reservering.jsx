@@ -1,54 +1,82 @@
-const t = window._t || ((nl) => nl);
-
-function BedanktRerserveringPage() {
-  useFadeIn();
-  return (
-    <div className="font-sans text-anthracite min-h-screen bg-bordeaux flex flex-col">
-      <SiteNav transparentTop={false} />
-      <div className="flex-1 flex items-center justify-center py-32 px-5">
-        <div className="text-center text-cream max-w-xl mx-auto fade-up is-visible">
-          <div className="w-16 h-16 mx-auto border border-cream/50 flex items-center justify-center mb-10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
-              <path d="M5 12 L 10 17 L 19 7" />
-            </svg>
-          </div>
-          <div className="eyebrow text-cream/55 mb-4">{t("Reservering bevestigd","Reservation confirmed")}</div>
-          <h1 className="h-display text-6xl md:text-8xl mb-6">{t("Tot ziens bij Pompstation.","See you at Pompstation.")}</h1>
-          <p className="text-cream/75 text-lg leading-relaxed max-w-md mx-auto">
-            {t("Uw reservering is bevestigd. U ontvangt een bevestiging per e-mail. We verheugen ons op uw bezoek.","Your reservation is confirmed. You'll receive a confirmation by email. We look forward to your visit.")}
-          </p>
-
-          <div className="mt-10 border border-cream/20 px-8 py-7 text-left max-w-sm mx-auto">
-            <div className="eyebrow text-cream/50 mb-4">{t("Uw bezoek","Your visit")}</div>
-            <div className="space-y-3 text-sm text-cream/80 font-mono">
-              <div className="flex justify-between gap-4">
-                <span className="text-cream/50">{t("Adres","Address")}</span>
-                <span className="text-right">{PS.address1}<br />{PS.address2}</span>
+function PompstationBedanktReservering(props) { return <PompstationBedanktReserveringClass {...props} />; }
+class PompstationBedanktReserveringClass extends React.Component {
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", minHeight: "100vh", background: "#5C1A1B", display: "flex", flexDirection: "column" }}>
+        <PSNav solid="true" />
+        <div style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", padding: "160px 20px" }}>
+          <div style={{ textAlign: "center", color: "#F5EFE6", maxWidth: "576px", margin: "0 auto" }}>
+            <div style={{ width: "64px", height: "64px", margin: "0 auto 40px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
+                <path d="M5 12 L 10 17 L 19 7" />
+              </svg>
+            </div>
+            {' '}
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "16px" }}>
+              Reservering bevestigd
+            </div>
+            {' '}
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "88px", lineHeight: "0.9", margin: "0 0 24px" }}>
+              Tot ziens bij Pompstation.
+            </h1>
+            {' '}
+            <p style={{ color: "rgba(245,239,230,0.75)", fontSize: "18px", lineHeight: "1.65", maxWidth: "448px", margin: "0 auto" }}>
+              Uw reservering is bevestigd. U ontvangt een bevestiging per e-mail. We verheugen ons op uw bezoek.
+            </p>
+            {' '}
+            <div style={{ margin: "40px auto 0", border: "1px solid rgba(245,239,230,0.2)", padding: "28px 32px", textAlign: "left", maxWidth: "384px" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginBottom: "16px" }}>
+                Uw bezoek
               </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-cream/50">{t("Openingstijden","Opening hours")}</span>
-                <span className="text-right">{t("Wo–do 17:00–00:00","Wed–Thu 17:00–00:00")}<br />{t("Vr–za 17:00–01:00","Fri–Sat 17:00–01:00")}</span>
-              </div>
-              <div className="flex justify-between gap-4">
-                <span className="text-cream/50">{t("Telefoon","Phone")}</span>
-                <a href={PS.phoneHref} className="underline hover:text-cream transition-colors">{PS.phone}</a>
+              {' '}
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px", color: "rgba(245,239,230,0.8)", fontFamily: "'JetBrains Mono',monospace" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "16px" }}>
+                  <span style={{ color: "rgba(245,239,230,0.5)" }}>
+                    Adres
+                  </span>
+                  <span style={{ textAlign: "right" }}>
+                    Zeeburgerdijk 52
+                    <br />
+                    1094 AE Amsterdam
+                  </span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "16px" }}>
+                  <span style={{ color: "rgba(245,239,230,0.5)" }}>
+                    Openingstijden
+                  </span>
+                  <span style={{ textAlign: "right" }}>
+                    Wo–do 17:00–00:00
+                    <br />
+                    Vr–za 17:00–01:00
+                  </span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "16px" }}>
+                  <span style={{ color: "rgba(245,239,230,0.5)" }}>
+                    Telefoon
+                  </span>
+                  <a href="tel:+31202279885" style={{ textDecoration: "underline" }}>
+                    +31 20 227 9885
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="menu.html" className="inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3.5 text-sm tracking-wide hover:bg-cream/10 transition-colors">
-              {t("Bekijk het menu","View the menu")} →
-            </a>
-            <a href="index.html" className="inline-flex items-center justify-center gap-2 bg-cream text-bordeaux px-7 py-3.5 text-sm font-medium tracking-wide hover:bg-cream/90 transition-colors">
-              {t("Terug naar home","Back to home")}
-            </a>
+            {' '}
+            <div style={{ marginTop: "32px", display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Hov as="a" href="menu.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
+                Bekijk het menu →
+              </Hov>
+              <Hov as="a" href="index.html" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#F5EFE6", color: "#5C1A1B", padding: "14px 28px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                Terug naar home
+              </Hov>
+            </div>
           </div>
         </div>
+        <PSFooter />
       </div>
-      <SiteFooter />
-    </div>
-  );
+    );
+  }
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(BedanktRerserveringPage));
+const __root = document.getElementById('root');
+if (__root) ReactDOM.createRoot(__root).render(<PompstationBedanktReservering />);

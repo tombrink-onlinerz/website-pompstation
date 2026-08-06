@@ -1,501 +1,969 @@
-/* ============================================================
-   SHARED COMPONENTS — Pompstation site
-   Loaded before each page's own *.jsx. Exposes globals.
-   ============================================================ */
-const { useState, useEffect, useRef } = React;
-const t = window._t || ((nl) => nl);
+/* shared.jsx — Pompstation gedeelde componenten (gegenereerd uit de Design Components) */
 
-/* Real-world contact data (pompstation.nu) */
-const PS = {
-  address1: "Zeeburgerdijk 52",
-  address2: "1094 AE Amsterdam",
-  area: "Amsterdam-Oost · Indische Buurt",
-  phone: "+31 20 227 9885",
-  phoneHref: "tel:+31202279885",
-  email: "info@pompstation.nu",
-  eventsEmail: "events@pompstation.nu",
-  reserveUrl: "https://www.pompstation.nu/",
-  openReservation: function(e) { if (e) e.preventDefault(); if (typeof window.openReservation === 'function') { window.openReservation(); } else { window.open('https://www.pompstation.nu/', '_blank'); } },
-};
-
-/* ---------- Photo ---------- */
-function Photo({ src, alt, className = "", overlay = 0, position = "center" }) {
-  return (
-    <div className={`relative overflow-hidden bg-anthracite ${className}`}>
-      <img
-        src={src}
-        alt={alt}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: position }}
-        loading="lazy" />
-      {overlay > 0 &&
-        <div className="absolute inset-0" style={{ background: `rgba(0,0,0,${overlay})` }}></div>
-      }
-    </div>);
+/* Hover/active/focus helper — vervangt de style-hover attributen */
+class Hov extends React.Component {
+  constructor(p) { super(p); this.state = { h: false, a: false, f: false }; }
+  render() {
+    const { as, style, styleHover, styleActive, styleFocus, children, ...rest } = this.props;
+    const Tag = as || 'div';
+    const s = Object.assign({}, style,
+      this.state.h && styleHover, this.state.a && styleActive, this.state.f && styleFocus);
+    return React.createElement(Tag, Object.assign({}, rest, {
+      style: s,
+      onMouseEnter: (e) => { this.setState({ h: true }); rest.onMouseEnter && rest.onMouseEnter(e); },
+      onMouseLeave: (e) => { this.setState({ h: false, a: false }); rest.onMouseLeave && rest.onMouseLeave(e); },
+      onMouseDown: (e) => { this.setState({ a: true }); rest.onMouseDown && rest.onMouseDown(e); },
+      onMouseUp: (e) => { this.setState({ a: false }); rest.onMouseUp && rest.onMouseUp(e); },
+      onFocus: (e) => { this.setState({ f: true }); rest.onFocus && rest.onFocus(e); },
+      onBlur: (e) => { this.setState({ f: false }); rest.onBlur && rest.onBlur(e); },
+    }), children);
+  }
 }
 
-/* ---------- Lang toggle ---------- */
-function LangToggle({ solid }) {
-  const lang = window._L || 'nl';
-  const col = solid ? '#2A2A2A' : '#F5EFE6';
-  return (
-    <div style={{ display:'flex', alignItems:'center', gap:1, fontFamily:"'DM Sans',sans-serif", fontSize:11, letterSpacing:'0.07em' }}>
-      {['nl','en'].map((l, i) => (
-        <React.Fragment key={l}>
-          {i > 0 && <span style={{ color:col, opacity:0.25, margin:'0 1px', fontSize:9 }}>|</span>}
-          <button
-            onClick={() => window._setL && window._setL(l)}
-            style={{ padding:'3px 5px', background:'none', border:'none', cursor:'pointer',
-                     fontWeight: lang===l ? 700 : 400, color:col,
-                     opacity: lang===l ? 1 : 0.42, textTransform:'uppercase', fontSize:11,
-                     fontFamily:"inherit" }}>
-            {l}
-          </button>
-        </React.Fragment>
-      ))}
-    </div>
-  );
+function PSBrochure(props) { return <PSBrochureClass {...props} />; }
+class PSBrochureClass extends React.Component {
+  state = { done: false };
+    renderVals() {
+      const wedding = this.props.variant === 'wedding';
+      return {
+        done: this.state.done,
+        open: !this.state.done,
+        submit: (e) => { e.preventDefault(); this.setState({ done: true }); },
+        sectionStyle: { background: wedding ? '#5C1A1B' : '#2A2A2A', color: '#F5EFE6', padding: '112px 0' },
+        isCorporate: !wedding,
+        heading: wedding ? 'Wedding' : 'Brochure',
+        headingSub: wedding ? 'Brochure 2026' : 'groepen & afhuren',
+        blurb: wedding
+          ? 'Ontvang onze complete brochure met alle mogelijkheden, menuopties, tarieven en de ervaringen van andere bruidsparen.'
+          : 'Ontvang onze complete brochure met capaciteiten, technische specificaties, catering-opties en tarieven.',
+        namePlaceholder: wedding ? 'Emma & Lars' : 'Jan de Vries',
+        peopleLabel: wedding ? 'Aantal gasten' : 'Groepsgrootte',
+        peoplePlaceholder: wedding ? 'bv. 120' : 'bv. 80',
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <section id="brochure" style={V.sectionStyle}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px", alignItems: "center" }}>
+            <div style={{ gridColumn: "span 4" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
+                Brochure
+              </div>
+              {' '}
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "1.1", margin: "0" }}>
+                {V.heading}
+                <br />
+                <em style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", textTransform: "none" }}>
+                  {V.headingSub}
+                </em>
+              </h2>
+              {' '}
+              <p style={{ margin: "20px 0 0", color: "rgba(245,239,230,0.65)", fontSize: "16px", lineHeight: "1.65" }}>
+                {V.blurb}
+              </p>
+              {' '}
+              <p style={{ margin: "12px 0 0", color: "rgba(245,239,230,0.45)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
+                De brochure wordt naar uw e-mailadres gestuurd.
+              </p>
+            </div>
+            <div style={{ gridColumn: "6 / span 7" }}>
+              {(V.done) ? (<React.Fragment>
+                <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "48px" }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
+                    Verstuurd
+                  </div>
+                  {' '}
+                  <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "40px", margin: "0" }}>
+                    Check uw inbox
+                  </h3>
+                  {' '}
+                  <p style={{ margin: "16px 0 0", color: "rgba(245,239,230,0.65)", lineHeight: "1.65" }}>
+                    De brochure is onderweg. We nemen binnenkort contact op.
+                  </p>
+                </div>
+              </React.Fragment>) : null}
+              {' '}
+              {(V.open) ? (<React.Fragment>
+                <form onSubmit={V.submit}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>
+                        Naam *
+                      </label>
+                      {' '}
+                      <input type="text" placeholder={V.namePlaceholder} style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                    {(V.isCorporate) ? (<div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>Particulier of zakelijk *</label>
+                      <select style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif", cursor: "pointer" }}>
+                        <option>Particulier</option>
+                        <option>Zakelijk</option>
+                      </select>
+                    </div>
+                    ) : null}
+                    {(V.isCorporate) ? (<div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>Bedrijfsnaam <span style={{ textTransform: "none", letterSpacing: "0.05em", color: "rgba(245,239,230,0.4)" }}>(optioneel)</span></label>
+                      <input type="text" placeholder="Uw bedrijf" style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>) : null}
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>
+                        Telefoonnummer *
+                      </label>
+                      {' '}
+                      <input type="tel" placeholder="+31 6 12 34 56 78" style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>
+                        E-mailadres *
+                      </label>
+                      {' '}
+                      <input type="email" placeholder="naam@bedrijf.nl" style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>
+                        {V.peopleLabel} *
+                      </label>
+                      {' '}
+                      <input type="number" placeholder={V.peoplePlaceholder} style={{ width: "100%", background: "rgba(245,239,230,0.1)", border: "1px solid rgba(245,239,230,0.2)", color: "#F5EFE6", padding: "14px 16px", fontSize: "14px", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+                    </div>
+                  </div>
+                  {' '}
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", paddingTop: "20px" }}>
+                    <input type="checkbox" style={{ marginTop: "4px", width: "16px", height: "16px", accentColor: "#F5EFE6", flexShrink: "0" }} />
+                    <label style={{ fontSize: "14px", color: "rgba(245,239,230,0.7)", lineHeight: "1.6" }}>
+                      Ik ga akkoord met de{' '}
+                      <a href="#" style={{ color: "#F5EFE6", textDecoration: "underline" }}>
+                        privacyverklaring
+                      </a>
+                      {' '}van Pompstation.
+                    </label>
+                  </div>
+                  {' '}
+                  <Hov as="button" type="submit" style={{ marginTop: "28px", display: "inline-flex", alignItems: "center", gap: "12px", background: "#F5EFE6", color: "#5C1A1B", padding: "16px 32px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", border: "none", cursor: "pointer", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                    <span>
+                      Ontvang de brochure
+                    </span>
+                    <span>
+                      →
+                    </span>
+                  </Hov>
+                </form>
+              </React.Fragment>) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 
-/* ---------- Nav ---------- */
-const NAV_LINKS = [
-  { l: t("Menu", "Menu"), h: "menu.html", key: "menu" },
-  /* Live muziek tijdelijk uit menu — zomerstop t/m 12 aug */
-  { l: t("Ruimtes", "Spaces"), h: "ruimtes.html", key: "ruimtes", dropdown: [
-    { l: t("Het Restaurant","The Restaurant"), h: "ruimte-restaurant.html" },
-    { l: t("De Vide","The Mezzanine"),       h: "ruimte-vide.html" },
-    { l: t("Het Terras","The Terrace"),       h: "ruimte-terras.html" },
-    { l: t("Volledig Exclusief","Fully Exclusive"), h: "ruimte-exclusief.html" },
-  ]},
-  { l: t("Afhuren & groepen", "Groups & private events"), h: "groepen.html", key: "groepen", dropdown: [
-    { l: t("Groepsdiner","Group Dinner"),       h: "groepsdiner.html" },
-    { l: t("Groepslunch","Group Lunch"),         h: "groepslunch.html" },
-    { l: t("Bedrijfsborrel","Corporate Drinks"), h: "bedrijfsborrel.html" },
-    { l: t("Bedrijfsdiner","Corporate Dinner"),  h: "bedrijfsdiner.html" },
-    { l: t("Bedrijfsfeest","Company Party"),     h: "bedrijfsfeest.html" },
-    { l: t("Vergadering","Meeting"),             h: "vergadering.html" },
-    { l: t("Bruiloft","Wedding"),                h: "bruiloft.html" },
-  ]},
-  { l: t("Verhaal", "Our story"), h: "verhaal.html", key: "verhaal" },
-  { l: t("Contact", "Contact"), h: "contact.html", key: "contact" },
-];
-
-function SiteNav({ current, transparentTop = true }) {
-  const [scrolled, setScrolled] = useState(!transparentTop);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    if (!transparentTop) return;
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [transparentTop]);
-
-  const solid = scrolled || !transparentTop;
-
-  return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${solid ? "bg-cream/95 backdrop-blur border-b border-anthracite/10" : "bg-transparent"}`}>
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between">
-        <a href="index.html" className="flex items-center gap-3 shrink-0" aria-label="Pompstation — home">
-          <img
-            src="images/logo.webp"
-            alt="Pompstation"
-            className="h-4 md:h-5 w-auto transition-all"
-            style={{ filter: solid ? "brightness(0)" : "none" }} />
-        </a>
-
-        <nav className="hidden lg:flex items-center gap-7 text-sm">
-          {NAV_LINKS.map((it) => it.dropdown ? (
-            <div key={it.key} className="relative group">
-              <a href={it.h}
-                className={`inline-flex items-center gap-1 transition-opacity hover:opacity-60 ${solid ? "text-anthracite" : "text-cream"} ${current === it.key ? "border-b-2 border-bordeaux pb-0.5" : ""}`}>
-                {it.l}
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="mt-px opacity-50">
-                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <div className="bg-cream border border-anthracite/10 shadow-xl min-w-[200px] py-2">
-                  {it.dropdown.map((sub) => (
-                    <a key={sub.h} href={sub.h}
-                      className="block px-5 py-2.5 text-anthracite text-sm hover:bg-anthracite/5 transition-colors whitespace-nowrap">
-                      {sub.l}
-                    </a>
+function PSEventDetail(props) { return <PSEventDetailClass {...props} />; }
+class PSEventDetailClass extends React.Component {
+  renderVals() {
+      const c = this.props.config || {};
+      const gangen = (c.gangen || []).map(g => {
+        const f = !!g.featured;
+        return {
+          gangen: g.gangen, prijs: g.prijs, label: g.label, featured: f,
+          cardStyle: { padding: '20px', border: f ? '1px solid #5C1A1B' : '1px solid rgba(42,42,42,0.15)', background: f ? '#5C1A1B' : '#F5EFE6', color: f ? '#F5EFE6' : '#2A2A2A' },
+          titleStyle: { fontFamily: "'Instrument Serif',Georgia,serif", fontSize: '24px', color: f ? '#F5EFE6' : '#2A2A2A' },
+          priceStyle: { marginTop: '8px', fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, fontSize: '36px', letterSpacing: '-0.02em', color: f ? '#F5EFE6' : '#2A2A2A' },
+          labelStyle: { marginTop: '8px', fontSize: '14px', lineHeight: 1.35, color: f ? 'rgba(245,239,230,0.7)' : 'rgba(42,42,42,0.6)' },
+        };
+      });
+      const photos = (c.photos || []).map(p => ({
+        src: p.src,
+        wrapStyle: { overflow: 'hidden', height: (p.h || 280) + 'px', gridColumn: p.full ? 'span 2' : 'auto' },
+        imgStyle: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.pos || 'center' },
+      }));
+      const solidBtn = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#F5EFE6', color: '#5C1A1B', padding: '16px 28px', fontWeight: 500, fontSize: '14px', letterSpacing: '0.02em', transition: 'background 0.2s ease' };
+      const outlineBtn = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', border: '1px solid rgba(245,239,230,0.3)', color: '#F5EFE6', padding: '16px 28px', fontWeight: 500, fontSize: '14px', letterSpacing: '0.02em', transition: 'border-color 0.2s ease' };
+      const ctaButtons = (c.ctaButtons || [
+        { label: 'Offerte aanvragen', href: '#brochure', variant: 'solid' },
+        { label: '+31 20 227 9885', href: 'tel:+31202279885', variant: 'outline' },
+      ]).map(b => ({ label: b.label, href: b.href, style: b.variant === 'outline' ? outlineBtn : solidBtn }));
+      return {
+        details: c.details || [],
+        paras: c.paras || [],
+        badge: c.badge || '',
+        ctaLink: c.ctaLink || '#brochure',
+        ctaLabel: c.ctaLabel || 'Offerte aanvragen',
+        ctaTitle: c.ctaTitle || '',
+        ctaSub: c.ctaSub || 'Vraag een offerte aan — we reageren binnen 1 werkdag.',
+        hasGangen: gangen.length > 0,
+        usps: c.usps || [],
+        gangen,
+        photos,
+        ctaButtons,
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',sans-serif" }}>
+        <section style={{ background: "#F5EFE6", padding: "112px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+            <div style={{ gridColumn: "span 4" }}>
+              {(V.badge) ? (<React.Fragment>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "24px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#5C1A1B", animation: "ps-pulse 2s ease-in-out infinite" }} />
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B" }}>
+                    {V.badge}
+                  </span>
+                </div>
+              </React.Fragment>) : null}
+              {' '}
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
+                Details
+              </div>
+              {' '}
+              <ul style={{ listStyle: "none", margin: "0", padding: "0", display: "flex", flexDirection: "column", gap: "20px" }}>
+                {(V.details || []).map((d, $index) => (
+                  <React.Fragment key={$index}>
+                    <li style={{ display: "flex", flexDirection: "column", gap: "2px", borderBottom: "1px solid rgba(42,42,42,0.1)", paddingBottom: "16px" }}>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(42,42,42,0.5)" }}>
+                        {d.k}
+                      </span>
+                      <span style={{ color: "#2A2A2A", fontSize: "16px" }}>
+                        {d.v}
+                      </span>
+                    </li>
+                  </React.Fragment>
+                ))}
+              </ul>
+              {' '}
+              <Hov as="a" href={V.ctaLink} style={{ marginTop: "32px", display: "inline-flex", alignItems: "center", gap: "12px", background: "#5C1A1B", color: "#F5EFE6", padding: "16px 28px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+                {V.ctaLabel} →
+              </Hov>
+            </div>
+            <div style={{ gridColumn: "span 8" }}>
+              {(V.hasGangen) ? (<React.Fragment>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "16px", marginBottom: "40px" }}>
+                  {(V.gangen || []).map((g, $index) => (
+                    <React.Fragment key={$index}>
+                      <div style={g.cardStyle}>
+                        {(g.featured) ? (<React.Fragment>
+                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "12px" }}>
+                            Meest gekozen
+                          </div>
+                        </React.Fragment>) : null}
+                        {' '}
+                        <div style={g.titleStyle}>
+                          {g.gangen} gangen
+                        </div>
+                        {' '}
+                        <div style={g.priceStyle}>
+                          {g.prijs}{' '}
+                          <span style={{ fontSize: "16px", fontWeight: "400", opacity: "0.7", fontFamily: "'DM Sans',sans-serif" }}>
+                            p.p.
+                          </span>
+                        </div>
+                        {' '}
+                        <div style={g.labelStyle}>
+                          {g.label}
+                        </div>
+                      </div>
+                    </React.Fragment>
                   ))}
                 </div>
+              </React.Fragment>) : null}
+              {' '}
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                {(V.paras || []).map((p, $index) => (
+                  <React.Fragment key={$index}>
+                    <p style={{ color: "rgba(42,42,42,0.8)", fontSize: "18px", lineHeight: "1.65", margin: "0" }}>
+                      {p}
+                    </p>
+                  </React.Fragment>
+                ))}
               </div>
-            </div>
-          ) : (
-            <a key={it.key} href={it.h}
-              className={`transition-opacity hover:opacity-60 ${solid ? "text-anthracite" : "text-cream"} ${current === it.key ? "border-b-2 border-bordeaux pb-0.5" : ""}`}>
-              {it.l}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <LangToggle solid={solid} />
-          <a href="reserveren.html" className="btn-primary px-4 md:px-5 py-2.5 text-sm font-medium tracking-wide whitespace-nowrap">
-            {t("Reserveer een tafel", "Reserve a table")}
-          </a>
-          <button
-            className={`lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 ${solid ? "text-anthracite" : "text-cream"}`}
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu">
-            <span className={`block w-6 h-px bg-current transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`}></span>
-            <span className={`block w-6 h-px bg-current transition-opacity ${open ? "opacity-0" : ""}`}></span>
-            <span className={`block w-6 h-px bg-current transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`}></span>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <div className={`lg:hidden overflow-hidden bg-cream border-b border-anthracite/10 transition-all duration-300 ${open ? "max-h-[32rem]" : "max-h-0"}`}>
-        <nav className="px-5 py-3 flex flex-col">
-          <a href="index.html" className="py-3 text-anthracite border-b border-anthracite/10 text-lg h-serif">{t("Home", "Home")}</a>
-          {NAV_LINKS.map((it) => it.dropdown ? (
-            <div key={it.key}>
-              <a href={it.h} className={`py-3 border-b border-anthracite/10 text-lg h-serif block ${current === it.key ? "text-bordeaux" : "text-anthracite"}`}>{it.l}</a>
-              <div className="pl-4 flex flex-col">
-                {it.dropdown.map((sub) => (
-                  <a key={sub.h} href={sub.h} className="py-2 border-b border-anthracite/6 text-base text-anthracite/70 hover:text-bordeaux transition-colors">{sub.l}</a>
+              {' '}
+              <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                {(V.photos || []).map((ph, $index) => (
+                  <React.Fragment key={$index}>
+                    <div style={ph.wrapStyle}>
+                      <img src={ph.src} alt="Pompstation" style={ph.imgStyle} />
+                    </div>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
-          ) : (
-            <a key={it.key} href={it.h} className={`py-3 border-b border-anthracite/10 text-lg h-serif ${current === it.key ? "text-bordeaux" : "text-anthracite"}`}>{it.l}</a>
-          ))}
-        </nav>
-      </div>
-    </header>);
-}
-
-/* ---------- Page hero (interior pages) ---------- */
-function PageHero({ kicker, title, titleAccent, lead, image, position = "center", height = "h-[62vh] min-h-[440px]", ctas }) {
-  const t = window._t || ((nl) => nl);
-  return (
-    <section className={`relative ${height} w-full overflow-hidden`}>
-      <div className="absolute inset-0">
-        <Photo src={image} alt={title} className="w-full h-full" position={position} />
-        <div className="absolute inset-0 hero-vignette"></div>
-      </div>
-      <div className="absolute inset-0 z-10 flex items-end">
-        <div className="max-w-[1440px] mx-auto px-5 md:px-10 w-full pb-12 md:pb-16">
-          {kicker &&
-            <div className="flex items-center gap-3 text-cream/75 eyebrow mb-5">
-              <span className="w-8 h-px bg-cream/40"></span>
-              <span>{kicker}</span>
-            </div>
-          }
-          <h1 className="h-display text-cream text-[52px] sm:text-[80px] md:text-[112px] lg:text-[136px]">
-            {title}{titleAccent && <> <span className="h-serif italic normal-case font-normal tracking-normal text-cream/95">{titleAccent}</span></>}
-          </h1>
-          {lead &&
-            <p className="mt-5 max-w-xl text-cream/85 text-base md:text-lg leading-relaxed">{lead}</p>
-          }
-          {ctas && ctas.length > 0 &&
-            <div className="mt-7 flex flex-wrap gap-3">
-              {ctas.map((cta, i) => (
-                <a key={i} href={cta.href}
-                  className={i === 0
-                    ? "inline-flex items-center gap-2 bg-cream text-bordeaux px-6 py-3.5 text-sm font-medium tracking-wide hover:bg-cream/90 transition-colors"
-                    : "inline-flex items-center gap-2 border border-cream/40 text-cream px-6 py-3.5 text-sm font-medium tracking-wide hover:border-cream/70 transition-colors"}>
-                  {cta.label}
-                </a>
+          </div>
+        </section>
+        {' '}
+        {(V.usps && V.usps.length) ? (
+        <section style={{ background: "#F5EFE6", padding: "80px 0 96px" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "32px" }}>Mogelijkheden</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px" }}>
+              {V.usps.map((u, i) => (
+                <div key={i} style={{ borderTop: "2px solid #5C1A1B", paddingTop: "20px" }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", color: "#5C1A1B", marginBottom: "12px" }}>{u.n}</div>
+                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: "30px", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
+                  <p style={{ margin: "0", color: "rgba(42,42,42,0.72)", lineHeight: "1.7", fontSize: "15px", textWrap: "pretty" }}>{u.d}</p>
+                </div>
               ))}
             </div>
-          }
-        </div>
+          </div>
+        </section>
+        ) : null}
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "80px 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
+            <div>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "60px", lineHeight: "0.9", margin: "0" }}>
+                {V.ctaTitle}
+              </h2>
+              {' '}
+              <p style={{ margin: "12px 0 0", color: "rgba(245,239,230,0.75)", fontSize: "18px" }}>
+                {V.ctaSub}
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+              {(V.ctaButtons || []).map((b, $index) => (
+                <React.Fragment key={$index}>
+                  <a href={b.href} style={b.style}>
+                    {b.label} →
+                  </a>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
-    </section>);
+    );
+  }
 }
 
-/* ---------- Footer ---------- */
-function SiteFooter() {
-  return (
-    <footer className="bg-anthracite text-cream">
-      <div className="max-w-[1280px] mx-auto px-5 md:px-10 py-16 md:py-24">
-        <img src="images/logo.webp" alt="Pompstation" className="h-7 md:h-9 w-auto mb-10 md:mb-14 opacity-90" />
-        <div className="grid md:grid-cols-12 gap-10 items-end">
-          <div className="md:col-span-7">
-            <div className="eyebrow text-cream/60 mb-4">{t("Reserveren of even bellen?", "Reservations & enquiries")}</div>
-            <a href={PS.phoneHref} className="h-display block text-cream text-3xl sm:text-5xl md:text-7xl lg:text-8xl hover:text-cream/80 transition-colors">
-              {PS.phone}
-            </a>
-            <a href={`mailto:${PS.email}`} className="mt-4 inline-block font-serif text-lg sm:text-2xl md:text-3xl italic text-cream/85 hover:text-cream transition-colors break-all">
-              {PS.email}
-            </a>
-          </div>
-          <div className="md:col-span-5 md:pl-8 md:border-l border-cream/20">
-            <div className="eyebrow text-cream/60 mb-4">Pompstation</div>
-            <address className="not-italic text-cream/85 leading-relaxed">
-              {PS.address1}<br />
-              {PS.address2}<br />
-              <br />
-              <span className="text-cream/60 text-sm font-mono">
-                Wo–do · 17:00–00:00<br />
-                Vr–za · 17:00–01:00<br />
-                {t("Live muziek · zomerstop t/m 12 aug", "Live music · summer break until Aug 12")}
-              </span>
-            </address>
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-cream/15">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10 py-6 flex flex-col md:flex-row justify-between gap-4 text-xs font-mono text-cream/55">
-          <div>{t("© 2026 Restaurant Pompstation — gevestigd in een monument uit 1912", "© 2026 Restaurant Pompstation — housed in a 1912 monument")}</div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <a href="menu.html" className="hover:text-cream transition-colors">Menu</a>
-            <a href="verhaal.html" className="hover:text-cream transition-colors">{t("Verhaal", "Our story")}</a>
-
-            <a href="groepen.html" className="hover:text-cream transition-colors">{t("Afhuren & groepen", "Groups & private events")}</a>
-            <a href="contact.html" className="hover:text-cream transition-colors">Contact</a>
-            <a href="vacatures.html" className="hover:text-cream transition-colors">{t("Vacatures", "Vacancies")}</a>
-            <a href="algemene-voorwaarden.html" className="hover:text-cream transition-colors">{t("Algemene voorwaarden", "Terms & conditions")}</a>
-            <a href="privacy.html" className="hover:text-cream transition-colors">Privacy</a>
-          </div>
-        </div>
-      </div>
-    </footer>);
-}
-
-/* ---------- Sticky mobile CTA ---------- */
-function StickyMobileCTA() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 500);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div className={`lg:hidden fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}>
-      <div className="grid grid-cols-3 bg-bordeaux text-cream border-t border-cream/15">
-        <a href={PS.phoneHref} className="py-3 text-center border-r border-cream/15 active:bg-bordeaux-dark">
-          <div className="text-base">📞</div>
-          <div className="mt-0.5 text-xs">{t("Bel", "Call")}</div>
-        </a>
-        <a href="#" onClick={PS.openReservation} className="py-3 text-center bg-bordeaux active:bg-bordeaux-dark">
-          <div className="text-base">✶</div>
-          <div className="mt-0.5 text-xs">{t("Reserveer", "Reserve")}</div>
-        </a>
-        <a href="groepen.html" className="py-3 text-center border-l border-cream/15 active:bg-bordeaux-dark">
-          <div className="text-base">⊞</div>
-          <div className="mt-0.5 text-xs">{t("Afhuren", "Hire")}</div>
-        </a>
-      </div>
-    </div>);
-}
-
-/* ---------- Sfeer gallery (gedeeld) ---------- */
-const SFEER_ITEMS = [
-  { image: "images/restaurant-zaal.jpg", position: "center 20%", label: t("De grote hal · 12 m hoog", "The grand hall · 12 m high"), span: "col-span-2 row-span-2" },
-  { image: "images/food-burrata.jpg", position: "center 40%", label: t("Uit de open keuken", "From the open kitchen"), span: "col-span-1 row-span-1" },
-  { image: "images/cocktail.jpg", position: "center 30%", label: t("Borrelen aan de bar", "Drinks at the bar"), span: "col-span-1 row-span-1" },
-  { image: "images/groepsdiner-overhead.jpg", position: "center 30%", label: t("Groepen & events", "Groups & events"), span: "col-span-1 row-span-1 md:row-span-2" },
-  { image: "images/live-muziek-intiem.jpg", position: "center 40%", label: t("Live jazz donderdag t/m zaterdag", "Live jazz Thursday to Saturday"), span: "col-span-1 row-span-1 md:row-span-2" },
-  { image: "images/terras-oesters.jpg", position: "center 40%", label: t("Terras · seizoen open", "Terrace · season open"), span: "col-span-2 row-span-1" },
-];
-
-function SfeerGallery({ bg = "bg-cream-warm", lead }) {
-  return (
-    <section id="sfeer" className={`${bg} py-20 md:py-32 border-b border-anthracite/10`}>
-      <div className="max-w-[1280px] mx-auto px-5 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <div className="max-w-2xl">
-            <div className="eyebrow text-bordeaux mb-4">{t("Sfeer", "Atmosphere")}</div>
-            <h2 className="h-display text-anthracite text-5xl md:text-7xl lg:text-8xl">
-              {t("Proef de", "Preview the")}<br />
-              <span className="h-serif italic normal-case font-normal text-bordeaux">{t("sfeer vooraf.", "atmosphere.")}</span>
-            </h2>
-          </div>
-          <p className="md:max-w-sm text-anthracite/80 leading-relaxed text-lg">
-            {lead || t("Kaarslicht onder een plafond van twaalf meter, jazz die door de hal galmt en een keuken die er staat. Een eerste indruk van een avond bij Pompstation.", "Candlelight beneath a twelve-metre ceiling, jazz echoing through the hall and a kitchen that delivers. A first impression of an evening at Pompstation.")}
-          </p>
-        </div>
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 [grid-auto-rows:150px] sm:[grid-auto-rows:185px] md:[grid-auto-rows:215px]"
-          style={{ gridAutoFlow: "dense" }}>
-          {SFEER_ITEMS.map((s, i) =>
-          <figure key={i} className={`group relative overflow-hidden bg-anthracite ${s.span}`}>
-            <Photo src={s.image} alt={s.label} className="w-full h-full" position={s.position} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-transparent opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
-            <figcaption className="absolute bottom-0 left-0 p-3 md:p-5 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
-              <span className="font-mono text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-cream border border-cream/45 px-2 py-1 bg-black/25 backdrop-blur-sm">{s.label}</span>
-            </figcaption>
-          </figure>
-          )}
-        </div>
-      </div>
-    </section>);
-}
-
-/* ---------- Brochure Download Section ---------- */
-const N8N_WEBHOOK_WEDDING   = "";
-const N8N_WEBHOOK_CORPORATE = "";
-const BREVO_API_KEY = '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';
-const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
-
-function BrochureDownload({ type }) {
-  // type: "wedding" | "corporate"
-  const isWedding = type === "wedding";
-  const t = window._t || ((nl) => nl);
-  const webhook = isWedding ? N8N_WEBHOOK_WEDDING : N8N_WEBHOOK_CORPORATE;
-  const [form, setForm] = useState({ name: "", phone: "", email: "", people: "", privacy: false });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
-  const [done, setDone] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [serverError, setServerError] = useState(null);
-
-  const validate = (f) => {
-    const e = {};
-    if (!f.name || f.name.trim().length < 2) e.name = t("Vul uw naam in","Please enter your name");
-    if (!f.phone || f.phone.replace(/\D/g,"").length < 8) e.phone = t("Geldig telefoonnummer","Valid phone number");
-    if (!f.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = t("Geldig e-mailadres","Valid email address");
-    if (!f.people) e.people = t("Vul groepsgrootte in","Please enter group size");
-    if (!f.privacy) e.privacy = t("Accepteer de privacyverklaring","Please accept the privacy policy");
-    return e;
-  };
-
-  useEffect(() => { if (Object.keys(touched).length) setErrors(validate(form)); }, [form]);
-  const set = k => ev => setForm(f => ({ ...f, [k]: ev.target.value }));
-  const blur = k => () => setTouched(p => ({ ...p, [k]: true }));
-
-  const submit = async (ev) => {
-    ev.preventDefault();
-    const errs = validate(form);
-    setTouched({ name:true, phone:true, email:true, people:true, privacy:true });
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-    setSending(true); setServerError(null);
-    try {
-      const html = `<h2>Brochure aanvraag — ${isWedding ? 'Wedding' : 'Corporate'}</h2>
-        <p><strong>Naam:</strong> ${form.name}</p>
-        <p><strong>E-mail:</strong> ${form.email}</p>
-        <p><strong>Telefoon:</strong> ${form.phone}</p>
-        <p><strong>Groepsgrootte:</strong> ${form.people}</p>`;
-      const res = await fetch(BREVO_URL, {
-        method: 'POST',
-        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sender: { name: 'Website Pompstation', email: 'events@pompstation.nu' },
-          to: [{ email: 'events@pompstation.nu', name: 'Pompstation Events' }],
-          replyTo: { email: form.email, name: form.name },
-          subject: `[Brochure] ${isWedding ? 'Wedding' : 'Corporate'} — ${form.name}`,
-          htmlContent: html,
-        }),
-      });
-      if (res.ok || res.status === 201) { window.location.href = 'bedankt-brochure.html?type=' + encodeURIComponent(type) + '&email=' + encodeURIComponent(form.email); }
-      else { setServerError(t("Er ging iets mis. Probeer opnieuw.","Something went wrong. Please try again.")); }
-    } catch { setServerError(t("Geen verbinding. Probeer opnieuw.","No connection. Please try again.")); }
-    finally { setSending(false); }
-  };
-
-  const bg = isWedding ? "bg-bordeaux" : "bg-anthracite";
-  const inputCls = "w-full bg-cream/10 border border-cream/20 text-cream placeholder-cream/30 px-4 py-3.5 text-sm focus:outline-none focus:border-cream/55 transition-colors";
-  const errCls = "mt-1.5 text-brass text-xs font-mono";
-  const labelCls = "block eyebrow text-cream/55 mb-2";
-
-  return (
-    <section className={`${bg} text-cream py-20 md:py-28`}>
-      <div className="max-w-[1280px] mx-auto px-5 md:px-10">
-        <div className="grid md:grid-cols-12 gap-12 items-center">
-
-          {/* Left */}
-          <div className="md:col-span-4">
-            <div className="eyebrow text-brass mb-4">{t("Brochure","Brochure")}</div>
-            <h2 className="h-display text-cream text-4xl md:text-5xl leading-tight">
-              {isWedding
-                ? <>{t("Wedding","Wedding")}<br /><em>{t("Brochure 2026","Brochure 2026")}</em></>
-                : <>{t("Corporate","Corporate")}<br /><em>{t("Brochure 2026","Brochure 2026")}</em></>}
-            </h2>
-            <p className="mt-5 text-cream/65 text-base leading-relaxed">
-              {isWedding
-                ? t("Ontvang onze complete brochure met alle mogelijkheden, menuopties, tarieven en de ervaringen van andere bruidsparen.","Receive our complete brochure with all options, menu choices, rates and experiences from other couples.")
-                : t("Ontvang onze complete brochure met capaciteiten, technische specificaties, catering-opties en tarieven.","Receive our complete brochure with capacities, technical specifications, catering options and rates.")}
-            </p>
-            <p className="mt-3 text-cream/45 text-sm font-mono">
-              {t("De brochure wordt naar uw e-mailadres gestuurd.","The brochure will be sent to your email address.")}
-            </p>
-          </div>
-
-          {/* Right: form or success */}
-          <div className="md:col-span-7 md:col-start-6">
-            {!done ? (
-              <form onSubmit={submit} noValidate className="space-y-0">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className={labelCls}>{t("Naam","Name")} *</label>
-                    <input type="text" value={form.name} onChange={set("name")} onBlur={blur("name")}
-                      placeholder={isWedding ? t("Emma & Lars","Emma & Lars") : t("Jan de Vries","Jan de Vries")}
-                      className={inputCls} />
-                    {touched.name && errors.name && <p className={errCls}>{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label className={labelCls}>{t("Telefoonnummer","Phone")} *</label>
-                    <input type="tel" value={form.phone} onChange={set("phone")} onBlur={blur("phone")}
-                      placeholder="+31 6 12 34 56 78" className={inputCls} />
-                    {touched.phone && errors.phone && <p className={errCls}>{errors.phone}</p>}
-                  </div>
-                  <div>
-                    <label className={labelCls}>{t("E-mailadres","Email")} *</label>
-                    <input type="email" value={form.email} onChange={set("email")} onBlur={blur("email")}
-                      placeholder="naam@bedrijf.nl" className={inputCls} />
-                    {touched.email && errors.email && <p className={errCls}>{errors.email}</p>}
-                  </div>
-                  <div>
-                    <label className={labelCls}>{isWedding ? t("Aantal gasten","Number of guests") : t("Groepsgrootte","Group size")} *</label>
-                    <input type="number" min="2" max="380" value={form.people} onChange={set("people")} onBlur={blur("people")}
-                      placeholder={isWedding ? t("bv. 120","e.g. 120") : t("bv. 80","e.g. 80")}
-                      className={inputCls} />
-                    {touched.people && errors.people && <p className={errCls}>{errors.people}</p>}
-                  </div>
-                </div>
-                {serverError && <p className="mt-4 text-brass text-sm font-mono">{serverError}</p>}
-                <div className="flex items-start gap-3 pt-5">
-                  <input type="checkbox" id="brochure-privacy" checked={!!form.privacy}
-                    onChange={e => setForm(f => ({...f, privacy: e.target.checked}))}
-                    className="mt-1 w-4 h-4 cursor-pointer flex-shrink-0 accent-cream" />
-                  <label htmlFor="brochure-privacy" className="text-sm text-cream/70 leading-relaxed">
-                    {t("Ik ga akkoord met de ","I agree to the ")}
-                    <a href="privacy.html" className="text-cream underline hover:text-cream/80 transition-colors">{t("privacyverklaring","privacy policy")}</a>
-                    {t(" van Pompstation."," of Pompstation.")}
-                  </label>
-                </div>
-                {touched.privacy && errors.privacy && <p className="mt-1.5 text-brass text-xs font-mono">{errors.privacy}</p>}
-                <button type="submit" disabled={sending}
-                  className="mt-7 inline-flex items-center gap-3 bg-cream text-bordeaux px-8 py-4 text-sm font-medium tracking-wide hover:bg-cream/90 transition-colors disabled:opacity-50">
-                  <span>{sending ? t("Versturen…","Sending…") : t("Ontvang de brochure","Receive the brochure")}</span>
-                  {!sending && <span>→</span>}
-                </button>
-              </form>
-            ) : (
-              <div className="border border-cream/20 p-8 md:p-12">
-                <div className="font-mono text-xs tracking-[0.18em] uppercase text-brass mb-4">{t("Verstuurd","Sent")}</div>
-                <h3 className="h-display text-cream text-3xl md:text-4xl">{t("Check uw inbox","Check your inbox")}</h3>
-                <p className="mt-4 text-cream/65 text-base leading-relaxed">
-                  {t("De brochure is onderweg naar","The brochure is on its way to")} <strong className="text-cream">{form.email}</strong>.<br/>
-                  {t("We nemen binnenkort contact op.","We will be in touch soon.")}
-                </p>
+function PSFooter(props) { return <PSFooterClass {...props} />; }
+class PSFooterClass extends React.Component {
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <footer style={{ background: "#2A2A2A", color: "#F5EFE6", fontFamily: "'DM Sans',sans-serif" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "96px 40px" }}>
+          <img src="images/logo.webp" alt="Pompstation" style={{ height: "36px", width: "auto", marginBottom: "56px", opacity: "0.9" }} />
+          {' '}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "40px", alignItems: "flex-end" }}>
+            <div style={{ gridColumn: "span 7" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
+                Reserveren of even bellen?
               </div>
-            )}
+              {' '}
+              <Hov as="a" href="tel:+31202279885" style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", display: "block", color: "#F5EFE6", fontSize: "96px", lineHeight: "0.88", transition: "color 0.2s ease" }} styleHover={{ color: "rgba(245,239,230,0.8)" }}>
+                +31 20 227 9885
+              </Hov>
+              {' '}
+              <Hov as="a" href="mailto:info@pompstation.nu" style={{ marginTop: "16px", display: "inline-block", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", fontStyle: "italic", color: "rgba(245,239,230,0.85)", transition: "color 0.2s ease" }} styleHover={{ color: "#F5EFE6" }}>
+                info@pompstation.nu
+              </Hov>
+            </div>
+            <div style={{ gridColumn: "span 5", paddingLeft: "32px", borderLeft: "1px solid rgba(245,239,230,0.2)" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
+                Pompstation
+              </div>
+              {' '}
+              <address style={{ fontStyle: "normal", color: "rgba(245,239,230,0.85)", lineHeight: "1.65" }}>
+                Zeeburgerdijk 52
+                <br />
+                {' '}1094 AE Amsterdam
+                <br />
+                <br />
+                {' '}
+                <span style={{ color: "rgba(245,239,230,0.6)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
+                  Wo–do · 17:00–00:00
+                  <br />
+                  {' '}Vr–za · 17:00–01:00
+                  <br />
+                  {' '}Live muziek · zomerstop t/m 12 aug
+                </span>
+              </address>
+            </div>
           </div>
-
         </div>
+        {' '}
+        <div style={{ borderTop: "1px solid rgba(245,239,230,0.15)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px 40px", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 24px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace" }}>
+            <span style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)" }}>Afhuren in Amsterdam</span>
+            <Hov as="a" href="bedrijfsfeest-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Bedrijfsfeest Amsterdam</Hov>
+            <Hov as="a" href="bedrijfsborrel-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Bedrijfsborrel Amsterdam</Hov>
+            <Hov as="a" href="bedrijfsdiner-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Bedrijfsdiner Amsterdam</Hov>
+            <Hov as="a" href="groepsdiner-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Groepsdiner Amsterdam</Hov>
+            <Hov as="a" href="groepslunch-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Groepslunch Amsterdam</Hov>
+            <Hov as="a" href="vergaderlocatie-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Vergaderlocatie Amsterdam</Hov>
+            <Hov as="a" href="trouwlocatie-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Trouwlocatie Amsterdam</Hov>
+            <Hov as="a" href="restaurant-afhuren-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Restaurant afhuren Amsterdam</Hov>
+          </div>
+        </div>
+        <div style={{ borderTop: "1px solid rgba(245,239,230,0.15)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 40px", display: "flex", justifyContent: "space-between", gap: "16px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace", color: "rgba(245,239,230,0.55)", flexWrap: "wrap" }}>
+            <div>
+              © 2026 Restaurant Pompstation — gevestigd in een monument uit 1912
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 24px" }}>
+              <Hov as="a" href="menu.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Menu
+              </Hov>
+              <Hov as="a" href="verhaal.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Verhaal
+              </Hov>
+              <Hov as="a" href="groepen.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Afhuren & groepen
+              </Hov>
+              <Hov as="a" href="contact.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Contact
+              </Hov>
+              <Hov as="a" href="vacatures.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Vacatures
+              </Hov>
+              <Hov as="a" href="algemene-voorwaarden.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Algemene voorwaarden
+              </Hov>
+              <Hov as="a" href="privacy.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>
+                Privacy
+              </Hov>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+}
+
+function PSHero(props) { return <PSHeroClass {...props} />; }
+class PSHeroClass extends React.Component {
+  renderVals() {
+      const p = this.props;
+      const h = p.heightVh || 62;
+      const minH = p.minHeight || 440;
+      return {
+        image: p.image || 'images/interior-vide.jpg',
+        title: p.title || '',
+        titleAccent: p.titleAccent || '',
+        kicker: p.kicker || '',
+        lead: p.lead || '',
+        cta1Label: p.cta1Label || '',
+        cta1Href: p.cta1Href || '#',
+        cta2Label: p.cta2Label || '',
+        cta2Href: p.cta2Href || '#',
+        sectionStyle: { position: 'relative', height: h + 'vh', minHeight: minH + 'px', width: '100%', overflow: 'hidden' },
+        imgStyle: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.position || 'center' },
+        accentStyle: { fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: 'italic', textTransform: 'none', fontWeight: 400, letterSpacing: 'normal', color: 'rgba(245,239,230,0.95)' },
+        ctasWrapStyle: { marginTop: (p.cta1Label ? 28 : 0) + 'px', display: 'flex', flexWrap: 'wrap', gap: '12px' },
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <section style={V.sectionStyle}>
+        <div style={{ position: "absolute", inset: "0", background: "#2A2A2A" }}>
+          <img src={V.image} alt={V.title} style={V.imgStyle} />
+          {' '}
+          <div style={{ position: "absolute", inset: "0", background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.35) 100%), linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.55) 100%)" }} />
+        </div>
+        {' '}
+        <div style={{ position: "absolute", inset: "0", zIndex: "10", display: "flex", alignItems: "flex-end" }}>
+          <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 40px 64px", width: "100%" }}>
+            {(V.kicker) ? (<React.Fragment>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", color: "rgba(245,239,230,0.75)", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "20px" }}>
+                <span style={{ width: "32px", height: "1px", background: "rgba(245,239,230,0.4)" }} />
+                <span>
+                  {V.kicker}
+                </span>
+              </div>
+            </React.Fragment>) : null}
+            {' '}
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", letterSpacing: "-0.005em", lineHeight: "0.88", textTransform: "uppercase", color: "#F5EFE6", fontSize: "136px", margin: "0" }}>
+              {V.title}{' '}
+              <span style={V.accentStyle}>
+                {V.titleAccent}
+              </span>
+            </h1>
+            {' '}
+            {(V.lead) ? (<React.Fragment>
+              <p style={{ margin: "20px 0 0", maxWidth: "576px", color: "rgba(245,239,230,0.85)", fontSize: "18px", lineHeight: "1.65" }}>
+                {V.lead}
+              </p>
+            </React.Fragment>) : null}
+            {' '}
+            <div style={V.ctasWrapStyle}>
+              {(V.cta1Label) ? (<React.Fragment>
+                <Hov as="a" href={V.cta1Href} style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#F5EFE6", color: "#5C1A1B", padding: "14px 24px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                  {V.cta1Label}
+                </Hov>
+              </React.Fragment>) : null}
+              {' '}
+              {(V.cta2Label) ? (<React.Fragment>
+                <Hov as="a" href={V.cta2Href} style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 24px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "rgba(245,239,230,0.7)" }}>
+                  {V.cta2Label}
+                </Hov>
+              </React.Fragment>) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
+
+function PSLegal(props) { return <PSLegalClass {...props} />; }
+class PSLegalClass extends React.Component {
+  renderVals() {
+      const c = this.props.config || {};
+      const sections = (c.sections || []).map((s, i) => ({ num: String(i + 1).padStart(2, '0'), h: s.h, body: s.body }));
+      return {
+        kicker: c.kicker || '',
+        title: c.title || '',
+        intro: c.intro || '',
+        disclaimer: c.disclaimer || '',
+        sections,
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <div style={{ fontFamily: "'DM Sans',sans-serif" }}>
+        <header style={{ background: "#F5EFE6", padding: "144px 0 64px", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
+              {V.kicker}
+            </div>
+            {' '}
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+              {V.title}
+            </h1>
+            {' '}
+            <p style={{ margin: "16px 0 0", fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(42,42,42,0.5)" }}>
+              Laatst bijgewerkt · juni 2026
+            </p>
+          </div>
+        </header>
+        {' '}
+        <main style={{ background: "#F5EFE6", padding: "80px 0" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+            <p style={{ color: "rgba(42,42,42,0.7)", lineHeight: "1.65", fontSize: "18px", margin: "0 0 64px" }}>
+              {V.intro}
+            </p>
+            {' '}
+            {(V.sections || []).map((s, $index) => (
+              <React.Fragment key={$index}>
+                <section style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", padding: "28px 0", borderTop: "1px solid rgba(42,42,42,0.12)" }}>
+                  <div style={{ gridColumn: "span 2", fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px" }}>
+                    {s.num}
+                  </div>
+                  <div style={{ gridColumn: "span 10" }}>
+                    <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#2A2A2A", margin: "0 0 12px" }}>
+                      {s.h}
+                    </h2>
+                    {' '}
+                    <p style={{ color: "rgba(42,42,42,0.75)", lineHeight: "1.65", margin: "0", maxWidth: "672px" }}>
+                      {s.body}
+                    </p>
+                  </div>
+                </section>
+              </React.Fragment>
+            ))}
+            {' '}
+            <p style={{ margin: "48px 0 0", padding: "20px", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", fontSize: "14px", color: "rgba(42,42,42,0.6)", fontFamily: "'JetBrains Mono',monospace", lineHeight: "1.6" }}>
+              {V.disclaimer}
+            </p>
+          </div>
+        </main>
       </div>
-    </section>
+    );
+  }
+}
+
+function PSNav(props) { return <PSNavClass {...props} />; }
+class PSNavClass extends React.Component {
+  state = { scrolled: false, open: null };
+    componentDidMount() {
+      this._onScroll = () => {
+        const s = window.scrollY > 40;
+        if (s !== this.state.scrolled) this.setState({ scrolled: s });
+      };
+      window.addEventListener('scroll', this._onScroll, { passive: true });
+    }
+    componentWillUnmount() {
+      if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    }
+    renderVals() {
+      const forceSolid = this.props.solid === true || this.props.solid === 'true';
+      const solid = this.state.scrolled || forceSolid;
+      const current = this.props.current || '';
+      const lang = window._L || 'nl';
+      const linkBase = (key) => ({
+        display: 'inline-flex', alignItems: 'center', gap: '4px',
+        transition: 'opacity 0.2s ease',
+        color: solid ? '#2A2A2A' : '#F5EFE6',
+        borderBottom: current === key ? '2px solid #5C1A1B' : '2px solid transparent',
+        paddingBottom: '2px',
+      });
+      const panel = (key) => ({
+        position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)',
+        paddingTop: '12px', zIndex: 50,
+        opacity: this.state.open === key ? 1 : 0,
+        pointerEvents: this.state.open === key ? 'auto' : 'none',
+        transition: 'opacity 0.2s ease',
+      });
+      return {
+        headerStyle: {
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 40,
+          transition: 'all 0.3s ease',
+          background: solid ? 'rgba(245,239,230,0.95)' : 'transparent',
+          backdropFilter: solid ? 'blur(8px)' : 'none',
+          borderBottom: solid ? '1px solid rgba(42,42,42,0.1)' : '1px solid transparent',
+        },
+        logoStyle: { height: '20px', width: 'auto', transition: 'all 0.3s ease', filter: solid ? 'brightness(0)' : 'none' },
+        linkMenu: linkBase('menu'),
+        linkRuimtes: linkBase('ruimtes'),
+        linkAfhuren: linkBase('groepen'),
+        linkAgenda: linkBase('agenda'),
+        linkVerhaal: linkBase('verhaal'),
+        linkFaq: linkBase('faq'),
+        linkContact: linkBase('contact'),
+        ruimtesPanel: panel('ruimtes'),
+        afhurenPanel: panel('groepen'),
+        enterRuimtes: () => this.setState({ open: 'ruimtes' }),
+        enterAfhuren: () => this.setState({ open: 'groepen' }),
+        leave: () => this.setState({ open: null }),
+        langNlStyle: { padding: '3px 5px', fontWeight: lang === 'nl' ? 700 : 400, color: solid ? '#2A2A2A' : '#F5EFE6', opacity: lang === 'nl' ? 1 : 0.42, textTransform: 'uppercase', fontSize: '11px', cursor: 'pointer' },
+        langSepStyle: { color: solid ? '#2A2A2A' : '#F5EFE6', opacity: 0.25, margin: '0 1px', fontSize: '9px' },
+        langEnStyle: { padding: '3px 5px', fontWeight: lang === 'en' ? 700 : 400, color: solid ? '#2A2A2A' : '#F5EFE6', opacity: lang === 'en' ? 1 : 0.42, textTransform: 'uppercase', fontSize: '11px', cursor: 'pointer' },
+        setNl: () => window._setL && window._setL('nl'),
+        setEn: () => window._setL && window._setL('en'),
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <header style={V.headerStyle}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 40px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px" }}>
+          <a href="index.html" style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: "0" }} aria-label="Pompstation — home">
+            <img src="images/logo.webp" alt="Pompstation" style={V.logoStyle} />
+          </a>
+          <nav style={{ display: "flex", alignItems: "center", gap: "22px", fontSize: "14px", fontFamily: "'DM Sans',sans-serif", flexShrink: "0" }}>
+            <Hov as="a" href="menu.html" style={V.linkMenu} styleHover={{ opacity: "0.6" }}>
+              Menu
+            </Hov>
+            <div style={{ position: "relative" }} onMouseEnter={V.enterRuimtes} onMouseLeave={V.leave}>
+              <Hov as="a" href="ruimtes.html" style={V.linkRuimtes} styleHover={{ opacity: "0.6" }}>
+                Ruimtes{' '}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ marginTop: "1px", opacity: "0.5" }}>
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Hov>
+              {' '}
+              <div style={V.ruimtesPanel}>
+                <div style={{ background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.1)", boxShadow: "0 20px 40px -12px rgba(0,0,0,0.25)", minWidth: "200px", padding: "8px 0" }}>
+                  <Hov as="a" href="ruimte-restaurant.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Het Restaurant
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="ruimte-vide.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    De Vide
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="ruimte-terras.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Het Terras
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="ruimte-exclusief.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Volledig Exclusief
+                  </Hov>
+                </div>
+              </div>
+            </div>
+            <div style={{ position: "relative" }} onMouseEnter={V.enterAfhuren} onMouseLeave={V.leave}>
+              <Hov as="a" href="groepen.html" style={V.linkAfhuren} styleHover={{ opacity: "0.6" }}>
+                Afhuren & groepen{' '}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ marginTop: "1px", opacity: "0.5" }}>
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Hov>
+              {' '}
+              <div style={V.afhurenPanel}>
+                <div style={{ background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.1)", boxShadow: "0 20px 40px -12px rgba(0,0,0,0.25)", minWidth: "200px", padding: "8px 0" }}>
+                  <Hov as="a" href="groepsdiner.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Groepsdiner
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="groepslunch.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Groepslunch
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="bedrijfsborrel.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Bedrijfsborrel
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="bedrijfsdiner.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Bedrijfsdiner
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="bedrijfsfeest.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Bedrijfsfeest
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="#" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Vergadering
+                  </Hov>
+                  {' '}
+                  <Hov as="a" href="bruiloft.html" style={{ display: "block", padding: "10px 20px", color: "#2A2A2A", fontSize: "14px", whiteSpace: "nowrap" }} styleHover={{ background: "rgba(42,42,42,0.05)" }}>
+                    Bruiloft
+                  </Hov>
+                </div>
+              </div>
+            </div>
+            <Hov as="a" href="agenda.html" style={V.linkAgenda} styleHover={{ opacity: "0.6" }}>
+              Live muziek
+            </Hov>
+            {' '}
+            <Hov as="a" href="verhaal.html" style={V.linkVerhaal} styleHover={{ opacity: "0.6" }}>
+              Over ons
+            </Hov>
+            {' '}
+            <Hov as="a" href="faq.html" style={V.linkFaq} styleHover={{ opacity: "0.6" }}>
+              FAQ
+            </Hov>
+            {' '}
+            <Hov as="a" href="contact.html" style={V.linkContact} styleHover={{ opacity: "0.6" }}>
+              Contact
+            </Hov>
+          </nav>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: "0" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "1px", fontSize: "11px", letterSpacing: "0.07em" }}>
+              <span style={V.langNlStyle} onClick={V.setNl}>
+                NL
+              </span>
+              <span style={V.langSepStyle}>
+                |
+              </span>
+              <span style={V.langEnStyle} onClick={V.setEn}>
+                EN
+              </span>
+            </div>
+            <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "10px 20px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+              Reserveer een tafel
+            </Hov>
+          </div>
+        </div>
+      </header>
+    );
+  }
+}
+
+function PSSfeer(props) { return <PSSfeerClass {...props} />; }
+class PSSfeerClass extends React.Component {
+  renderVals() {
+      const p = this.props;
+      const bgMap = { cream: '#F5EFE6', 'cream-warm': '#EFE7D9' };
+      return {
+        lead: p.lead || 'Kaarslicht onder een plafond van twaalf meter, jazz die door de hal galmt en een keuken die er staat. Een eerste indruk van een avond bij Pompstation.',
+        sectionStyle: { background: bgMap[p.bg] || '#EFE7D9', padding: '128px 0', borderBottom: '1px solid rgba(42,42,42,0.1)' },
+      };
+    }
+  render() {
+    const V = this.renderVals ? this.renderVals() : {};
+    return (
+      <section style={V.sectionStyle}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "64px", flexWrap: "wrap" }}>
+            <div style={{ maxWidth: "672px" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
+                Sfeer
+              </div>
+              {' '}
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "96px", lineHeight: "0.88", margin: "0" }}>
+                Proef de
+                <br />
+                {' '}
+                <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
+                  sfeer vooraf.
+                </span>
+              </h2>
+            </div>
+            <p style={{ maxWidth: "384px", color: "rgba(42,42,42,0.8)", lineHeight: "1.65", fontSize: "18px" }}>
+              {V.lead}
+            </p>
+          </div>
+          {' '}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gridAutoRows: "215px", gridAutoFlow: "dense", gap: "16px" }}>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0", gridColumn: "span 2", gridRow: "span 2" }}>
+              <img src="images/restaurant-zaal.jpg" alt="De grote hal · 12 m hoog" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "20px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  De grote hal · 12 m hoog
+                </span>
+              </figcaption>
+            </figure>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0" }}>
+              <img src="images/food-burrata.jpg" alt="Uit de open keuken" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "12px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  Uit de open keuken
+                </span>
+              </figcaption>
+            </figure>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0" }}>
+              <img src="images/cocktail.jpg" alt="Borrelen aan de bar" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "12px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  Borrelen aan de bar
+                </span>
+              </figcaption>
+            </figure>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0", gridRow: "span 2" }}>
+              <img src="images/groepsdiner-overhead.jpg" alt="Groepen & events" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "20px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  Groepen & events
+                </span>
+              </figcaption>
+            </figure>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0", gridRow: "span 2" }}>
+              <img src="images/live-muziek-intiem.jpg" alt="Live jazz donderdag t/m zaterdag" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "20px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  Live jazz donderdag t/m zaterdag
+                </span>
+              </figcaption>
+            </figure>
+            <figure style={{ position: "relative", overflow: "hidden", background: "#2A2A2A", margin: "0", gridColumn: "span 2" }}>
+              <img src="images/terras-oesters.jpg" alt="Terras · seizoen open" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+              <figcaption style={{ position: "absolute", bottom: "0", left: "0", padding: "20px" }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.45)", padding: "4px 8px", background: "rgba(0,0,0,0.25)" }}>
+                  Terras · seizoen open
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
+
+
+function PSSeoLanding(props) {
+  const c = props.config;
+  return (
+    <div style={{ background: "#F5EFE6" }}>
+      <PSHero kicker={c.kicker} title={c.title} titleAccent={c.titleAccent} lead={c.lead} image={c.image} position={c.position} cta1Label={c.cta1Label} cta1Href={c.cta1Href} cta2Label={c.cta2Label} cta2Href={c.cta2Href} heightVh="62" minHeight="480" />
+      <section style={{ background: "#F5EFE6", padding: "96px 0 0" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+          <div style={{ gridColumn: "span 4" }}>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>Details</div>
+            <ul style={{ listStyle: "none", margin: "0", padding: "0", display: "flex", flexDirection: "column", gap: "20px" }}>
+              {(c.details || []).map((d, i) => (
+                <li key={i} style={{ display: "flex", flexDirection: "column", gap: "2px", borderBottom: "1px solid rgba(42,42,42,0.1)", paddingBottom: "16px" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(42,42,42,0.5)" }}>{d.k}</span>
+                  <span style={{ color: "#2A2A2A", fontSize: "16px" }}>{d.v}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/offerte" style={{ marginTop: "32px", display: "inline-flex", alignItems: "center", gap: "12px", background: "#5C1A1B", color: "#F5EFE6", padding: "16px 28px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.02em" }}>Offerte aanvragen →</a>
+          </div>
+          <div style={{ gridColumn: "span 8" }}>
+            <p style={{ margin: "0", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "28px", lineHeight: "1.4", color: "#2A2A2A" }}>{c.introSerif}</p>
+            <p style={{ margin: "24px 0 0", color: "rgba(42,42,42,0.75)", lineHeight: "1.75", fontSize: "17px", textWrap: "pretty" }}>{c.introBody}</p>
+            <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+              {(c.photos || []).map((ph, i) => (
+                <div key={i} style={{ overflow: "hidden", height: "280px" }}><img src={ph.src} alt={ph.alt || ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} /></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style={{ background: "#F5EFE6", padding: "96px 0 48px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "32px" }}>Mogelijkheden</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px" }}>
+          {c.usps.map((u, i) => (
+            <div key={i} style={{ borderTop: "2px solid #5C1A1B", paddingTop: "20px" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", color: "#5C1A1B", marginBottom: "12px" }}>{u.n}</div>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "30px", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
+              <p style={{ margin: "0", color: "rgba(42,42,42,0.72)", lineHeight: "1.7", fontSize: "15px", textWrap: "pretty" }}>{u.d}</p>
+            </div>
+          ))}
+          </div>
+        </div>
+      </section>
+      {c.sections.map((s, i) => (
+        <section key={i} style={{ background: "#F5EFE6", padding: "48px 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "64px", alignItems: "start" }}>
+            <div style={{ gridColumn: "span 5" }}>
+              <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#2A2A2A" }}>
+                <img src={s.image} alt={s.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ marginTop: "12px", fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)" }}>{s.caption}</div>
+            </div>
+            <div style={{ gridColumn: "span 7" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>{s.kicker}</div>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "56px", lineHeight: "0.9", margin: "0 0 32px" }}>{s.title}</h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                {s.paras.map((p, j) => (
+                  <p key={j} style={{ margin: "0", color: "rgba(42,42,42,0.78)", lineHeight: "1.75", textWrap: "pretty" }}>{p}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+      <div style={{ marginTop: "48px" }}><PSSfeer bg="cream-warm" /></div>
+      <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "96px 0" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.7)", marginBottom: "12px" }}>Veelgestelde vragen</div>
+          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "56px", lineHeight: "0.9", margin: "0 0 48px" }}>{c.faqTitle}</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+            {c.faq.map((f, i) => (
+              <div key={i}>
+                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "28px", color: "#F5EFE6", margin: "0 0 10px", lineHeight: "1.2" }}>{f.q}</h3>
+                <p style={{ margin: "0", color: "rgba(245,239,230,0.8)", lineHeight: "1.75", textWrap: "pretty" }}>{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section style={{ background: "#EFE7D9", padding: "96px 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
+          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "40px", lineHeight: "0.95", margin: "0 0 8px" }}>Goed bereikbaar in Amsterdam-Oost</h2>
+          <div style={{ width: "48px", height: "2px", background: "#5C1A1B", marginBottom: "28px" }} />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 56px", fontSize: "15px", lineHeight: "1.8", color: "rgba(42,42,42,0.72)" }}>
+            <p style={{ margin: "0", textWrap: "pretty" }}>Bar Restaurant Pompstation vindt u aan de Zeeburgerdijk 52, 1094 AE Amsterdam, in de Indische Buurt in Amsterdam-Oost. Tram 14, 19 en 25 stoppen bij halte Zeeburgerdijk, direct voor de deur. Vanaf Amsterdam Centraal bent u met een taxi binnen tien minuten bij ons; vanaf Muiderpoortstation bent u er te voet of met de tram.</p>
+            <p style={{ margin: "0", textWrap: "pretty" }}>Met de auto rijdt u vanaf de ring A10 in enkele minuten naar het pand. Parkeren kan in een parkeergarage in de omgeving of in de omliggende straten: aan de Zeeburgerdijk, in de Borneostraat en in de Timorstraat is vaak plek — tarieven via de EasyPark-app. Voor groepen regelen wij in overleg een bus of groepsvervoer; aankomst per boot is mogelijk, met circa vijf minuten lopen vanaf de aanlegplaats.</p>
+            <p style={{ margin: "0", textWrap: "pretty" }}>Pompstation is woensdag en donderdag open van 17:00 tot 00:00 uur en vrijdag en zaterdag van 17:00 tot 01:00 uur, met live muziek op donderdag-, vrijdag- en zaterdagavond. Voor groepen en events zijn afwijkende dagen en tijden mogelijk, ook overdag en voor lunch.</p>
+            <p style={{ margin: "0", textWrap: "pretty" }}>Een aanvraag doet u via het offerteformulier op deze website of telefonisch via 020 227 9885. Onze eventmanager denkt mee over opstelling, menu, muziek en vervoer en stuurt u een voorstel op maat, meestal binnen één werkdag.</p>
+          </div>
+        </div>
+      </section>
+      <section style={{ background: "#F5EFE6", padding: "64px 0 0" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "12px 32px" }}>
+          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)" }}>Verder lezen</span>
+          {c.related.map((r, i) => (
+            <Hov key={i} as="a" href={r.href} style={{ color: "#5C1A1B", fontWeight: "500", borderBottom: "1px solid rgba(92,26,27,0.3)", paddingBottom: "2px" }} styleHover={{ borderBottomColor: "#5C1A1B" }}>{r.label}</Hov>
+          ))}
+        </div>
+      </section>
+      <section style={{ background: "#F5EFE6", padding: "64px 0 96px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+            <Hov as="a" href="offerte.html" style={{ display: "block", background: "#5C1A1B", color: "#F5EFE6", padding: "40px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.7)", marginBottom: "12px" }}>Offerte op maat</div>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "0.9" }}>Vraag een offerte aan</div>
+              <div style={{ marginTop: "16px", color: "rgba(245,239,230,0.75)" }}>{c.ctaLead}</div>
+              <div style={{ marginTop: "24px", display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5EFE6", fontWeight: "500" }}>Naar het formulier <span>→</span></div>
+            </Hov>
+            <Hov as="a" href="tel:+31202279885" style={{ display: "block", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.15)", padding: "40px", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "#5C1A1B" }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>Liever even bellen?</div>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "48px", lineHeight: "0.9" }}>020 227 9885</div>
+              <div style={{ marginTop: "16px", color: "rgba(42,42,42,0.7)" }}>Onze eventmanager neemt de mogelijkheden graag met u door.</div>
+              <div style={{ marginTop: "24px", display: "inline-flex", alignItems: "center", gap: "8px", color: "#5C1A1B", fontWeight: "500" }}>Bel ons <span>→</span></div>
+            </Hov>
+          </div>
+        </div>
+      </section>
+      <PSFooter />
+    </div>
   );
 }
-
-/* ---------- Fade-in observer ---------- */
-function useFadeIn() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".fade-up");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-}
-
-Object.assign(window, { PS, Photo, LangToggle, SiteNav, PageHero, SiteFooter, StickyMobileCTA, useFadeIn, SfeerGallery, BrochureDownload });

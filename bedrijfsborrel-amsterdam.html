@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<!-- Server Side Tracking by Taggrs.io -->
+<script>
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s);
+        j.async=true;
+        j.src='https://sst.pompstation.nu/'+i+'.js';
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','g2lscggwaj');
+</script>
+<!-- End Server Side Tracking by Taggrs.io -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bordeaux: '#5C1A1B',
+          'bordeaux-dark': '#3F0F10',
+          cream: '#F5EFE6',
+          'cream-warm': '#EFE7D9',
+          anthracite: '#2A2A2A',
+          'anthracite-soft': '#3A3A3A',
+          forest: '#2C3E37',
+          'forest-dark': '#1E2B26',
+          brass: '#A88A5A',
+        },
+        fontFamily: {
+          display: ['"Big Shoulders Display"', 'Impact', 'sans-serif'],
+          serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+          sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background: #F5EFE6;
+    color: #2A2A2A;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .h-display { font-family: 'Big Shoulders Display', Impact, sans-serif; font-weight: 800; letter-spacing: -0.005em; line-height: 0.88; text-transform: uppercase; }
+  .h-serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; line-height: 1.05; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .ph-stripes { background-color: #2A2A2A; background-image: repeating-linear-gradient(135deg, rgba(245,239,230,0.06) 0px, rgba(245,239,230,0.06) 1px, transparent 1px, transparent 14px); }
+  .ph-stripes-cream { background-color: #EFE7D9; background-image: repeating-linear-gradient(135deg, rgba(42,42,42,0.07) 0px, rgba(42,42,42,0.07) 1px, transparent 1px, transparent 14px); }
+  .ph-stripes-bordeaux { background-color: #5C1A1B; background-image: repeating-linear-gradient(135deg, rgba(245,239,230,0.08) 0px, rgba(245,239,230,0.08) 1px, transparent 1px, transparent 14px); }
+  .arch-mask { -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%); }
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+  .range-slider { -webkit-appearance: none; appearance: none; height: 4px; background: linear-gradient(to right, #5C1A1B 0%, #5C1A1B var(--fill, 50%), rgba(42,42,42,0.15) var(--fill, 50%), rgba(42,42,42,0.15) 100%); border-radius: 4px; outline: none; }
+  .range-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: #5C1A1B; border: 3px solid #F5EFE6; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .range-slider::-moz-range-thumb { width: 22px; height: 22px; background: #5C1A1B; border: 3px solid #F5EFE6; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .btn-primary { background: #5C1A1B; color: #F5EFE6; transition: background 0.2s ease, transform 0.2s ease; }
+  .btn-primary:hover { background: #3F0F10; }
+  .btn-outline { border: 1px solid currentColor; transition: all 0.2s ease; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+  .card-lift { transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; }
+  .card-lift:hover { transform: translateY(-6px); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 40s linear infinite; }
+  .hero-vignette { background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.35) 100%), linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.55) 100%); }
+  .snap-x-mandatory { scroll-snap-type: x mandatory; }
+  .snap-start { scroll-snap-align: start; }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+<title>Bedrijfsborrel locatie Amsterdam | Borrel tot 360 personen | Pompstation</title>
+<meta name="description" content="Bedrijfsborrel in Amsterdam? Borrel bij Pompstation in Amsterdam-Oost: reserveerbaar terras in de binnentuin, vide met eigen bar en borrelarrangementen van de houtskoolgrill." />
+<link rel="canonical" href="https://pompstation.nu/bedrijfsborrel-amsterdam" />
+<link rel="alternate" hreflang="nl" href="https://pompstation.nu/bedrijfsborrel-amsterdam" />
+<link rel="alternate" hreflang="en" href="https://pompstation.nu/bedrijfsborrel-amsterdam?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://pompstation.nu/bedrijfsborrel-amsterdam" />
+<meta property="og:title" content="Bedrijfsborrel locatie Amsterdam | Pompstation" />
+<meta property="og:description" content="Borrelen met het team in een monument uit 1912: terras in de binnentuin, eigen bar op de vide en bites van de houtskoolgrill." />
+<meta property="og:url" content="https://pompstation.nu/bedrijfsborrel-amsterdam" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Restaurant Pompstation Amsterdam" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bedrijfsborrel locatie Amsterdam | Pompstation" />
+<meta name="twitter:description" content="Borrelen met het team in een monument uit 1912: terras in de binnentuin, eigen bar op de vide en bites van de houtskoolgrill." />
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Voor hoeveel personen kan ik een bedrijfsborrel boeken?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Vanaf circa 10 personen reserveert u via het aanvraagformulier. De vide met eigen bar is geschikt voor 20 tot 100 personen; bij volledige afhuur ontvangen wij staand tot 360 gasten."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Kan de borrel overgaan in een diner?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja, dat gebeurt vaak. Begin met een borrel op het terras of de vide en schuif daarna aan voor een groepsdiner met een 3-, 4- of 5-gangenmenu van de houtskoolgrill."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Wat wordt er geschonken en geserveerd?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Naast tap, wijn en frisdrank hebben wij een eigen cocktailkaart met huisgemaakte siropen. Borrelarrangementen variëren van bittergarnituur tot oesters, carpaccio en gegrilde gamba's."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is het terras ook voor groepen te reserveren?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja. Een terrastafel of terrasdeel voor een groep boekt u vooraf via mail of telefoon — uniek in Amsterdam. Bij slecht weer wijken we in overleg uit naar binnen."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<!-- Server Side Tracking by Taggrs.io (noscript) -->
+<noscript>
+    <iframe src="https://sst.pompstation.nu/g2lscggwaj.html" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Server Side Tracking by Taggrs.io (noscript) -->
+<div id="root"></div><noscript><main>
+  <h1>Bedrijfsborrel in Amsterdam</h1>
+  <p>Bedrijfsborrel in Amsterdam? Borrel bij Pompstation in Amsterdam-Oost: reserveerbaar terras in de binnentuin, vide met eigen bar en borrelarrangementen van de houtskoolgrill.</p>
+  <p>Zeeburgerdijk 52 · 1094 AE Amsterdam · <a href="tel:+31202279885">020 227 9885</a> · <a href="mailto:info@pompstation.nu">info@pompstation.nu</a></p>
+  <nav><a href="/menu">Menu</a> · <a href="/groepen">Groepen &amp; afhuren</a> · <a href="/reserveren">Reserveren</a> · <a href="/contact">Contact</a></nav>
+</main></noscript>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="lang.js"></script>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="bedrijfsborrel-amsterdam.jsx"></script>
+<script src="tebi.js"></script>
+</body>
+</html>
