@@ -1,18 +1,34 @@
 function PompstationAgenda(props) { return <PompstationAgendaClass {...props} />; }
 class PompstationAgendaClass extends React.Component {
   renderVals() {
-      const dayStyle = (featured) => ({
-        width: '56px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, textTransform: 'uppercase', fontSize: '24px',
-        background: featured ? '#5C1A1B' : '#EFE7D9',
-        color: featured ? '#F5EFE6' : '#2A2A2A',
-        border: featured ? 'none' : '1px solid rgba(42,42,42,0.15)',
+      const boxStyle = (muted) => ({
+        width: '56px', height: '56px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px',
+        background: muted ? 'transparent' : '#EFE7D9',
+        border: '1px solid rgba(42,42,42,0.15)',
+        color: muted ? 'rgba(42,42,42,0.4)' : '#5C1A1B',
+      });
+      const actStyle = (muted) => ({
+        fontFamily: "'Instrument Serif',Georgia,serif", fontSize: '30px',
+        color: muted ? 'rgba(42,42,42,0.45)' : '#2A2A2A',
+      });
+      const row = (day, date, act, sub, format, muted) => ({
+        day, date, act, sub, format, time: muted ? '—' : '20:00–22:30',
+        boxStyle: boxStyle(!!muted), actStyle: actStyle(!!muted),
       });
       return {
         agenda: [
-          { day: 'Do', act: 'Trio Nocturne', sub: 'Donderdag · Wekelijkse jamsessie', genre: 'Jazz / soul', time: '20:00–23:00', dayStyle: dayStyle(false) },
-          { day: 'Vr', act: 'Wisselende programmering', sub: 'Vrijdag', genre: 'Jazz / soul', time: '20:30–00:00', dayStyle: dayStyle(true) },
-          { day: 'Za', act: 'Wisselende programmering', sub: 'Zaterdag', genre: 'Tango / bossa', time: '20:30–00:30', dayStyle: dayStyle(true) },
+          row('Do', '03', 'Theo Naishtat', 'Duo met gitaar en saxofoon, door klassiek jazzrepertoire met soulvolle melodieën.', 'Duo'),
+          row('Vr', '04', 'Carson Tanner', 'Saxofoontrio met traditionele jazz en swing, vol energie en soul.', 'Trio'),
+          row('Za', '05', 'Seb Overell', 'Trio onder leiding van contrabas, met gitaar en drums: klassieke New Yorkse jazz met energieke swing.', 'Trio'),
+          row('Do', '10', 'Francesco Sensi', 'Intiem gitaarduo dat jazz, blues en bossa nova mengt met ontspannen improvisaties.', 'Duo'),
+          row('Vr', '11', 'Iman Spaargaren', 'Saxofoontrio met frisse, warme interpretaties van iconisch jazzrepertoire.', 'Trio'),
+          row('Za', '12', 'Besloten event', 'Geen optreden — de zaal is deze avond afgehuurd.', '—', true),
+          row('Do', '17', 'Theo Naishtat', 'Duo met gitaar en contrabas, met intieme swing- en bossaklassiekers.', 'Duo'),
+          row('Vr', '18', 'Denis Pavlenko', 'Saxofoontrio dat klassieke jazzstandards frisse melodieën en groovy ritmes geeft.', 'Trio'),
+          row('Za', '19', 'Oleg Prilutskiy', 'Trompettist en bandleider, met zijn trio door tijdloze jazzstandards vol soul en elegantie.', 'Trio'),
+          row('Do', '24', 'Theo Naishtat', 'Duo met gitaar en contrabas, met intieme jazzballads en zachte melodieën.', 'Duo'),
+          row('Vr', '25', 'Olivier Kayl', 'Drummer die zijn trio met gitaar en contrabas leidt door een energieke avond jazz, blues en improvisatie.', 'Trio'),
+          row('Za', '26', 'Eddy Nielsen', 'Contrabastrio met gitaar en drums: groove, swing en de sound van New Yorkse jazz.', 'Trio'),
         ],
       };
     }
@@ -28,10 +44,10 @@ class PompstationAgendaClass extends React.Component {
         <div style={{ background: "rgba(168,138,90,0.15)", borderBottom: "1px solid rgba(168,138,90,0.3)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "16px 40px", display: "flex", alignItems: "center", gap: "16px" }}>
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#A88A5A", flexShrink: "0" }}>
-              Zomerstop
+              Speelschema
             </span>
             <p style={{ color: "rgba(42,42,42,0.8)", fontSize: "14px", margin: "0" }}>
-              De live muziek pauzeert tijdelijk — we zijn terug op 12 augustus. Reserveer alvast een tafel voor het nieuwe seizoen.
+              Elke donderdag, vrijdag en zaterdag van 20:00 tot 22:30 — drie sets van 40 minuten met korte pauzes. Donderdag een duo, vrijdag en zaterdag een trio.
             </p>
             <a href="reserveren.html" style={{ marginLeft: "auto", flexShrink: "0", fontSize: "14px", fontWeight: "500", color: "#5C1A1B", whiteSpace: "nowrap" }}>
               Reserveer →
@@ -45,14 +61,14 @@ class PompstationAgendaClass extends React.Component {
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "56px", flexWrap: "wrap" }}>
               <div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
-                  Deze week op het podium
+                  Programma september
                 </div>
                 {' '}
                 <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
-                  Vaste
+                  Op het
                   <br />
                   <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
-                    avonden.
+                    podium.
                   </span>
                 </h2>
               </div>
@@ -66,20 +82,25 @@ class PompstationAgendaClass extends React.Component {
                 <React.Fragment key={$index}>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", alignItems: "center", padding: "24px 0", borderTop: "1px solid rgba(42,42,42,0.15)" }}>
                     <div style={{ gridColumn: "span 1" }}>
-                      <div style={a.dayStyle}>
-                        {a.day}
+                      <div style={a.boxStyle}>
+                        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                          {a.day}
+                        </div>
+                        <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "24px", lineHeight: "1" }}>
+                          {a.date}
+                        </div>
                       </div>
                     </div>
                     <div style={{ gridColumn: "span 7" }}>
-                      <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#2A2A2A" }}>
+                      <div style={a.actStyle}>
                         {a.act}
                       </div>
-                      <div style={{ marginTop: "4px", fontSize: "14px", color: "rgba(42,42,42,0.6)" }}>
+                      <div style={{ marginTop: "4px", fontSize: "14px", color: "rgba(42,42,42,0.6)", lineHeight: "1.5" }}>
                         {a.sub}
                       </div>
                     </div>
                     <div style={{ gridColumn: "span 2", fontSize: "16px", color: "rgba(42,42,42,0.75)" }}>
-                      {a.genre}
+                      {a.format}
                     </div>
                     <div style={{ gridColumn: "span 2", textAlign: "right", fontFamily: "'JetBrains Mono',monospace", fontSize: "14px", color: "#5C1A1B" }}>
                       {a.time}
