@@ -1,0 +1,17 @@
+/* Responsive overlay — collapses the desktop grids and tightens spacing on tablet/mobile.
+   Targets the serialized inline styles, so it works across every page without touching layout code. */
+@media (max-width: 1000px) {
+  [style*="repeat(12, 1fr)"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+  [style*="repeat(4, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="repeat(3, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-column: span"] { grid-column: 1 / -1 !important; }
+  [style*="grid-row: span"] { grid-row: auto !important; }
+  [style*="position: sticky"] { position: static !important; }
+}
+@media (max-width: 700px) {
+  [style*="repeat(2, 1fr)"], [style*="repeat(3, 1fr)"], [style*="repeat(4, 1fr)"] { grid-template-columns: 1fr !important; }
+  [style*="grid-auto-rows"] { grid-auto-rows: 220px !important; }
+  img { max-width: 100%; }
+}
+html, body { overflow-x: hidden; }

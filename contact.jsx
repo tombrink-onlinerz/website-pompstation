@@ -34,13 +34,13 @@ class PompstationContactClass extends React.Component {
         {' '}
         {' '}
         <section style={{ background: "#5C1A1B", color: "#F5EFE6" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}>
             <a href="tel:+31202279885" style={{ padding: "36px 0", paddingRight: "32px", display: "block" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.55)", marginBottom: "8px" }}>
                 Bel ons
               </div>
               {' '}
-              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
+              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
                 +31 20 227 9885
               </Hov>
             </a>
@@ -49,7 +49,7 @@ class PompstationContactClass extends React.Component {
                 Algemeen
               </div>
               {' '}
-              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
+              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
                 info@pompstation.nu
               </Hov>
             </a>
@@ -58,7 +58,7 @@ class PompstationContactClass extends React.Component {
                 Events & afhuren
               </div>
               {' '}
-              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
+              <Hov as="div" style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#F5EFE6" }} styleHover={{ color: "#A88A5A" }}>
                 events@pompstation.nu
               </Hov>
             </a>
@@ -66,19 +66,19 @@ class PompstationContactClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
             <div style={{ gridColumn: "span 5" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                 Adres & openingstijden
               </div>
               {' '}
               <address style={{ fontStyle: "normal", marginBottom: "32px" }}>
-                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "40px", color: "#2A2A2A", lineHeight: "1.1" }}>
+                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(25px, 5.2vw, 40px)", color: "#2A2A2A", lineHeight: "1.1" }}>
                   Zeeburgerdijk 52
                 </div>
                 {' '}
-                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "40px", color: "#2A2A2A", lineHeight: "1.1" }}>
+                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(25px, 5.2vw, 40px)", color: "#2A2A2A", lineHeight: "1.1" }}>
                   1094 AE Amsterdam
                 </div>
                 {' '}
@@ -169,19 +169,19 @@ class PompstationContactClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
               Zo kom je hier
             </div>
             {' '}
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 56px" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 56px" }}>
               Bereikbaarheid
             </h2>
             {' '}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1px", background: "rgba(42,42,42,0.1)" }}>
               <div style={{ background: "#F5EFE6", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   01
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A", margin: "0" }}>
@@ -192,7 +192,7 @@ class PompstationContactClass extends React.Component {
                 </p>
               </div>
               <div style={{ background: "#F5EFE6", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   02
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A", margin: "0" }}>
@@ -203,7 +203,7 @@ class PompstationContactClass extends React.Component {
                 </p>
               </div>
               <div style={{ background: "#F5EFE6", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   03
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A", margin: "0" }}>
@@ -214,7 +214,7 @@ class PompstationContactClass extends React.Component {
                 </p>
               </div>
               <div style={{ background: "#F5EFE6", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   04
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A", margin: "0" }}>
@@ -231,15 +231,15 @@ class PompstationContactClass extends React.Component {
         <PSSfeer bg="cream" lead="Even sfeer proeven voordat u langskomt — de hal, de bar, het terras en de zaal." />
         {' '}
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
               <div style={{ gridColumn: "span 5" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                   Stuur een bericht
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "60px", lineHeight: "0.9", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0" }}>
                   Een vraag?
                   <br />
                   <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
@@ -260,7 +260,7 @@ class PompstationContactClass extends React.Component {
               </div>
               <div style={{ gridColumn: "span 7" }}>
                 {(V.sent) ? (<React.Fragment>
-                  <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "48px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "clamp(20px, 5vw, 48px)", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <div style={{ width: "56px", height: "56px", border: "1px solid rgba(245,239,230,0.4)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
                         <path d="M5 12 L 10 17 L 19 7" />
@@ -269,7 +269,7 @@ class PompstationContactClass extends React.Component {
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "12px" }}>
                       Bericht verstuurd
                     </div>
-                    <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "44px", margin: "0" }}>
+                    <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(25px, 5.2vw, 44px)", margin: "0" }}>
                       Bedankt.
                     </h3>
                     <p style={{ margin: "16px 0 0", color: "rgba(245,239,230,0.75)", maxWidth: "384px" }}>

@@ -26,13 +26,13 @@ class PompstationGroepenClass extends React.Component {
         <PSHero kicker="Groepen & Afhuren" title="Een locatie" titleAccent="voor elk evenement" lead="Van groepsdiner tot bedrijfsfeest, van teamlunch tot bruiloft. Pompstation biedt unieke ruimtes voor groepen vanaf 10 personen." image="images/event-fullhall.jpg" position="center 40%" heightVh="75" minHeight="520" cta1Label="Offerte aanvragen" cta1Href="#" cta2Label="Brochure downloaden" cta2Href="#brochure" />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "112px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 112px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>
               Mogelijkheden
             </div>
             {' '}
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 48px" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 48px" }}>
               Wat zoekt u?
             </h2>
             {' '}
@@ -48,7 +48,7 @@ class PompstationGroepenClass extends React.Component {
                         {o.sub}
                       </div>
                       {' '}
-                      <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "30px", margin: "0 0 8px", lineHeight: "1" }}>
+                      <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(21px, 4.2vw, 30px)", margin: "0 0 8px", lineHeight: "1" }}>
                         {o.title}
                       </h3>
                       {' '}
@@ -68,10 +68,10 @@ class PompstationGroepenClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#2A2A2A", color: "#F5EFE6", padding: "56px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "32px", textAlign: "center" }}>
+        <section style={{ background: "#2A2A2A", color: "#F5EFE6", padding: "clamp(34px, 6.5vw, 56px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "32px", textAlign: "center" }}>
             <div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "1" }}>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "1" }}>
                 400
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginTop: "8px" }}>
@@ -79,7 +79,7 @@ class PompstationGroepenClass extends React.Component {
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "1" }}>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "1" }}>
                 1912
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginTop: "8px" }}>
@@ -87,7 +87,7 @@ class PompstationGroepenClass extends React.Component {
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "1" }}>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "1" }}>
                 4
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginTop: "8px" }}>
@@ -95,7 +95,7 @@ class PompstationGroepenClass extends React.Component {
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "1" }}>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "1" }}>
                 10+
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginTop: "8px" }}>
@@ -106,10 +106,10 @@ class PompstationGroepenClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "80px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 80px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
             <div>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "60px", lineHeight: "0.9", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0" }}>
                 Direct een offerte?
               </h2>
               {' '}
@@ -129,15 +129,15 @@ class PompstationGroepenClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section id="brochure" style={{ background: "#2A2A2A", color: "#F5EFE6", padding: "112px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px", alignItems: "center" }}>
+        <section id="brochure" style={{ background: "#2A2A2A", color: "#F5EFE6", padding: "clamp(46px, 8vw, 112px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)", alignItems: "center" }}>
               <div style={{ gridColumn: "span 4" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                   Brochure
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "1.1", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "1.1", margin: "0" }}>
                   Brochure
                   <br />
                   <em style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", textTransform: "none" }}>
@@ -155,12 +155,12 @@ class PompstationGroepenClass extends React.Component {
               </div>
               <div style={{ gridColumn: "6 / span 7" }}>
                 {(V.brochureDone) ? (<React.Fragment>
-                  <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "48px" }}>
+                  <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "clamp(20px, 5vw, 48px)" }}>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                       Verstuurd
                     </div>
                     {' '}
-                    <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "40px", margin: "0" }}>
+                    <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(25px, 5.2vw, 40px)", margin: "0" }}>
                       Check uw inbox
                     </h3>
                     {' '}

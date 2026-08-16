@@ -20,13 +20,13 @@ class PompstationVerhaalClass extends React.Component {
         <PSHero kicker="Anno 1912 · Amsterdamse School" title="Ons" titleAccent="verhaal" lead="Een monumentaal watergemaal dat de stad meer dan tachtig jaar droog hield — en nu een van de meest bijzondere eetzalen van Amsterdam is." image="images/historic-1912.jpg" position="center 40%" heightVh="62" minHeight="440" />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "128px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 128px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "24px" }}>
               Het gebouw
             </div>
             {' '}
-            <p style={{ fontFamily: "'Instrument Serif',Georgia,serif", color: "#2A2A2A", fontSize: "56px", lineHeight: "1.08", margin: "0" }}>
+            <p style={{ fontFamily: "'Instrument Serif',Georgia,serif", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 56px)", lineHeight: "1.08", margin: "0" }}>
               Het robuuste, industriële pand is gebouwd in{' '}
               <em style={{ color: "#5C1A1B" }}>
                 1912
@@ -40,8 +40,8 @@ class PompstationVerhaalClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "56px", alignItems: "center" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(34px, 6.5vw, 56px)", alignItems: "center" }}>
             <div style={{ gridColumn: "span 5" }}>
               <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#2A2A2A" }}>
                 <img src="images/interior-vide.jpg" alt="De hoge machinezaal, nu het restaurant" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }} />
@@ -52,7 +52,7 @@ class PompstationVerhaalClass extends React.Component {
               </div>
             </div>
             <div style={{ gridColumn: "span 7" }}>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 24px" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 24px" }}>
                 Waar ooit de pompen stonden
               </h2>
               {' '}
@@ -69,13 +69,13 @@ class PompstationVerhaalClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "128px 0" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 128px) 0" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
               Tijdlijn
             </div>
             {' '}
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "0.9", margin: "0 0 64px" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0 0 64px" }}>
               Ruim een eeuw
               <br />
               <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
@@ -87,11 +87,11 @@ class PompstationVerhaalClass extends React.Component {
               {(V.timeline || []).map((ev, $index) => (
                 <React.Fragment key={$index}>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "32px", padding: "32px 0", borderTop: "1px solid rgba(245,239,230,0.15)", alignItems: "baseline" }}>
-                    <div style={{ gridColumn: "span 3", fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "48px" }}>
+                    <div style={{ gridColumn: "span 3", fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "clamp(30px, 6.5vw, 48px)" }}>
                       {ev.year}
                     </div>
                     <div style={{ gridColumn: "span 9" }}>
-                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#F5EFE6", margin: "0" }}>
+                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#F5EFE6", margin: "0" }}>
                         {ev.title}
                       </h3>
                       {' '}
@@ -107,14 +107,14 @@ class PompstationVerhaalClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "56px", alignItems: "center" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(34px, 6.5vw, 56px)", alignItems: "center" }}>
             <div style={{ gridColumn: "span 7" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                 De keuken
               </div>
               {' '}
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 24px" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 24px" }}>
                 Lokaal, seizoensgebonden, duurzaam
               </h2>
               {' '}
@@ -143,15 +143,15 @@ class PompstationVerhaalClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "112px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 112px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "56px", textAlign: "center" }}>
               Wat gasten zeggen
             </div>
             {' '}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "24px" }}>
               <blockquote style={{ background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.1)", padding: "32px", display: "flex", flexDirection: "column", margin: "0" }}>
-                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "36px", lineHeight: "1", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)", lineHeight: "1", marginBottom: "12px" }}>
                   “
                 </div>
                 <p style={{ color: "rgba(42,42,42,0.85)", lineHeight: "1.65", flex: "1", margin: "0" }}>
@@ -162,7 +162,7 @@ class PompstationVerhaalClass extends React.Component {
                 </footer>
               </blockquote>
               <blockquote style={{ background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.1)", padding: "32px", display: "flex", flexDirection: "column", margin: "0" }}>
-                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "36px", lineHeight: "1", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)", lineHeight: "1", marginBottom: "12px" }}>
                   “
                 </div>
                 <p style={{ color: "rgba(42,42,42,0.85)", lineHeight: "1.65", flex: "1", margin: "0" }}>
@@ -173,7 +173,7 @@ class PompstationVerhaalClass extends React.Component {
                 </footer>
               </blockquote>
               <blockquote style={{ background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.1)", padding: "32px", display: "flex", flexDirection: "column", margin: "0" }}>
-                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "36px", lineHeight: "1", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)", lineHeight: "1", marginBottom: "12px" }}>
                   “
                 </div>
                 <p style={{ color: "rgba(42,42,42,0.85)", lineHeight: "1.65", flex: "1", margin: "0" }}>
@@ -190,9 +190,9 @@ class PompstationVerhaalClass extends React.Component {
         <PSSfeer bg="cream-warm" lead="Van de hoge machinezaal tot kaarslicht op tafel — een indruk van het monument zoals het vandaag leeft." />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
               Kom het zelf ervaren
             </h2>
             {' '}

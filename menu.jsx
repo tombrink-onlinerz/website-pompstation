@@ -27,8 +27,8 @@ class PompstationMenuClass extends React.Component {
         <PSHero kicker="À la carte · vlees, vis & vegetarisch" title="Het" titleAccent="menu" lead="Kies à la carte of ga voor een 3-, 4- of 5-gangenformule. De kaart wisselt met het seizoen — lokaal, duurzaam en biologisch waar het kan." image="images/chef-kitchen.jpg" position="center 35%" heightVh="62" minHeight="440" />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "48px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(20px, 5vw, 48px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "4px", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.15)", padding: "4px" }}>
                 <button type="button" onClick={V.setAlacarte} style={V.tabAlacarte}>
@@ -51,7 +51,7 @@ class PompstationMenuClass extends React.Component {
                       De formule
                     </div>
                     {' '}
-                    <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.88", margin: "0" }}>
+                    <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.88", margin: "0" }}>
                       Drie, vier of
                       <br />
                       <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -93,12 +93,12 @@ class PompstationMenuClass extends React.Component {
                       <img src="images/steak-fire.jpg" alt="3 gangen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
                     <div style={{ position: "relative", padding: "36px", flex: "1", background: "#EFE7D9", color: "#2A2A2A", border: "1px solid rgba(42,42,42,0.1)", borderTop: "none" }}>
-                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "36px", margin: "0" }}>
+                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0" }}>
                         3 gangen
                       </h3>
                       {' '}
                       <div style={{ marginTop: "20px", display: "flex", alignItems: "baseline", gap: "8px" }}>
-                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "60px" }}>
+                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "clamp(30px, 6.5vw, 60px)" }}>
                           €47
                         </span>
                         <span style={{ fontSize: "14px", color: "rgba(42,42,42,0.6)" }}>
@@ -120,12 +120,12 @@ class PompstationMenuClass extends React.Component {
                         ★ Meest gekozen
                       </div>
                       {' '}
-                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "36px", margin: "0" }}>
+                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0" }}>
                         4 gangen
                       </h3>
                       {' '}
                       <div style={{ marginTop: "20px", display: "flex", alignItems: "baseline", gap: "8px" }}>
-                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "60px" }}>
+                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "clamp(30px, 6.5vw, 60px)" }}>
                           €57
                         </span>
                         <span style={{ fontSize: "14px", color: "rgba(245,239,230,0.7)" }}>
@@ -143,12 +143,12 @@ class PompstationMenuClass extends React.Component {
                       <img src="images/food-fish.jpg" alt="5 gangen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
                     <div style={{ position: "relative", padding: "36px", flex: "1", background: "#EFE7D9", color: "#2A2A2A", border: "1px solid rgba(42,42,42,0.1)", borderTop: "none" }}>
-                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "36px", margin: "0" }}>
+                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0" }}>
                         5 gangen
                       </h3>
                       {' '}
                       <div style={{ marginTop: "20px", display: "flex", alignItems: "baseline", gap: "8px" }}>
-                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "60px" }}>
+                        <span style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "clamp(30px, 6.5vw, 60px)" }}>
                           €65
                         </span>
                         <span style={{ fontSize: "14px", color: "rgba(42,42,42,0.6)" }}>
@@ -166,13 +166,13 @@ class PompstationMenuClass extends React.Component {
               <div style={{ marginTop: "72px" }}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "32px", flexWrap: "wrap" }}>
             <div>
-              <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "40px", lineHeight: "0.95", margin: "0 0 2px" }}>De groepsmenukaart</h3>
+              <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 40px)", lineHeight: "0.95", margin: "0 0 2px" }}>De groepsmenukaart</h3>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)" }}>The group menu</div>
             </div>
             <Hov as="a" href="assets/pompstation-groepsmenu.pdf" target="_blank" rel="noopener" download="Pompstation-groepsmenu.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Download groepsmenu PDF</Hov>
           </div>
           <p style={{ margin: "0 0 32px", maxWidth: "640px", color: "rgba(42,42,42,0.7)", lineHeight: "1.65" }}>Per gang kiest iedere gast uit onderstaande gerechten. Bij het viergangenmenu komt er een tussengerecht bij, bij vijf gangen een extra proefgang.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "48px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
             <div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>Voorgerecht</div>
               
@@ -224,8 +224,8 @@ class PompstationMenuClass extends React.Component {
         {' '}
         {' '}
         {(!V.groepsMode) ? (<React.Fragment>
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ marginBottom: "48px", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", padding: "20px", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", flexWrap: "wrap" }}>
               <div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "4px" }}>
@@ -241,9 +241,9 @@ class PompstationMenuClass extends React.Component {
               </Hov>
             </div>
             {' '}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px 64px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(20px, 5vw, 48px) clamp(34px, 6.5vw, 64px)" }}>
               <div>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 4px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 4px" }}>
                   Voorgerechten
                 </h3>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)", marginBottom: "10px" }}>Starters</div>
@@ -262,7 +262,7 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Carpaccio from Barossa</span><span style={{ display: "block", marginTop: "6px" }}>Rucola, bieslookmayonaise, Parmezaan, pijnboompitten<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Arugula, chives mayonnaise, parmesan cheese and pine nuts</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €15
                     </div>
                   </div>
@@ -276,7 +276,7 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Steak Tartare Classic (80gr)</span><span style={{ display: "block", marginTop: "6px" }}>'Barrossa' met kappertjes, sjalot, augurk, peterselie, crouton en eidooierdressing (op beenmerg +6)<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Made from “Barrosa” with capers, shallot, pickles and parsley, bread crouton and egg yolk dressing (served on bone marrow +6)</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €15
                     </div>
                   </div>
@@ -290,7 +290,7 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Seabass Ceviche</span><span style={{ display: "block", marginTop: "6px" }}>Leche de tigre, chili, koriander, rode ui<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Leche de tigre, chili, coriander, red onion</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €16
                     </div>
                   </div>
@@ -304,7 +304,7 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Roasted Gamba's from the Charcoal Grill</span><span style={{ display: "block", marginTop: "6px" }}>Boter, chili, knoflook en peterselie<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Butter, chilli, garlic and parsley</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €16
                     </div>
                   </div>
@@ -323,7 +323,7 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "6px" }}>Geroosterde 'San Marzano' tomaat, broodkruim, basilicumolie<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Roasted “San Marzano” tomato, bread crumble, basil oil</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €15
                     </div>
                   </div>
@@ -342,14 +342,14 @@ class PompstationMenuClass extends React.Component {
                         <span style={{ display: "block", marginTop: "6px" }}>Aubergine, tomaat, basilicum, parmigiano, buffalo mozzarella<br /><span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}>Aubergine, tomato, basil, parmigiano, buffalo mozzarella</span></span>
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €14
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 4px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 4px" }}>
                   Oesters
                 </h3>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)", marginBottom: "10px" }}>Oysters</div>
@@ -366,7 +366,7 @@ class PompstationMenuClass extends React.Component {
                         
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €4,50
                     </div>
                   </div>
@@ -380,7 +380,7 @@ class PompstationMenuClass extends React.Component {
                         
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €3,50
                     </div>
                   </div>
@@ -402,7 +402,7 @@ class PompstationMenuClass extends React.Component {
                 </div>
               </div>
               <div style={{ gridColumn: "span 2" }}>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 4px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 4px" }}>
                   Steaks — Houtskoolbarbecue
                 </h3>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)", marginBottom: "6px" }}>Steaks — Charcoal BBQ</div>
@@ -413,7 +413,7 @@ class PompstationMenuClass extends React.Component {
                 {' '}
                 <div style={{ width: "48px", height: "2px", background: "#5C1A1B", marginBottom: "16px" }} />
                 {' '}
-                <div style={{ display: "flex", gap: "0 64px", alignItems: "flex-start" }}>
+                <div style={{ display: "flex", gap: "0 clamp(34px, 6.5vw, 64px)", alignItems: "flex-start" }}>
                 <div style={{ flex: "1", minWidth: "0" }}>
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
@@ -431,7 +431,7 @@ class PompstationMenuClass extends React.Component {
                           Tournedos (200gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €30
                       </div>
                     </div>
@@ -442,7 +442,7 @@ class PompstationMenuClass extends React.Component {
                           Picanha (200gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €22
                       </div>
                     </div>
@@ -462,7 +462,7 @@ class PompstationMenuClass extends React.Component {
                           Entrecôte (250gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €27
                       </div>
                     </div>
@@ -483,7 +483,7 @@ class PompstationMenuClass extends React.Component {
                         </span>
                         <span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Halve kip van de houtskoolgrill</span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €22
                       </div>
                     </div>
@@ -506,7 +506,7 @@ class PompstationMenuClass extends React.Component {
                           Côte de Boeuf (600gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €48
                       </div>
                     </div>
@@ -517,7 +517,7 @@ class PompstationMenuClass extends React.Component {
                           Rib-eye (250gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €28
                       </div>
                     </div>
@@ -528,7 +528,7 @@ class PompstationMenuClass extends React.Component {
                           Skirt Steak (200gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €21
                       </div>
                     </div>
@@ -538,7 +538,7 @@ class PompstationMenuClass extends React.Component {
                           Short Ribs (300gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €24
                       </div>
                     </div>
@@ -558,7 +558,7 @@ class PompstationMenuClass extends React.Component {
                           Lady steak (150gr)
                         </span>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €27
                       </div>
                     </div>
@@ -579,7 +579,7 @@ class PompstationMenuClass extends React.Component {
                         </span>
                         <div style={{ marginTop: "6px", fontSize: "14px", color: "rgba(42,42,42,0.65)", lineHeight: "1.6" }}>Van 'Barrosa', garnituur apart geserveerd<span style={{ color: "rgba(42,42,42,0.45)", fontStyle: "italic" }}><br />From “Barrosa”, garnishes served separately</span></div>
                       </div>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                         €22
                       </div>
                     </div>
@@ -592,21 +592,21 @@ class PompstationMenuClass extends React.Component {
                   </div>
               </div>
               <div style={{ gridColumn: "span 2" }}>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 4px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 4px" }}>
                   Bijgerechten
                 </h3>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)", marginBottom: "10px" }}>Side dishes</div>
                 {' '}
                 <div style={{ width: "48px", height: "2px", background: "#5C1A1B", marginBottom: "16px" }} />
                 {' '}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 64px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 clamp(34px, 6.5vw, 64px)" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "16px", padding: "16px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
                     <div style={{ flex: "1" }}>
                       <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A" }}>
                         Brood & boter<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Bread & Butter</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €4,50
                     </div>
                   </div>
@@ -616,7 +616,7 @@ class PompstationMenuClass extends React.Component {
                         Friet<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Fries</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €5
                     </div>
                   </div>
@@ -626,7 +626,7 @@ class PompstationMenuClass extends React.Component {
                         Padrón pepers<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Padrón peppers</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €5
                     </div>
                   </div>
@@ -636,7 +636,7 @@ class PompstationMenuClass extends React.Component {
                         Geroosterde aardappelen<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Roasted potatoes</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €6
                     </div>
                   </div>
@@ -646,7 +646,7 @@ class PompstationMenuClass extends React.Component {
                         Seizoensgroenten<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Seasonal vegetables</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €5
                     </div>
                   </div>
@@ -656,7 +656,7 @@ class PompstationMenuClass extends React.Component {
                         Groene salade met Parmezaan en citrusdressing<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Green salad with Parmesan and citrus dressing</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €6
                     </div>
                   </div>
@@ -666,7 +666,7 @@ class PompstationMenuClass extends React.Component {
                         Rund beenmerg<span style={{ display: "block", marginTop: "2px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.06em", color: "rgba(42,42,42,0.42)" }}>Beef bone marrow</span>
                       </span>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €6,50
                     </div>
                   </div>
@@ -681,15 +681,15 @@ class PompstationMenuClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "96px 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 96px) 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "56px", flexWrap: "wrap" }}>
               <div style={{ maxWidth: "672px" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                   Aan de bar
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.88", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.88", margin: "0" }}>
                   De
                   <br />
                   <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -702,9 +702,9 @@ class PompstationMenuClass extends React.Component {
               </p>
             </div>
             {' '}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px 64px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(20px, 5vw, 48px) clamp(34px, 6.5vw, 64px)" }}>
               <div>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 8px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 8px" }}>
                   Signature
                 </h3>
                 {' '}
@@ -720,7 +720,7 @@ class PompstationMenuClass extends React.Component {
                         Gin, Italiaanse vermouth, bitter, sinaasappelschil
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €13
                     </div>
                   </div>
@@ -734,7 +734,7 @@ class PompstationMenuClass extends React.Component {
                         Mezcal, limoen, agave, grapefruit
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €13,5
                     </div>
                   </div>
@@ -748,7 +748,7 @@ class PompstationMenuClass extends React.Component {
                         Bourbon, citroen, eiwit, Angostura
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €13
                     </div>
                   </div>
@@ -762,7 +762,7 @@ class PompstationMenuClass extends React.Component {
                         Prosecco, vlierbloesem, munt, tonic
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €12
                     </div>
                   </div>
@@ -776,7 +776,7 @@ class PompstationMenuClass extends React.Component {
                         Donkere rum, gember, limoen, kaneel
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €13
                     </div>
                   </div>
@@ -790,14 +790,14 @@ class PompstationMenuClass extends React.Component {
                         Huisgemaakte limoncello, prosecco, munt
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €10
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "36px", margin: "0 0 8px" }}>
+                <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 36px)", margin: "0 0 8px" }}>
                   Alcoholvrij & afsluiters
                 </h3>
                 {' '}
@@ -813,7 +813,7 @@ class PompstationMenuClass extends React.Component {
                         Gember, limoen, bruisend water, rozemarijn
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €8
                     </div>
                   </div>
@@ -827,7 +827,7 @@ class PompstationMenuClass extends React.Component {
                         Komkommer, vlierbloesem, tonic
                       </div>
                     </div>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", color: "#5C1A1B", whiteSpace: "nowrap" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#5C1A1B", whiteSpace: "nowrap" }}>
                       €8
                     </div>
                   </div>
@@ -853,15 +853,15 @@ class PompstationMenuClass extends React.Component {
         {' '}
         {' '}
         </React.Fragment>) : null}
-        <section style={{ background: "#2C3E37", color: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px", alignItems: "flex-start" }}>
+        <section style={{ background: "#2C3E37", color: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)", alignItems: "flex-start" }}>
               <div style={{ gridColumn: "span 4" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
                   Bij het menu
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "48px", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "clamp(30px, 6.5vw, 48px)", margin: "0" }}>
                   Wijnarrangementen
                 </h2>
                 {' '}
@@ -879,7 +879,7 @@ class PompstationMenuClass extends React.Component {
                       Per gang een passend glas, geselecteerd door de bediening
                     </div>
                   </div>
-                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", whiteSpace: "nowrap" }}>
+                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", whiteSpace: "nowrap" }}>
                     €27
                   </div>
                 </div>
@@ -893,7 +893,7 @@ class PompstationMenuClass extends React.Component {
                       Inclusief tussengerecht
                     </div>
                   </div>
-                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "30px", whiteSpace: "nowrap" }}>
+                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(21px, 4.2vw, 30px)", whiteSpace: "nowrap" }}>
                     €34
                   </div>
                 </div>
@@ -919,15 +919,15 @@ class PompstationMenuClass extends React.Component {
         <PSSfeer bg="cream" lead="Kaarslicht, een twaalf meter hoog plafond en de geur uit de open keuken. Zo eet u bij Pompstation." />
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-              <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ display: "block", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.15)", padding: "40px", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "#5C1A1B" }}>
+              <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ display: "block", background: "#F5EFE6", border: "1px solid rgba(42,42,42,0.15)", padding: "clamp(20px, 5vw, 40px)", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "#5C1A1B" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>
                   Kom proeven
                 </div>
                 {' '}
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "48px", lineHeight: "0.9" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "0.9" }}>
                   Reserveer een tafel
                 </div>
                 {' '}
@@ -942,12 +942,12 @@ class PompstationMenuClass extends React.Component {
                   </span>
                 </div>
               </Hov>
-              <Hov as="a" href="groepen.html" style={{ display: "block", background: "#5C1A1B", color: "#F5EFE6", padding: "40px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+              <Hov as="a" href="groepen.html" style={{ display: "block", background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(20px, 5vw, 40px)", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.7)", marginBottom: "12px" }}>
                   Met een groep
                 </div>
                 {' '}
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "0.9" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "0.9" }}>
                   Groepsmenu's vanaf €47
                 </div>
                 {' '}

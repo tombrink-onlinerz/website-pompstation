@@ -6,8 +6,8 @@ class PompstationReserverenClass extends React.Component {
       <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", color: "#2A2A2A", overflowX: "hidden" }}>
         <PSNav current="reserveren" solid="true" />
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "160px 0 64px" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 160px) 0 clamp(34px, 6.5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.5)", marginBottom: "16px" }}>
               <span style={{ width: "32px", height: "1px", background: "rgba(245,239,230,0.3)" }} />
               <span>
@@ -15,7 +15,7 @@ class PompstationReserverenClass extends React.Component {
               </span>
             </div>
             {' '}
-            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "128px", lineHeight: "1", margin: "0" }}>
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(48px, 13vw, 128px)", lineHeight: "1", margin: "0" }}>
               Reserveren
             </h1>
             {' '}
@@ -31,8 +31,8 @@ class PompstationReserverenClass extends React.Component {
           </div>
         </section>
         {' '}
-        <section style={{ background: "#F5EFE6", borderTop: "1px solid rgba(42,42,42,0.1)", padding: "64px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "48px" }}>
+        <section style={{ background: "#F5EFE6", borderTop: "1px solid rgba(42,42,42,0.1)", padding: "clamp(34px, 6.5vw, 64px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
             <div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "8px" }}>
                 Adres

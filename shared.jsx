@@ -29,7 +29,7 @@ class PSBrochureClass extends React.Component {
         done: this.state.done,
         open: !this.state.done,
         submit: (e) => { e.preventDefault(); this.setState({ done: true }); },
-        sectionStyle: { background: wedding ? '#5C1A1B' : '#2A2A2A', color: '#F5EFE6', padding: '112px 0' },
+        sectionStyle: { background: wedding ? '#5C1A1B' : '#2A2A2A', color: '#F5EFE6', padding: 'clamp(46px, 8vw, 112px) 0' },
         isCorporate: !wedding,
         heading: wedding ? 'Wedding' : 'Brochure',
         headingSub: wedding ? 'Brochure 2026' : 'groepen & afhuren',
@@ -45,14 +45,14 @@ class PSBrochureClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <section id="brochure" style={V.sectionStyle}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px", alignItems: "center" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)", alignItems: "center" }}>
             <div style={{ gridColumn: "span 4" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                 Brochure
               </div>
               {' '}
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "1.1", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "1.1", margin: "0" }}>
                 {V.heading}
                 <br />
                 <em style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", textTransform: "none" }}>
@@ -70,12 +70,12 @@ class PSBrochureClass extends React.Component {
             </div>
             <div style={{ gridColumn: "6 / span 7" }}>
               {(V.done) ? (<React.Fragment>
-                <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "48px" }}>
+                <div style={{ border: "1px solid rgba(245,239,230,0.2)", padding: "clamp(20px, 5vw, 48px)" }}>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                     Verstuurd
                   </div>
                   {' '}
-                  <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "40px", margin: "0" }}>
+                  <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(25px, 5.2vw, 40px)", margin: "0" }}>
                     Check uw inbox
                   </h3>
                   {' '}
@@ -169,7 +169,7 @@ class PSEventDetailClass extends React.Component {
           gangen: g.gangen, prijs: g.prijs, label: g.label, featured: f,
           cardStyle: { padding: '20px', border: f ? '1px solid #5C1A1B' : '1px solid rgba(42,42,42,0.15)', background: f ? '#5C1A1B' : '#F5EFE6', color: f ? '#F5EFE6' : '#2A2A2A' },
           titleStyle: { fontFamily: "'Instrument Serif',Georgia,serif", fontSize: '24px', color: f ? '#F5EFE6' : '#2A2A2A' },
-          priceStyle: { marginTop: '8px', fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, fontSize: '36px', letterSpacing: '-0.02em', color: f ? '#F5EFE6' : '#2A2A2A' },
+          priceStyle: { marginTop: '8px', fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, fontSize: 'clamp(25px, 5.2vw, 36px)', letterSpacing: '-0.02em', color: f ? '#F5EFE6' : '#2A2A2A' },
           labelStyle: { marginTop: '8px', fontSize: '14px', lineHeight: 1.35, color: f ? 'rgba(245,239,230,0.7)' : 'rgba(42,42,42,0.6)' },
         };
       });
@@ -203,8 +203,8 @@ class PSEventDetailClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <div style={{ fontFamily: "'DM Sans',sans-serif" }}>
-        <section style={{ background: "#F5EFE6", padding: "112px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 112px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
             <div style={{ gridColumn: "span 4" }}>
               {(V.badge) ? (<React.Fragment>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "24px" }}>
@@ -294,14 +294,14 @@ class PSEventDetailClass extends React.Component {
         </section>
         {' '}
         {(V.usps && V.usps.length) ? (
-        <section style={{ background: "#F5EFE6", padding: "80px 0 96px" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 80px) 0 clamp(46px, 8vw, 96px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "32px" }}>Mogelijkheden</div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 40px)" }}>
               {V.usps.map((u, i) => (
                 <div key={i} style={{ borderTop: "2px solid #5C1A1B", paddingTop: "20px" }}>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", color: "#5C1A1B", marginBottom: "12px" }}>{u.n}</div>
-                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: "30px", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
+                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: "clamp(21px, 4.2vw, 30px)", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
                   <p style={{ margin: "0", color: "rgba(42,42,42,0.72)", lineHeight: "1.7", fontSize: "15px", textWrap: "pretty" }}>{u.d}</p>
                 </div>
               ))}
@@ -309,10 +309,10 @@ class PSEventDetailClass extends React.Component {
           </div>
         </section>
         ) : null}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "80px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 80px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
             <div>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "60px", lineHeight: "0.9", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0" }}>
                 {V.ctaTitle}
               </h2>
               {' '}
@@ -342,20 +342,20 @@ class PSFooterClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <footer style={{ background: "#2A2A2A", color: "#F5EFE6", fontFamily: "'DM Sans',sans-serif" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "96px 40px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "clamp(46px, 8vw, 96px) clamp(20px, 5vw, 40px)" }}>
           <img src="images/logo.webp" alt="Pompstation" style={{ height: "36px", width: "auto", marginBottom: "56px", opacity: "0.9" }} />
           {' '}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "40px", alignItems: "flex-end" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 40px)", alignItems: "flex-end" }}>
             <div style={{ gridColumn: "span 7" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
                 Reserveren of even bellen?
               </div>
               {' '}
-              <Hov as="a" href="tel:+31202279885" style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", display: "block", color: "#F5EFE6", fontSize: "96px", lineHeight: "0.88", transition: "color 0.2s ease" }} styleHover={{ color: "rgba(245,239,230,0.8)" }}>
+              <Hov as="a" href="tel:+31202279885" style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", display: "block", color: "#F5EFE6", fontSize: "clamp(44px, 11vw, 96px)", lineHeight: "0.88", transition: "color 0.2s ease" }} styleHover={{ color: "rgba(245,239,230,0.8)" }}>
                 +31 20 227 9885
               </Hov>
               {' '}
-              <Hov as="a" href="mailto:info@pompstation.nu" style={{ marginTop: "16px", display: "inline-block", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", fontStyle: "italic", color: "rgba(245,239,230,0.85)", transition: "color 0.2s ease" }} styleHover={{ color: "#F5EFE6" }}>
+              <Hov as="a" href="mailto:info@pompstation.nu" style={{ marginTop: "16px", display: "inline-block", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", fontStyle: "italic", color: "rgba(245,239,230,0.85)", transition: "color 0.2s ease" }} styleHover={{ color: "#F5EFE6" }}>
                 info@pompstation.nu
               </Hov>
             </div>
@@ -384,7 +384,7 @@ class PSFooterClass extends React.Component {
         </div>
         {' '}
         <div style={{ borderTop: "1px solid rgba(245,239,230,0.15)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px 40px", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 24px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px clamp(20px, 5vw, 40px)", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 24px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace" }}>
             <span style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)" }}>Afhuren in Amsterdam</span>
             <Hov as="a" href="bedrijfsfeest-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Bedrijfsfeest Amsterdam</Hov>
             <Hov as="a" href="bedrijfsborrel-amsterdam.html" style={{ color: "rgba(245,239,230,0.55)" }} styleHover={{ color: "#F5EFE6" }}>Bedrijfsborrel Amsterdam</Hov>
@@ -397,7 +397,7 @@ class PSFooterClass extends React.Component {
           </div>
         </div>
         <div style={{ borderTop: "1px solid rgba(245,239,230,0.15)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 40px", display: "flex", justifyContent: "space-between", gap: "16px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace", color: "rgba(245,239,230,0.55)", flexWrap: "wrap" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px clamp(20px, 5vw, 40px)", display: "flex", justifyContent: "space-between", gap: "16px", fontSize: "12px", fontFamily: "'JetBrains Mono',monospace", color: "rgba(245,239,230,0.55)", flexWrap: "wrap" }}>
             <div>
               © 2026 Restaurant Pompstation — gevestigd in een monument uit 1912
             </div>
@@ -464,7 +464,7 @@ class PSHeroClass extends React.Component {
         </div>
         {' '}
         <div style={{ position: "absolute", inset: "0", zIndex: "10", display: "flex", alignItems: "flex-end" }}>
-          <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 40px 64px", width: "100%" }}>
+          <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px) clamp(34px, 6.5vw, 64px)", width: "100%" }}>
             {(V.kicker) ? (<React.Fragment>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", color: "rgba(245,239,230,0.75)", fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "20px" }}>
                 <span style={{ width: "32px", height: "1px", background: "rgba(245,239,230,0.4)" }} />
@@ -474,7 +474,7 @@ class PSHeroClass extends React.Component {
               </div>
             </React.Fragment>) : null}
             {' '}
-            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", letterSpacing: "-0.005em", lineHeight: "0.88", textTransform: "uppercase", color: "#F5EFE6", fontSize: "136px", margin: "0" }}>
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", letterSpacing: "-0.005em", lineHeight: "0.88", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(48px, 13vw, 136px)", margin: "0" }}>
               {V.title}{' '}
               <span style={V.accentStyle}>
                 {V.titleAccent}
@@ -524,13 +524,13 @@ class PSLegalClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <div style={{ fontFamily: "'DM Sans',sans-serif" }}>
-        <header style={{ background: "#F5EFE6", padding: "144px 0 64px", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+        <header style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 144px) 0 clamp(34px, 6.5vw, 64px)", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
               {V.kicker}
             </div>
             {' '}
-            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+            <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
               {V.title}
             </h1>
             {' '}
@@ -540,8 +540,8 @@ class PSLegalClass extends React.Component {
           </div>
         </header>
         {' '}
-        <main style={{ background: "#F5EFE6", padding: "80px 0" }}>
-          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+        <main style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 80px) 0" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <p style={{ color: "rgba(42,42,42,0.7)", lineHeight: "1.65", fontSize: "18px", margin: "0 0 64px" }}>
               {V.intro}
             </p>
@@ -549,11 +549,11 @@ class PSLegalClass extends React.Component {
             {(V.sections || []).map((s, $index) => (
               <React.Fragment key={$index}>
                 <section style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", padding: "28px 0", borderTop: "1px solid rgba(42,42,42,0.12)" }}>
-                  <div style={{ gridColumn: "span 2", fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px" }}>
+                  <div style={{ gridColumn: "span 2", fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)" }}>
                     {s.num}
                   </div>
                   <div style={{ gridColumn: "span 10" }}>
-                    <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#2A2A2A", margin: "0 0 12px" }}>
+                    <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#2A2A2A", margin: "0 0 12px" }}>
                       {s.h}
                     </h2>
                     {' '}
@@ -577,16 +577,21 @@ class PSLegalClass extends React.Component {
 
 function PSNav(props) { return <PSNavClass {...props} />; }
 class PSNavClass extends React.Component {
-  state = { scrolled: false, open: null };
+  state = { scrolled: false, open: null, mobile: false, drawer: false };
     componentDidMount() {
       this._onScroll = () => {
         const s = window.scrollY > 40;
         if (s !== this.state.scrolled) this.setState({ scrolled: s });
       };
       window.addEventListener('scroll', this._onScroll, { passive: true });
+      this._mq = window.matchMedia('(max-width: 1100px)');
+      this._onMq = () => this.setState({ mobile: this._mq.matches, drawer: false });
+      this._onMq();
+      this._mq.addEventListener('change', this._onMq);
     }
     componentWillUnmount() {
       if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+      if (this._mq) this._mq.removeEventListener('change', this._onMq);
     }
     renderVals() {
       const forceSolid = this.props.solid === true || this.props.solid === 'true';
@@ -615,7 +620,18 @@ class PSNavClass extends React.Component {
           backdropFilter: solid ? 'blur(8px)' : 'none',
           borderBottom: solid ? '1px solid rgba(42,42,42,0.1)' : '1px solid transparent',
         },
-        logoStyle: { height: '20px', width: 'auto', transition: 'all 0.3s ease', filter: solid ? 'brightness(0)' : 'none' },
+        logoStyle: { height: '20px', width: 'auto', transition: 'all 0.3s ease', filter: (solid || this.state.drawer) ? 'brightness(0)' : 'none' },
+        desktopNavStyle: { display: this.state.mobile ? 'none' : 'flex', alignItems: 'center', gap: '22px', fontSize: '14px', fontFamily: "'DM Sans',sans-serif", flexShrink: 0 },
+        reserveBtnStyle: { display: this.state.mobile ? 'none' : 'inline-block', background: '#5C1A1B', color: '#F5EFE6', padding: '10px 20px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.02em', whiteSpace: 'nowrap', transition: 'background 0.2s ease' },
+        burgerStyle: { display: this.state.mobile ? 'flex' : 'none', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '5px', width: '44px', height: '44px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' },
+        burgerBar1: { display: 'block', width: '22px', height: '2px', background: (solid || this.state.drawer) ? '#2A2A2A' : '#F5EFE6', transition: 'all 0.25s ease', transform: this.state.drawer ? 'translateY(7px) rotate(45deg)' : 'none' },
+        burgerBar2: { display: 'block', width: '22px', height: '2px', background: (solid || this.state.drawer) ? '#2A2A2A' : '#F5EFE6', transition: 'all 0.25s ease', opacity: this.state.drawer ? 0 : 1 },
+        burgerBar3: { display: 'block', width: '22px', height: '2px', background: (solid || this.state.drawer) ? '#2A2A2A' : '#F5EFE6', transition: 'all 0.25s ease', transform: this.state.drawer ? 'translateY(-7px) rotate(-45deg)' : 'none' },
+        toggleDrawer: () => this.setState(st => ({ drawer: !st.drawer })),
+        drawerStyle: { display: this.state.mobile ? 'block' : 'none', maxHeight: this.state.drawer ? 'calc(100vh - 80px)' : '0px', overflowY: this.state.drawer ? 'auto' : 'hidden', background: 'rgba(245,239,230,0.99)', borderTop: this.state.drawer ? '1px solid rgba(42,42,42,0.1)' : 'none', transition: 'max-height 0.3s ease' },
+        drawerLink: { display: 'block', padding: '14px 0', fontSize: '17px', color: '#2A2A2A', borderBottom: '1px solid rgba(42,42,42,0.08)' },
+        drawerSubLink: { display: 'block', padding: '12px 0 12px 14px', fontSize: '15px', color: 'rgba(42,42,42,0.8)', borderBottom: '1px solid rgba(42,42,42,0.06)' },
+        drawerGroupLabel: { padding: '20px 0 8px', fontFamily: "'JetBrains Mono',monospace", fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#5C1A1B' },
         linkMenu: linkBase('menu'),
         linkRuimtes: linkBase('ruimtes'),
         linkAfhuren: linkBase('groepen'),
@@ -639,11 +655,11 @@ class PSNavClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <header style={V.headerStyle}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 40px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "32px" }}>
           <a href="index.html" style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: "0" }} aria-label="Pompstation — home">
             <img src="images/logo.webp" alt="Pompstation" style={V.logoStyle} />
           </a>
-          <nav style={{ display: "flex", alignItems: "center", gap: "22px", fontSize: "14px", fontFamily: "'DM Sans',sans-serif", flexShrink: "0" }}>
+          <nav style={V.desktopNavStyle}>
             <Hov as="a" href="menu.html" style={V.linkMenu} styleHover={{ opacity: "0.6" }}>
               Menu
             </Hov>
@@ -743,9 +759,38 @@ class PSNavClass extends React.Component {
                 EN
               </span>
             </div>
-            <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "10px 20px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+            <Hov as="a" href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={V.reserveBtnStyle} styleHover={{ background: "#3F0F10" }}>
               Reserveer een tafel
             </Hov>
+            <button type="button" aria-label="Menu" style={V.burgerStyle} onClick={V.toggleDrawer}>
+              <span style={V.burgerBar1} />
+              <span style={V.burgerBar2} />
+              <span style={V.burgerBar3} />
+            </button>
+          </div>
+        </div>
+        <div style={V.drawerStyle}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "8px 20px 28px", gap: "2px" }}>
+            <a href="menu.html" style={V.drawerLink}>Menu</a>
+            <div style={V.drawerGroupLabel}>Ruimtes</div>
+            <a href="ruimte-restaurant.html" style={V.drawerSubLink}>Het Restaurant</a>
+            <a href="ruimte-vide.html" style={V.drawerSubLink}>De Vide</a>
+            <a href="ruimte-terras.html" style={V.drawerSubLink}>Het Terras</a>
+            <a href="ruimte-exclusief.html" style={V.drawerSubLink}>Volledig Exclusief</a>
+            <div style={V.drawerGroupLabel}>Afhuren &amp; groepen</div>
+            <a href="groepen.html" style={V.drawerSubLink}>Overzicht afhuren</a>
+            <a href="groepsdiner.html" style={V.drawerSubLink}>Groepsdiner</a>
+            <a href="groepslunch.html" style={V.drawerSubLink}>Groepslunch</a>
+            <a href="bedrijfsborrel.html" style={V.drawerSubLink}>Bedrijfsborrel</a>
+            <a href="bedrijfsdiner.html" style={V.drawerSubLink}>Bedrijfsdiner</a>
+            <a href="bedrijfsfeest.html" style={V.drawerSubLink}>Bedrijfsfeest</a>
+            <a href="vergadering.html" style={V.drawerSubLink}>Vergadering</a>
+            <a href="bruiloft.html" style={V.drawerSubLink}>Bruiloft</a>
+            <a href="agenda.html" style={V.drawerLink}>Live muziek</a>
+            <a href="verhaal.html" style={V.drawerLink}>Over ons</a>
+            <a href="faq.html" style={V.drawerLink}>FAQ</a>
+            <a href="contact.html" style={V.drawerLink}>Contact</a>
+            <a href="https://www.pompstation.nu/" target="_blank" rel="noopener" style={{ marginTop: "16px", background: "#5C1A1B", color: "#F5EFE6", padding: "16px 20px", textAlign: "center", fontSize: "15px", fontWeight: "500" }}>Reserveer een tafel</a>
           </div>
         </div>
       </header>
@@ -760,21 +805,21 @@ class PSSfeerClass extends React.Component {
       const bgMap = { cream: '#F5EFE6', 'cream-warm': '#EFE7D9' };
       return {
         lead: p.lead || 'Kaarslicht onder een plafond van twaalf meter, jazz die door de hal galmt en een keuken die er staat. Een eerste indruk van een avond bij Pompstation.',
-        sectionStyle: { background: bgMap[p.bg] || '#EFE7D9', padding: '128px 0', borderBottom: '1px solid rgba(42,42,42,0.1)' },
+        sectionStyle: { background: bgMap[p.bg] || '#EFE7D9', padding: 'clamp(46px, 8vw, 128px) 0', borderBottom: '1px solid rgba(42,42,42,0.1)' },
       };
     }
   render() {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <section style={V.sectionStyle}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "64px", flexWrap: "wrap" }}>
             <div style={{ maxWidth: "672px" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                 Sfeer
               </div>
               {' '}
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "96px", lineHeight: "0.88", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(44px, 11vw, 96px)", lineHeight: "0.88", margin: "0" }}>
                 Proef de
                 <br />
                 {' '}
@@ -850,8 +895,8 @@ function PSSeoLanding(props) {
   return (
     <div style={{ background: "#F5EFE6" }}>
       <PSHero kicker={c.kicker} title={c.title} titleAccent={c.titleAccent} lead={c.lead} image={c.image} position={c.position} cta1Label={c.cta1Label} cta1Href={c.cta1Href} cta2Label={c.cta2Label} cta2Href={c.cta2Href} heightVh="62" minHeight="480" />
-      <section style={{ background: "#F5EFE6", padding: "96px 0 0" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px" }}>
+      <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0 0" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
           <div style={{ gridColumn: "span 4" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>Details</div>
             <ul style={{ listStyle: "none", margin: "0", padding: "0", display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -865,7 +910,7 @@ function PSSeoLanding(props) {
             <a href="/offerte" style={{ marginTop: "32px", display: "inline-flex", alignItems: "center", gap: "12px", background: "#5C1A1B", color: "#F5EFE6", padding: "16px 28px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.02em" }}>Offerte aanvragen →</a>
           </div>
           <div style={{ gridColumn: "span 8" }}>
-            <p style={{ margin: "0", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "28px", lineHeight: "1.4", color: "#2A2A2A" }}>{c.introSerif}</p>
+            <p style={{ margin: "0", fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 28px)", lineHeight: "1.4", color: "#2A2A2A" }}>{c.introSerif}</p>
             <p style={{ margin: "24px 0 0", color: "rgba(42,42,42,0.75)", lineHeight: "1.75", fontSize: "17px", textWrap: "pretty" }}>{c.introBody}</p>
             <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
               {(c.photos || []).map((ph, i) => (
@@ -875,14 +920,14 @@ function PSSeoLanding(props) {
           </div>
         </div>
       </section>
-      <section style={{ background: "#F5EFE6", padding: "96px 0 48px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+      <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0 clamp(20px, 5vw, 48px)" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
           <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "32px" }}>Mogelijkheden</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 40px)" }}>
           {c.usps.map((u, i) => (
             <div key={i} style={{ borderTop: "2px solid #5C1A1B", paddingTop: "20px" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", color: "#5C1A1B", marginBottom: "12px" }}>{u.n}</div>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "30px", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "clamp(21px, 4.2vw, 30px)", lineHeight: "0.95", margin: "0 0 12px", color: "#2A2A2A" }}>{u.t}</h2>
               <p style={{ margin: "0", color: "rgba(42,42,42,0.72)", lineHeight: "1.7", fontSize: "15px", textWrap: "pretty" }}>{u.d}</p>
             </div>
           ))}
@@ -890,8 +935,8 @@ function PSSeoLanding(props) {
         </div>
       </section>
       {c.sections.map((s, i) => (
-        <section key={i} style={{ background: "#F5EFE6", padding: "48px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "64px", alignItems: "start" }}>
+        <section key={i} style={{ background: "#F5EFE6", padding: "clamp(20px, 5vw, 48px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(34px, 6.5vw, 64px)", alignItems: "start" }}>
             <div style={{ gridColumn: "span 5" }}>
               <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#2A2A2A" }}>
                 <img src={s.image} alt={s.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -900,7 +945,7 @@ function PSSeoLanding(props) {
             </div>
             <div style={{ gridColumn: "span 7" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>{s.kicker}</div>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "56px", lineHeight: "0.9", margin: "0 0 32px" }}>{s.title}</h2>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 56px)", lineHeight: "0.9", margin: "0 0 32px" }}>{s.title}</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 {s.paras.map((p, j) => (
                   <p key={j} style={{ margin: "0", color: "rgba(42,42,42,0.78)", lineHeight: "1.75", textWrap: "pretty" }}>{p}</p>
@@ -911,25 +956,25 @@ function PSSeoLanding(props) {
         </section>
       ))}
       <div style={{ marginTop: "48px" }}><PSSfeer bg="cream-warm" /></div>
-      <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "96px 0" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
+      <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
           <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.7)", marginBottom: "12px" }}>Veelgestelde vragen</div>
-          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "56px", lineHeight: "0.9", margin: "0 0 48px" }}>{c.faqTitle}</h2>
+          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 56px)", lineHeight: "0.9", margin: "0 0 48px" }}>{c.faqTitle}</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
             {c.faq.map((f, i) => (
               <div key={i}>
-                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "28px", color: "#F5EFE6", margin: "0 0 10px", lineHeight: "1.2" }}>{f.q}</h3>
+                <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontWeight: "400", fontSize: "clamp(21px, 4.2vw, 28px)", color: "#F5EFE6", margin: "0 0 10px", lineHeight: "1.2" }}>{f.q}</h3>
                 <p style={{ margin: "0", color: "rgba(245,239,230,0.8)", lineHeight: "1.75", textWrap: "pretty" }}>{f.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section style={{ background: "#EFE7D9", padding: "96px 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
-          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "40px", lineHeight: "0.95", margin: "0 0 8px" }}>Goed bereikbaar in Amsterdam-Oost</h2>
+      <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 96px) 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+          <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 40px)", lineHeight: "0.95", margin: "0 0 8px" }}>Goed bereikbaar in Amsterdam-Oost</h2>
           <div style={{ width: "48px", height: "2px", background: "#5C1A1B", marginBottom: "28px" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 56px", fontSize: "15px", lineHeight: "1.8", color: "rgba(42,42,42,0.72)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px clamp(34px, 6.5vw, 56px)", fontSize: "15px", lineHeight: "1.8", color: "rgba(42,42,42,0.72)" }}>
             <p style={{ margin: "0", textWrap: "pretty" }}>Bar Restaurant Pompstation vindt u aan de Zeeburgerdijk 52, 1094 AE Amsterdam, in de Indische Buurt in Amsterdam-Oost. Tram 14, 19 en 25 stoppen bij halte Zeeburgerdijk, direct voor de deur. Vanaf Amsterdam Centraal bent u met een taxi binnen tien minuten bij ons; vanaf Muiderpoortstation bent u er te voet of met de tram.</p>
             <p style={{ margin: "0", textWrap: "pretty" }}>Met de auto rijdt u vanaf de ring A10 in enkele minuten naar het pand. Parkeren kan in een parkeergarage in de omgeving of in de omliggende straten: aan de Zeeburgerdijk, in de Borneostraat en in de Timorstraat is vaak plek — tarieven via de EasyPark-app. Voor groepen regelen wij in overleg een bus of groepsvervoer; aankomst per boot is mogelijk, met circa vijf minuten lopen vanaf de aanlegplaats.</p>
             <p style={{ margin: "0", textWrap: "pretty" }}>Pompstation is woensdag en donderdag open van 17:00 tot 00:00 uur en vrijdag en zaterdag van 17:00 tot 01:00 uur, met live muziek op donderdag-, vrijdag- en zaterdagavond. Voor groepen en events zijn afwijkende dagen en tijden mogelijk, ook overdag en voor lunch.</p>
@@ -937,26 +982,26 @@ function PSSeoLanding(props) {
           </div>
         </div>
       </section>
-      <section style={{ background: "#F5EFE6", padding: "64px 0 0" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "12px 32px" }}>
+      <section style={{ background: "#F5EFE6", padding: "clamp(34px, 6.5vw, 64px) 0 0" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "12px 32px" }}>
           <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)" }}>Verder lezen</span>
           {c.related.map((r, i) => (
             <Hov key={i} as="a" href={r.href} style={{ color: "#5C1A1B", fontWeight: "500", borderBottom: "1px solid rgba(92,26,27,0.3)", paddingBottom: "2px" }} styleHover={{ borderBottomColor: "#5C1A1B" }}>{r.label}</Hov>
           ))}
         </div>
       </section>
-      <section style={{ background: "#F5EFE6", padding: "64px 0 96px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+      <section style={{ background: "#F5EFE6", padding: "clamp(34px, 6.5vw, 64px) 0 clamp(46px, 8vw, 96px)" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-            <Hov as="a" href="offerte.html" style={{ display: "block", background: "#5C1A1B", color: "#F5EFE6", padding: "40px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+            <Hov as="a" href="offerte.html" style={{ display: "block", background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(20px, 5vw, 40px)", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.7)", marginBottom: "12px" }}>Offerte op maat</div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "48px", lineHeight: "0.9" }}>Vraag een offerte aan</div>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "0.9" }}>Vraag een offerte aan</div>
               <div style={{ marginTop: "16px", color: "rgba(245,239,230,0.75)" }}>{c.ctaLead}</div>
               <div style={{ marginTop: "24px", display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5EFE6", fontWeight: "500" }}>Naar het formulier <span>→</span></div>
             </Hov>
-            <Hov as="a" href="tel:+31202279885" style={{ display: "block", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.15)", padding: "40px", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "#5C1A1B" }}>
+            <Hov as="a" href="tel:+31202279885" style={{ display: "block", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.15)", padding: "clamp(20px, 5vw, 40px)", transition: "border-color 0.2s ease" }} styleHover={{ borderColor: "#5C1A1B" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>Liever even bellen?</div>
-              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "48px", lineHeight: "0.9" }}>020 227 9885</div>
+              <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "0.9" }}>020 227 9885</div>
               <div style={{ marginTop: "16px", color: "rgba(42,42,42,0.7)" }}>Onze eventmanager neemt de mogelijkheden graag met u door.</div>
               <div style={{ marginTop: "24px", display: "inline-flex", alignItems: "center", gap: "8px", color: "#5C1A1B", fontWeight: "500" }}>Bel ons <span>→</span></div>
             </Hov>

@@ -8,7 +8,7 @@ class PompstationAgendaClass extends React.Component {
         color: muted ? 'rgba(42,42,42,0.4)' : '#5C1A1B',
       });
       const actStyle = (muted) => ({
-        fontFamily: "'Instrument Serif',Georgia,serif", fontSize: '30px',
+        fontFamily: "'Instrument Serif',Georgia,serif", fontSize: 'clamp(21px, 4.2vw, 30px)',
         color: muted ? 'rgba(42,42,42,0.45)' : '#2A2A2A',
       });
       const row = (day, date, act, sub, format, muted) => ({
@@ -42,7 +42,7 @@ class PompstationAgendaClass extends React.Component {
         {' '}
         {' '}
         <div style={{ background: "rgba(168,138,90,0.15)", borderBottom: "1px solid rgba(168,138,90,0.3)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "16px 40px", display: "flex", alignItems: "center", gap: "16px" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "16px clamp(20px, 5vw, 40px)", display: "flex", alignItems: "center", gap: "16px" }}>
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#A88A5A", flexShrink: "0" }}>
               Speelschema
             </span>
@@ -56,15 +56,15 @@ class PompstationAgendaClass extends React.Component {
         </div>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "56px", flexWrap: "wrap" }}>
               <div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                   Programma september
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
                   Op het
                   <br />
                   <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -117,15 +117,15 @@ class PompstationAgendaClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "32px", marginBottom: "64px" }}>
               <div style={{ gridColumn: "span 5" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#A88A5A", marginBottom: "16px" }}>
                   Wat je hoort
                 </div>
                 {' '}
-                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+                <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
                   Het geluid
                   <br />
                   <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
@@ -142,7 +142,7 @@ class PompstationAgendaClass extends React.Component {
             {' '}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1px", background: "rgba(245,239,230,0.1)" }}>
               <div style={{ background: "#5C1A1B", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   01
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
@@ -153,7 +153,7 @@ class PompstationAgendaClass extends React.Component {
                 </p>
               </div>
               <div style={{ background: "#5C1A1B", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   02
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
@@ -164,7 +164,7 @@ class PompstationAgendaClass extends React.Component {
                 </p>
               </div>
               <div style={{ background: "#5C1A1B", padding: "32px" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "30px", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#A88A5A", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                   03
                 </div>
                 <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#F5EFE6", margin: "0" }}>
@@ -179,16 +179,16 @@ class PompstationAgendaClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
             <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", background: "#2A2A2A" }}>
               <img src="images/dj-vinyl.jpg" alt="DJ en vinyl bij Pompstation" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
-            <div style={{ background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", padding: "48px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", padding: "clamp(20px, 5vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                 Privé & events
               </div>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "48px", lineHeight: "0.95", margin: "0 0 16px" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "0.95", margin: "0 0 16px" }}>
                 Eigen line-up voor uw feest
               </h2>
               <p style={{ color: "rgba(42,42,42,0.75)", fontSize: "18px", lineHeight: "1.65", margin: "0" }}>
@@ -207,9 +207,9 @@ class PompstationAgendaClass extends React.Component {
         <PSSfeer bg="cream-warm" lead="Volle zaal, een band op het podium en de akoestiek van twaalf meter hoog. Zo klinkt een avond bij Pompstation." />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
               Dineren met live jazz
             </h2>
             {' '}

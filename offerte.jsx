@@ -33,18 +33,18 @@ class PompstationOfferteClass extends React.Component {
         <PSNav current="groepen" solid="true" />
         {' '}
         {' '}
-        <section style={{ position: "relative", color: "#F5EFE6", padding: "144px 0 80px", borderBottom: "1px solid rgba(245,239,230,0.1)", overflow: "hidden" }}>
+        <section style={{ position: "relative", color: "#F5EFE6", padding: "clamp(46px, 8vw, 144px) 0 clamp(46px, 8vw, 80px)", borderBottom: "1px solid rgba(245,239,230,0.1)", overflow: "hidden" }}>
           <img src="images/event-staand.jpg" alt="Evenement Pompstation" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
           {' '}
           <div style={{ position: "absolute", inset: "0", background: "rgba(0,0,0,0.72)" }} />
           {' '}
-          <div style={{ position: "relative", zIndex: "10", maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", flexWrap: "wrap" }}>
+          <div style={{ position: "relative", zIndex: "10", maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", flexWrap: "wrap" }}>
             <div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "16px" }}>
                 Offerte aanvragen · groepen & events
               </div>
               {' '}
-              <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "120px", lineHeight: "0.9", margin: "0" }}>
+              <h1 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(48px, 13vw, 120px)", lineHeight: "0.9", margin: "0" }}>
                 Offerte
                 <br />
                 <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "rgba(245,239,230,0.8)" }}>
@@ -63,10 +63,10 @@ class PompstationOfferteClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "64px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(34px, 6.5vw, 64px)" }}>
             <div style={{ gridColumn: "span 4" }}>
-              <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "40px" }}>
+              <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(20px, 5vw, 40px)" }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "24px" }}>
                   Direct contact
                 </div>
@@ -150,7 +150,7 @@ class PompstationOfferteClass extends React.Component {
             </div>
             <div style={{ gridColumn: "span 8" }}>
               {(V.submitted) ? (<React.Fragment>
-                <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "64px 48px", textAlign: "center" }}>
+                <div style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(34px, 6.5vw, 64px) clamp(20px, 5vw, 48px)", textAlign: "center" }}>
                   <div style={{ width: "64px", height: "64px", margin: "0 auto 32px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">
                       <path d="M5 12 L 10 17 L 19 7" />
@@ -161,7 +161,7 @@ class PompstationOfferteClass extends React.Component {
                     Aanvraag ontvangen
                   </div>
                   {' '}
-                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "56px", lineHeight: "0.9", margin: "0" }}>
+                  <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", fontSize: "clamp(30px, 6.5vw, 56px)", lineHeight: "0.9", margin: "0" }}>
                     Dank u.
                   </h2>
                   {' '}
@@ -210,7 +210,7 @@ class PompstationOfferteClass extends React.Component {
                       <label style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(42,42,42,0.55)" }}>
                         Aantal personen
                       </label>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "36px", color: "#5C1A1B" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", fontSize: "clamp(25px, 5.2vw, 36px)", color: "#5C1A1B" }}>
                         {V.people}
                       </div>
                     </div>
@@ -288,7 +288,7 @@ class PompstationOfferteClass extends React.Component {
                     </label>
                   </div>
                   <div>
-                    <Hov as="button" type="submit" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "20px 40px", fontSize: "16px", fontWeight: "500", letterSpacing: "0.02em", border: "none", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "12px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+                    <Hov as="button" type="submit" style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "20px clamp(20px, 5vw, 40px)", fontSize: "16px", fontWeight: "500", letterSpacing: "0.02em", border: "none", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "12px", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
                       <span>
                         Verstuur aanvraag
                       </span>

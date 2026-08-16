@@ -37,19 +37,19 @@ class PompstationBedrijfsdinerClass extends React.Component {
         {' '}
         <PSEventDetail config={V.cfg} />
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderTop: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>Het menu</div>
             <div>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "32px", flexWrap: "wrap" }}>
             <div>
-              <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "40px", lineHeight: "0.95", margin: "0 0 2px" }}>De groepsmenukaart</h3>
+              <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 40px)", lineHeight: "0.95", margin: "0 0 2px" }}>De groepsmenukaart</h3>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)" }}>The group menu</div>
             </div>
             <Hov as="a" href="assets/pompstation-groepsmenu.pdf" target="_blank" rel="noopener" download="Pompstation-groepsmenu.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Download groepsmenu PDF</Hov>
           </div>
           <p style={{ margin: "0 0 32px", maxWidth: "640px", color: "rgba(42,42,42,0.7)", lineHeight: "1.65" }}>Per gang kiest iedere gast uit onderstaande gerechten. Bij het viergangenmenu komt er een tussengerecht bij, bij vijf gangen een extra proefgang.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "48px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
             <div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "12px" }}>Voorgerecht</div>
               

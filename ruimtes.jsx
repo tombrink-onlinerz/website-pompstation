@@ -19,14 +19,14 @@ class PompstationRuimtesClass extends React.Component {
         <PSHero kicker="Onze locatie" title="Ruimtes" titleAccent="& sfeer" lead="Van een tafel voor twee tot een gala voor driehonderd — Pompstation biedt een ruimte voor elk gezelschap." image="images/restaurant-zaal.jpg" position="center 20%" heightVh="62" minHeight="440" />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "112px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "48px", alignItems: "flex-start" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 112px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "clamp(20px, 5vw, 48px)", alignItems: "flex-start" }}>
             <div style={{ gridColumn: "span 5" }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
                 Het gebouw
               </div>
               {' '}
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0" }}>
                 Een monument
                 <br />
                 <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -36,7 +36,7 @@ class PompstationRuimtesClass extends React.Component {
               {' '}
               <div style={{ marginTop: "32px", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "16px" }}>
                 <div>
-                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "36px" }}>
+                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)" }}>
                     12m
                   </div>
                   <div style={{ marginTop: "4px", fontSize: "11px", color: "rgba(42,42,42,0.6)", fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: "0.1em" }}>
@@ -44,7 +44,7 @@ class PompstationRuimtesClass extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "36px" }}>
+                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)" }}>
                     360
                   </div>
                   <div style={{ marginTop: "4px", fontSize: "11px", color: "rgba(42,42,42,0.6)", fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: "0.1em" }}>
@@ -52,7 +52,7 @@ class PompstationRuimtesClass extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "36px" }}>
+                  <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)" }}>
                     4
                   </div>
                   <div style={{ marginTop: "4px", fontSize: "11px", color: "rgba(42,42,42,0.6)", fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: "0.1em" }}>
@@ -74,9 +74,9 @@ class PompstationRuimtesClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "112px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 64px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 112px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 64px" }}>
               Vier ruimtes,
               <br />
               <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -92,7 +92,7 @@ class PompstationRuimtesClass extends React.Component {
                       <img src={r.img} alt={r.naam} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: r.pos }} />
                     </div>
                     <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: "1" }}>
-                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "36px", lineHeight: "1" }}>
+                      <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(25px, 5.2vw, 36px)", lineHeight: "1" }}>
                         {r.cap}
                       </div>
                       <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(42,42,42,0.5)", margin: "2px 0 16px" }}>

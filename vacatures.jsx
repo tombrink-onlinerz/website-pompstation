@@ -29,13 +29,13 @@ class PompstationVacaturesClass extends React.Component {
         <PSHero kicker="Werken bij Pompstation" title="Kom in ons" titleAccent="team" lead="Houd je van gastvrijheid, goed eten en live muziek? We zijn doorlopend op zoek naar koks, bediening en bartenders die van een avondje uit een belevenis maken." image="images/chef-kitchen.jpg" position="center 35%" heightVh="62" minHeight="440" />
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "24px" }}>
               Wie we zoeken
             </div>
             {' '}
-            <p style={{ fontFamily: "'Instrument Serif',Georgia,serif", color: "#2A2A2A", fontSize: "48px", lineHeight: "1.1", margin: "0" }}>
+            <p style={{ fontFamily: "'Instrument Serif',Georgia,serif", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 48px)", lineHeight: "1.1", margin: "0" }}>
               Pompstation draait op mensen die{' '}
               <em style={{ color: "#5C1A1B" }}>
                 gastvrijheid
@@ -50,10 +50,10 @@ class PompstationVacaturesClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#F5EFE6", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "40px", flexWrap: "wrap" }}>
-              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+              <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
                 Open
                 <br />
                 <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: "italic", textTransform: "none", fontWeight: "400", color: "#5C1A1B" }}>
@@ -70,7 +70,7 @@ class PompstationVacaturesClass extends React.Component {
                 <React.Fragment key={$index}>
                   <Hov as="a" href={v.mail} style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", alignItems: "baseline", padding: "28px 16px", borderTop: "1px solid rgba(42,42,42,0.15)", margin: "0 -16px", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(239,231,217,0.6)" }}>
                     <div style={{ gridColumn: "span 7" }}>
-                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "30px", color: "#2A2A2A", margin: "0" }}>
+                      <h3 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(21px, 4.2vw, 30px)", color: "#2A2A2A", margin: "0" }}>
                         {v.role}
                       </h3>
                       {' '}
@@ -103,13 +103,13 @@ class PompstationVacaturesClass extends React.Component {
         </section>
         {' '}
         {' '}
-        <section style={{ background: "#EFE7D9", padding: "96px 0" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+        <section style={{ background: "#EFE7D9", padding: "clamp(46px, 8vw, 96px) 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
               Wat wij bieden
             </div>
             {' '}
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "60px", lineHeight: "0.9", margin: "0 0 56px" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(30px, 6.5vw, 60px)", lineHeight: "0.9", margin: "0 0 56px" }}>
               Meer dan een baantje
             </h2>
             {' '}
@@ -117,7 +117,7 @@ class PompstationVacaturesClass extends React.Component {
               {(V.perks || []).map((p, $index) => (
                 <React.Fragment key={$index}>
                   <div style={{ background: "#F5EFE6", padding: "32px" }}>
-                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "30px", marginBottom: "12px" }}>
+                    <div style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(21px, 4.2vw, 30px)", marginBottom: "12px" }}>
                       {p.num}
                     </div>
                     {' '}
@@ -138,13 +138,13 @@ class PompstationVacaturesClass extends React.Component {
         <PSSfeer bg="cream" lead="Dit is waar je zou werken — de hal, de bar, het podium en de tuin." />
         {' '}
         {' '}
-        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "112px 0" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
+        <section style={{ background: "#5C1A1B", color: "#F5EFE6", padding: "clamp(46px, 8vw, 112px) 0" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", textAlign: "center" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,239,230,0.6)", marginBottom: "20px" }}>
               Solliciteren
             </div>
             {' '}
-            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "72px", lineHeight: "0.9", margin: "0" }}>
+            <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
               Stuur ons je verhaal
             </h2>
             {' '}
