@@ -15,8 +15,18 @@ class PompstationAgendaClass extends React.Component {
         day, date, act, sub, format, time: muted ? '—' : '20:00–22:30',
         boxStyle: boxStyle(!!muted), actStyle: actStyle(!!muted),
       });
+      const augustus = [
+        row('Do', '20', 'Theo Naishtat', 'Duo met gitaar en saxofoon — een avond intieme jazz, bossa nova en soulvolle melodieën.', 'Duo'),
+        row('Vr', '21', 'Sven Schuster', 'Trio rond bassist, componist en arrangeur Sven Schuster — instrumentale swing jazz. Speelde met Jim Hall, Mel Lewis, Han Bennink en John Engels.', 'Trio'),
+        row('Za', '22', 'Theo Naishtat', 'Trio van de Argentijnse gitarist uit Buenos Aires, nu actief in de Amsterdamse jazzscene — instrumentale jazz.', 'Trio'),
+        row('Do', '27', 'Theo Naishtat', 'Duo met gitaar en contrabas — een warme mix van swing, jazzstandards en melodische improvisaties.', 'Duo'),
+        row('Vr', '28', 'Marcos Baggiani', 'Instrumentale jazz met Latijns-Amerikaanse invloeden: folk, funk, tango en free jazz uit Buenos Aires.', ''),
+        row('Za', '29', 'Philip Moss', 'Trio van de Londense gitarist — bluesy, soulvolle jazz met ruimte voor improvisatie.', 'Trio'),
+      ];
       return {
-        agenda: [
+        months: [
+          { label: 'Augustus', year: '2026', rows: augustus },
+          { label: 'September', year: '2026', rows: [
           row('Do', '03', 'Theo Naishtat', 'Duo met gitaar en saxofoon, door klassiek jazzrepertoire met soulvolle melodieën.', 'Duo'),
           row('Vr', '04', 'Carson Tanner', 'Saxofoontrio met traditionele jazz en swing, vol energie en soul.', 'Trio'),
           row('Za', '05', 'Seb Overell', 'Trio onder leiding van contrabas, met gitaar en drums: klassieke New Yorkse jazz met energieke swing.', 'Trio'),
@@ -29,6 +39,7 @@ class PompstationAgendaClass extends React.Component {
           row('Do', '24', 'Theo Naishtat', 'Duo met gitaar en contrabas, met intieme jazzballads en zachte melodieën.', 'Duo'),
           row('Vr', '25', 'Olivier Kayl', 'Drummer die zijn trio met gitaar en contrabas leidt door een energieke avond jazz, blues en improvisatie.', 'Trio'),
           row('Za', '26', 'Eddy Nielsen', 'Contrabastrio met gitaar en drums: groove, swing en de sound van New Yorkse jazz.', 'Trio'),
+          ] },
         ],
       };
     }
@@ -61,7 +72,7 @@ class PompstationAgendaClass extends React.Component {
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "56px", flexWrap: "wrap" }}>
               <div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
-                  Programma september
+                  Programma augustus & september
                 </div>
                 {' '}
                 <h2 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(38px, 9vw, 72px)", lineHeight: "0.9", margin: "0" }}>
@@ -78,7 +89,17 @@ class PompstationAgendaClass extends React.Component {
             </div>
             {' '}
             <div>
-              {(V.agenda || []).map((a, $index) => (
+              {(V.months || []).map((m, $mi) => (
+                <div key={$mi} style={{ marginBottom: "56px" }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "16px", paddingBottom: "12px", borderBottom: "2px solid #5C1A1B" }}>
+                    <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#5C1A1B", fontSize: "clamp(28px, 5.5vw, 44px)", lineHeight: "1", margin: 0 }}>
+                      {m.label}
+                    </h3>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "12px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.5)" }}>
+                      {m.year}
+                    </span>
+                  </div>
+                  {(m.rows || []).map((a, $index) => (
                 <React.Fragment key={$index}>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)", gap: "24px", alignItems: "center", padding: "24px 0", borderTop: "1px solid rgba(42,42,42,0.15)" }}>
                     <div style={{ gridColumn: "span 1" }}>
@@ -107,6 +128,8 @@ class PompstationAgendaClass extends React.Component {
                     </div>
                   </div>
                 </React.Fragment>
+                  ))}
+                </div>
               ))}
             </div>
             {' '}
