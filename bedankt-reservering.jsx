@@ -5,7 +5,7 @@ class PompstationBedanktReserveringClass extends React.Component {
     return (
       <div style={{ fontFamily: "'DM Sans',system-ui,sans-serif", minHeight: "100vh", background: "#5C1A1B", display: "flex", flexDirection: "column" }}>
         <PSNav solid="true" />
-        <div style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(46px, 8vw, 160px) 20px" }}>
+        <div style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", padding: "calc(80px + clamp(46px, 8vw, 80px)) 20px clamp(46px, 8vw, 160px)" }}>
           <div style={{ textAlign: "center", color: "#F5EFE6", maxWidth: "576px", margin: "0 auto" }}>
             <div style={{ width: "64px", height: "64px", margin: "0 auto 40px", border: "1px solid rgba(245,239,230,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5EFE6" strokeWidth="1.5">

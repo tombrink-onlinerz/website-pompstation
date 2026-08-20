@@ -13,7 +13,7 @@ class PompstationContactClass extends React.Component {
       return {
         sent: this.state.sent,
         open: !this.state.sent,
-        submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+        submit: (e) => { e.preventDefault(); psSend(e.target, { name: 'Contactformulier', subject: 'Contact via website — ' + s, redirect: 'bedankt-contact.html', extra: { Onderwerp: s } }).catch(() => {}); },
         setSubjReservering: () => this.setState({ subject: 'reservering' }),
         setSubjAfhuren: () => this.setState({ subject: 'afhuren' }),
         setSubjCadeaubon: () => this.setState({ subject: 'cadeaubon' }),

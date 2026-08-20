@@ -5,7 +5,7 @@ class PompstationGroepenClass extends React.Component {
       return {
         brochureDone: this.state.done,
         brochureOpen: !this.state.done,
-        submitBrochure: (e) => { e.preventDefault(); this.setState({ done: true }); },
+        submitBrochure: (e) => { e.preventDefault(); psSend(e.target, { name: 'Brochure groepen & afhuren', subject: 'Brochure-aanvraag groepen & afhuren', redirect: 'bedankt-brochure.html' }).catch(() => {}); },
         options: [
           { title: 'Groepsdiner', sub: 'Vanaf 10 personen', desc: '3, 4 of 5 gangen — vanaf €47 p.p. Keuze uit vlees, vis of vega per gang.', href: 'groepsdiner.html', image: 'images/groepsdiner-overhead.jpg' },
           { title: 'Groepslunch', sub: 'Besloten teamlunch', desc: 'Een verzorgde lunch in monumentale setting. Ideaal voor teamdagen en bijeenkomsten.', href: 'groepslunch.html', image: 'images/terras-groep.jpg' },
@@ -150,7 +150,7 @@ class PompstationGroepenClass extends React.Component {
                 </p>
                 {' '}
                 <p style={{ margin: "12px 0 0", color: "rgba(245,239,230,0.45)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
-                  De brochure wordt naar uw e-mailadres gestuurd.
+                  U kunt de brochure direct downloaden na het versturen.
                 </p>
               </div>
               <div style={{ gridColumn: "6 / span 7" }}>
@@ -161,11 +161,11 @@ class PompstationGroepenClass extends React.Component {
                     </div>
                     {' '}
                     <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(25px, 5.2vw, 40px)", margin: "0" }}>
-                      Check uw inbox
+                      Klaar om te lezen
                     </h3>
                     {' '}
                     <p style={{ margin: "16px 0 0", color: "rgba(245,239,230,0.65)", lineHeight: "1.65" }}>
-                      De brochure is onderweg. We nemen binnenkort contact op.
+                      U kunt de brochure nu downloaden. We nemen binnenkort contact op.
                     </p>
                   </div>
                 </React.Fragment>) : null}

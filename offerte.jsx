@@ -23,7 +23,7 @@ class PompstationOfferteClass extends React.Component {
         rangeStyle: { width: '100%', background: `linear-gradient(to right, #5C1A1B 0%, #5C1A1B ${pct}%, rgba(42,42,42,0.15) ${pct}%, rgba(42,42,42,0.15) 100%)` },
         pick: (e) => this.setState({ type: e.currentTarget.getAttribute('data-v') }),
         setPeople: (e) => this.setState({ people: parseInt(e.target.value) }),
-        submit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+        submit: (e) => { e.preventDefault(); psSend(e.target, { name: 'Offerteaanvraag', subject: 'Offerteaanvraag via website' + (this.state.type ? ' — ' + this.state.type : ''), redirect: 'bedankt-offerte.html', extra: { 'Type gelegenheid': this.state.type || 'niet opgegeven', 'Aantal personen': this.state.people } }).catch(() => {}); },
       };
     }
   render() {
@@ -33,7 +33,7 @@ class PompstationOfferteClass extends React.Component {
         <PSNav current="groepen" solid="true" />
         {' '}
         {' '}
-        <section style={{ position: "relative", color: "#F5EFE6", padding: "clamp(46px, 8vw, 144px) 0 clamp(46px, 8vw, 80px)", borderBottom: "1px solid rgba(245,239,230,0.1)", overflow: "hidden" }}>
+        <section style={{ position: "relative", color: "#F5EFE6", padding: "calc(80px + clamp(46px, 8vw, 64px)) 0 clamp(46px, 8vw, 80px)", borderBottom: "1px solid rgba(245,239,230,0.1)", overflow: "hidden" }}>
           <img src="images/event-staand.jpg" alt="Evenement Pompstation" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
           {' '}
           <div style={{ position: "absolute", inset: "0", background: "rgba(0,0,0,0.72)" }} />

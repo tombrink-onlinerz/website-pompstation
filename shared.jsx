@@ -28,7 +28,7 @@ class PSBrochureClass extends React.Component {
       return {
         done: this.state.done,
         open: !this.state.done,
-        submit: (e) => { e.preventDefault(); this.setState({ done: true }); },
+        submit: (e) => { e.preventDefault(); psSend(e.target, wedding ? { name: 'Wedding brochure', subject: 'Brochure-aanvraag bruiloft', redirect: 'bedankt-brochure.html?type=wedding' } : { name: 'Brochure groepen & afhuren', subject: 'Brochure-aanvraag groepen & afhuren', redirect: 'bedankt-brochure.html' }).catch(() => {}); },
         sectionStyle: { background: wedding ? '#5C1A1B' : '#2A2A2A', color: '#F5EFE6', padding: 'clamp(46px, 8vw, 112px) 0' },
         isCorporate: !wedding,
         heading: wedding ? 'Wedding' : 'Brochure',
@@ -65,7 +65,7 @@ class PSBrochureClass extends React.Component {
               </p>
               {' '}
               <p style={{ margin: "12px 0 0", color: "rgba(245,239,230,0.45)", fontSize: "14px", fontFamily: "'JetBrains Mono',monospace" }}>
-                De brochure wordt naar uw e-mailadres gestuurd.
+                U kunt de brochure direct downloaden na het versturen.
               </p>
             </div>
             <div style={{ gridColumn: "6 / span 7" }}>
@@ -76,11 +76,11 @@ class PSBrochureClass extends React.Component {
                   </div>
                   {' '}
                   <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#F5EFE6", fontSize: "clamp(25px, 5.2vw, 40px)", margin: "0" }}>
-                    Check uw inbox
+                    Klaar om te lezen
                   </h3>
                   {' '}
                   <p style={{ margin: "16px 0 0", color: "rgba(245,239,230,0.65)", lineHeight: "1.65" }}>
-                    De brochure is onderweg. We nemen binnenkort contact op.
+                    U kunt de brochure nu downloaden. We nemen binnenkort contact op.
                   </p>
                 </div>
               </React.Fragment>) : null}
@@ -524,7 +524,7 @@ class PSLegalClass extends React.Component {
     const V = this.renderVals ? this.renderVals() : {};
     return (
       <div style={{ fontFamily: "'DM Sans',sans-serif" }}>
-        <header style={{ background: "#F5EFE6", padding: "clamp(46px, 8vw, 144px) 0 clamp(34px, 6.5vw, 64px)", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
+        <header style={{ background: "#F5EFE6", padding: "calc(80px + clamp(46px, 8vw, 64px)) 0 clamp(34px, 6.5vw, 64px)", borderBottom: "1px solid rgba(42,42,42,0.1)" }}>
           <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#5C1A1B", marginBottom: "16px" }}>
               {V.kicker}
