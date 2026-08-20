@@ -27,6 +27,8 @@
         if (href.indexOf("mailto:") === 0 || href.indexOf("tel:") === 0) return;
         if (href.indexOf("pompstation.nu") !== -1) return;
         if (href.indexOf("lang=") !== -1) return;
+        if (a.hasAttribute("download")) return;
+        if (/\.(pdf|png|jpe?g|webp|svg|zip|ics)(\?|$)/i.test(href)) return;
         try {
           var url = new URL(href, location.href);
           if (url.origin !== location.origin) return;

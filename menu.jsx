@@ -169,7 +169,7 @@ class PompstationMenuClass extends React.Component {
               <h3 style={{ fontFamily: "'Big Shoulders Display',Impact,sans-serif", fontWeight: "800", textTransform: "uppercase", color: "#2A2A2A", fontSize: "clamp(25px, 5.2vw, 40px)", lineHeight: "0.95", margin: "0 0 2px" }}>De groepsmenukaart</h3>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(42,42,42,0.42)" }}>The group menu</div>
             </div>
-            <Hov as="a" href="assets/pompstation-groepsmenu.pdf" target="_blank" rel="noopener" download="Pompstation-groepsmenu.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Download groepsmenu PDF</Hov>
+            <Hov as="a" href="pompstation-groepsmenu.pdf" target="_blank" rel="noopener" download="Pompstation-groepsmenu.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Download groepsmenu PDF</Hov>
           </div>
           <p style={{ margin: "0 0 32px", maxWidth: "640px", color: "rgba(42,42,42,0.7)", lineHeight: "1.65" }}>Per gang kiest iedere gast uit onderstaande gerechten. Bij het viergangenmenu komt er een tussengerecht bij, bij vijf gangen een extra proefgang.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px, 5vw, 48px)" }}>
@@ -207,14 +207,14 @@ class PompstationMenuClass extends React.Component {
                 <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A" }}>Dranken voor uw event</div>
                 <p style={{ margin: "4px 0 0", fontSize: "14px", color: "rgba(42,42,42,0.7)" }}>Wijn, bier, frisdrank en de cocktailselectie — spritz, gin tonics, palomas en moscow mules.</p>
               </div>
-              <Hov as="a" href="assets/pompstation-event-drinks.png" target="_blank" rel="noopener" download="Pompstation-dranken-events.png" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Drankenkaart events</Hov>
+              <Hov as="a" href="pompstation-event-drinks.png" target="_blank" rel="noopener" download="Pompstation-dranken-events.png" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Drankenkaart events</Hov>
             </div>
             <div style={{ padding: "20px", background: "#EFE7D9", border: "1px solid rgba(42,42,42,0.1)", display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
               <div>
                 <div style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "24px", color: "#2A2A2A" }}>Banqueting book 2026–2027</div>
                 <p style={{ margin: "4px 0 0", fontSize: "14px", color: "rgba(42,42,42,0.7)" }}>Alle arrangementen, zalen en mogelijkheden voor groepen en afhuren op een rij.</p>
               </div>
-              <Hov as="a" href="assets/pompstation-banqueting-book.pdf" target="_blank" rel="noopener" download="Pompstation-banqueting-book.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Banqueting book PDF</Hov>
+              <Hov as="a" href="pompstation-banqueting-book.pdf" target="_blank" rel="noopener" download="Pompstation-banqueting-book.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>↓ Banqueting book PDF</Hov>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ class PompstationMenuClass extends React.Component {
                   Download de volledige menukaart als PDF
                 </p>
               </div>
-              <Hov as="a" href="assets/pompstation-menukaart-2026.pdf" target="_blank" rel="noopener" download="Pompstation-menukaart-2026.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
+              <Hov as="a" href="pompstation-menukaart-2026.pdf" target="_blank" rel="noopener" download="Pompstation-menukaart-2026.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#5C1A1B", color: "#F5EFE6", padding: "12px 20px", fontSize: "14px", fontWeight: "500", whiteSpace: "nowrap", transition: "background 0.2s ease" }} styleHover={{ background: "#3F0F10" }}>
                 ↓ Download menu PDF
               </Hov>
             </div>

@@ -41,13 +41,13 @@ class PompstationBedanktOfferteClass extends React.Component {
                 Alvast doorlezen
               </div>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                <Hov as="a" href="assets/pompstation-brochure-groepen.pdf" target="_blank" rel="noopener" download="Pompstation-brochure-groepen-en-afhuren.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#F5EFE6", color: "#5C1A1B", padding: "14px 28px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
+                <Hov as="a" href="pompstation-brochure-groepen.pdf" target="_blank" rel="noopener" download="Pompstation-brochure-groepen-en-afhuren.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#F5EFE6", color: "#5C1A1B", padding: "14px 28px", fontSize: "14px", fontWeight: "500", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.9)" }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                 </svg>
                   Brochure Groepen & afhuren
                 </Hov>
-                <Hov as="a" href="assets/pompstation-brochure-wedding.pdf" target="_blank" rel="noopener" download="Pompstation-wedding-brochure.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "10px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
+                <Hov as="a" href="pompstation-brochure-wedding.pdf" target="_blank" rel="noopener" download="Pompstation-wedding-brochure.pdf" style={{ display: "inline-flex", alignItems: "center", gap: "10px", border: "1px solid rgba(245,239,230,0.4)", color: "#F5EFE6", padding: "14px 28px", fontSize: "14px", letterSpacing: "0.02em", transition: "background 0.2s ease" }} styleHover={{ background: "rgba(245,239,230,0.1)" }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                 </svg>

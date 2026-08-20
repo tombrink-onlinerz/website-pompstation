@@ -4,11 +4,11 @@ class PompstationBedanktBrochureClass extends React.Component {
       const wedding = (new URLSearchParams(location.search).get('type') || '') === 'wedding';
       return {
         kicker: wedding ? 'Wedding brochure klaar om te downloaden' : 'Brochure Groepen & afhuren klaar om te downloaden',
-        file: wedding ? 'assets/pompstation-brochure-wedding.pdf' : 'assets/pompstation-brochure-groepen.pdf',
+        file: wedding ? 'pompstation-brochure-wedding.pdf' : 'pompstation-brochure-groepen.pdf',
         fileName: wedding ? 'Pompstation-wedding-brochure.pdf' : 'Pompstation-brochure-groepen-en-afhuren.pdf',
         label: wedding ? 'Wedding brochure downloaden' : 'Brochure Groepen & afhuren downloaden',
         nextHref: wedding ? 'bruiloft.html' : 'groepen.html',
-        otherFile: wedding ? 'assets/pompstation-brochure-groepen.pdf' : 'assets/pompstation-brochure-wedding.pdf',
+        otherFile: wedding ? 'pompstation-brochure-groepen.pdf' : 'pompstation-brochure-wedding.pdf',
         otherFileName: wedding ? 'Pompstation-brochure-groepen-en-afhuren.pdf' : 'Pompstation-wedding-brochure.pdf',
         otherLabel: wedding ? 'Ook de brochure Groepen & afhuren' : 'Ook de wedding brochure',
       };
